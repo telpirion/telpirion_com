@@ -10,7 +10,7 @@ function homeController($scope) {
 	{
 		title: "Shamepile Software is now Telpirion.com",
 		body: "This web site has been rebranded to Telpirion.com, the personal " +
-				"web site for me, Eric M. Schmidt. Thank you for visiting the site!<br/><br/>",
+				"web site for me, Eric M. Schmidt. Thank you for visiting the site!\n\n",
 		date: "June 28, 2016"
 	}];
 }
@@ -23,6 +23,11 @@ function gamesController($scope) {
 	    { title: "Yahtzee", url: "#/Games/Yahtzee", description: "About this game" },
 	    { title: "Modulus", url: "#/Games/Modulus", description: "About this game" }
 	 ];
+}
+
+// The view model for the '#Apps' page
+function appsController($scope) {
+	$scope.title = "Apps";
 }
 
 // The view model for the '#Blog' page.
@@ -38,7 +43,14 @@ function blogController($scope) {
 // The view model for the '#About' page.
 function aboutController($scope) {
 	$scope.title = "About";
-	
+	$scope.bodyContent = "Hello! Welcome to Telpirion.com, the personal website for Eric M. Schmidt.";
+	$scope.gamesExpando = "About the games";
+	$scope.appsExpando = "About the apps";
+	$scope.appsBodyContent = "I have published a couple of apps on the Google Play Store and the Windows" +
+		" Store.";
+	$scope.contactExpando = "Contact me";
+	$scope.contactMail = "admin@telpirion.com";
+
 	// Wire up the expandos.
 	$(".expando").click(function(evt){
         var heading = evt.target.nodeName.toLowerCase() == "span" ?
@@ -60,6 +72,8 @@ function aboutController($scope) {
                 sectionContent.classList.add("hidden");
             }
 	});
+
+	// Add click handler to 
 }
 
 // The viewmodel for the "Vikings!!" game.
@@ -97,6 +111,7 @@ function scratchController($scope, $location) {
 telpirionApp
 	.controller("homeController", homeController)
 	.controller("gamesController", gamesController)
+	.controller("appsController", appsController)
 	.controller("blogController", blogController)
 	.controller("aboutController", aboutController)
 	.controller("vikingsController", vikingsController)

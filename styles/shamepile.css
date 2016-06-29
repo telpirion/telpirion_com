@@ -86,3 +86,15 @@ body, html {
     }
 }
 
+.about h1 {
+	margin-bottom: 0.8em;
+}
+
+.about section {
+	margin-bottom: 2em;
+}
+
+.about section h3 {
+	margin-bottom: 0.5em;
+}
+

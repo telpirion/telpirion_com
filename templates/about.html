@@ -1,28 +1,39 @@
-<h1>{{title}}</h1>
 <div class="about">
-    <p>Welcome to Shame Pile Software!</p>
-    <br />
-    <p>We publish our own, home-grown, indie video games and apps. All of the games are built using HTML5, CSS, and JavaScript. </p>
+    <h1>{{title}}</h1>
+    <p>{{bodyContent}}</p>
     <br />
     <section>
-        <h3 class="expando"><span class="icon">+</span> About the games</h3>
+        <h3 class="expando"><span class="icon">+</span> {{gamesExpando}}</h3>
         <div class="hidden">
             <ul>
-                <li>To play one of our games, select one of titles displayed on the <b>Home</b> page. </li>
-                <li>Our games are compatible with most browsers.</li>
-                <li>All of our games are free to play. </li>
-                <li><b>Play at your own risk.</b> There is no expressed or implied level of polish or functionality to our games.</li>
-                <li><b>Bug fixes.</b> If you encounter any bugs in the games, you can log a bug in our <a href="https://github.com/telpirion/shamepilesoftware/issues">GitHub repository</a>.</li>
+                <li>To play one of the games, select one of titles displayed on the <b>Home</b> page. </li>
+                <li>The games are compatible with most browsers.</li>
+                <li>All of the games are free to play. </li>
+                <li><b>Play at your own risk.</b> There is no expressed or implied level of polish or functionality to the games.</li>
+                <li><b>Bug fixes.</b> If you encounter any bugs in the games, you can log a bug in the <a href="https://github.com/telpirion/telpirion_com/issues">GitHub repository</a>.</li>
             </ul>
         </div>
     </section>
-    <br/>
     <section>
-        <h3 class="expando"><span class="icon">+</span> About us</h3>
+        <h3 class="expando"><span class="icon">+</span> {{appsExpando}}</h3>
         <div class="hidden">
-            <div><i>Eric Schmidt</i>, programming, testing, and deployment</div>
+            {{appsBodyContent}}
+            <ul>
+                <li><a target="_new"
+                    href="https://play.google.com/store/apps/details?id=com.ericmschmidt.latinreader">
+                    Latin Reader for Android</a></li>
+                <li><a target="_new"
+                    href="https://www.microsoft.com/en-us/store/apps/latin-reader/9wzdncrfjjc0">
+                    Latin Reader for Windows Store</a></li>
+            </ul>
         </div>
     </section>
     <section>
+        <h3 class="expando"><span class="icon">+</span> {{contactExpando}}</h3>
+        <div class="hidden">
+            <p class="contact">{{contactMail}}</p>
+        </div>
     </section>
+    <br/>
+
 </div>
