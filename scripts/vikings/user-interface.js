@@ -1,0 +1,253 @@
+var page = (function () {
+	
+	// Define global variables.
+	var left,   
+		right,   
+		jumpButton, 
+		levelCount,
+		gameScreens = [
+			"load-screen", 
+			"game-screen", 
+			"level-complete"
+		];
+		
+	var loadLevel =  function () {
+	    console.log("Loading next level.");
+		startLevel();
+	}
+	
+	function startGame(inputType) {
+		console.log("startGame");
+		
+		// Capture reference to elements.
+		left = $("#left")[0];
+		right = $("#right");
+		jumpButton = $("#jump");
+		
+		// Define the inputs for the platform.    
+		if (inputType == "touch") {
+			wireUpIPad();
+		}
+		else {
+			wireUpDesktop();
+		}
+		
+		// Start the first level.
+		levelCount = 0;
+		startLevel();
+	}
+	
+	// Shows or hides screens in the game.
+	function toggleDisplay(screen){
+		console.log("toggleDisplay");
+		
+		// Hide all the screens.
+		for (var i = 0; i < gameScreens.length; i++) {
+			$("#" + gameScreens[i]).addClass("hidden");
+		}
+
+		// Display the screen that we need.
+		$("#" + screen).toggleClass("hidden");
+	}
+	
+    // Load the scripts for the level.
+	function startLevel(){
+		console.log("startLevel");
+		
+		var levelScript;
+
+	    // Remove the previous level's script from the page.
+		levelCount++;
+	
+		var levelFile = "scripts/vikings/level" + levelCount + ".js";
+
+		var callback = function () {
+		    console.log(levelFile + " load complete.");
+
+			toggleDisplay("game-screen");
+	        
+            // Update the background for the level.
+			$("#game-display").css("background-image", background);
+
+		    // Start the game sequence.
+			game.beginClock();
+		}
+			
+		$.getScript(levelFile, callback);
+	}
+	
+    // Wire up event listeners for touch devices.
+    // Only seems to work on iOS ...
+	function wireUpIPad() {
+		console.log("wireUpIPad");
+		
+		var actionDown, actionUp;
+		
+		// Add touch events for browsers with
+		// touch support.
+		if ((typeof TouchEvent) == "object") {
+			actionDown = "touchstart";
+			actionUp = "touchend";
+		}
+		else {
+			actionDown = "mousedown";
+			actionUp = "mouseup";
+		}
+		
+		// Wire up touch listeners.       
+		left.addEventListener(actionDown, function (e) {
+			e.preventDefault();
+			moveLeft();
+		});
+		left.addEventListener(actionUp, function (e) {
+			e.preventDefault();
+			stop();
+		});
+		right.addEventListener(actionDown, function (e) {
+			e.preventDefault();
+			moveRight();
+		});
+		right.addEventListener(actionUp, function (e) {
+			e.preventDefault();
+			stop();
+		});
+		jumpButton.addEventListener(actionDown , function (e) {
+			e.preventDefault();
+			jump();
+		});
+		
+		// Hide the instructions to desktop users.
+		$("#keys").addClass("hidden");
+	}
+
+    // Wire up event listeners for a keyboard.
+	function wireUpDesktop() {
+		console.log("wireUpDesktop");
+
+		// Wire up key press listeners.
+		// 37 : left arrow - move left.
+		// 39 : right arrow - move right.
+		// 32 : space bar - jumping 
+		// 38 : up arrow - jumping
+		// 40 : down arrow - FOR TESTING.
+		addEventListener("keydown", function (e) {
+		
+			e.preventDefault();
+		
+			var key = e.keyCode;
+			switch (key) {
+				case 37:
+					moveLeft();
+					break;
+				case 39:
+					moveRight();
+					break;
+				case 32:
+				case 38:
+					jump();
+					break;
+			}
+		});
+		addEventListener("keyup", function (e) {
+		
+			e.preventDefault();
+		
+			var key = e.keyCode;
+			switch (key) {
+				case 37:
+				case 39:
+					stop();
+					break;
+			}
+		});
+		
+		// Hide the instructions for iPad users.
+		$("#buttons").addClass("hidden");
+	}
+	
+	// Change to the end level screen and
+	// enable next level buttons.
+	function changeLevel(gameTime) {
+		console.log("changeLevel");
+		
+		var nextLevel = $("#nextlevel")[0],
+			timeCount = $("#time")[0];
+			
+		// Remove existing event listener and 
+		// update time clock.
+		nextLevel.removeEventListener("click", loadLevel);
+		timeCount.innerText = 
+			"Finish time: " + (gameTime / 1000).toFixed() + " seconds";
+		
+		// Disable the button if the player has reached the final level.
+		if (levelCount == 2) {
+			nextLevel.disabled = true;
+			timeCount.innerHTML += "<br/>Game over! You win!";
+		}
+		else {
+			nextLevel.addEventListener("click", loadLevel);
+		}
+		
+		// Show the level complete screen.
+		toggleDisplay("level-complete");
+	}
+	
+	// Move sprite to the right.
+	function moveRight() {
+		console.log("moveRight");
+		
+		try {
+			// Pass in the movement to the game.  
+		    game.move("x", moveTypes.right);
+		}
+		catch (err) {
+			console.log(err);
+		}
+	}
+	
+	// Move sprite to the left.
+	function moveLeft() {
+		console.log("moveLeft");
+	
+		try {
+		    // Pass in the movement to the game.  
+		    game.move("x", moveTypes.left);
+		}
+		catch (err) {
+			console.log(err);
+		}
+	}
+	
+	// Make the sprite jump up and down.
+	function jump() {
+		console.log("jump");
+	
+		try {   
+		    // Pass in the movement to the game.  
+		    game.move("y", moveTypes.jumping);
+		}
+		catch (err) {
+			console.log(err);
+		}
+	}
+	
+	// Stop movement along the x-axis.
+	function stop() {
+		console.log("stop");
+		
+		try {
+		    // Pass in the movement to the game.  
+		    game.move("x", moveTypes.none);
+		}
+		catch (err) {
+			console.log(err);
+		}
+	}
+	
+	return {
+		changeLevel: changeLevel,
+		levelCount: levelCount,
+		startGame: startGame,
+		toggleDisplay: toggleDisplay
+	};
+})();
