@@ -24,7 +24,8 @@ function gamesController($scope) {
 	    {
 	    	title: "Vikings!!!",
 	    	url: "#/Games/Vikings",
-	    	description: "About this game"
+	    	description: "About this game",
+	    	img: "/images/vK_50x78.png"
 	    },
 	    {
 	    	title: "Yahtzy",
@@ -81,7 +82,7 @@ function blogController($scope) {
 // The view model for the '#About' page.
 function aboutController($scope) {
 	$scope.title = "About";
-	$scope.bodyContent = "Find information about the games and apps on this site.";
+	$scope.bodyContent = "Find general information about the games and apps on this site.";
 	$scope.gamesExpando = "About the games";
 	$scope.appsExpando = "About the apps";
 	$scope.appsBodyContent = "I have published a couple of apps on the Google Play Store and the Windows" +
