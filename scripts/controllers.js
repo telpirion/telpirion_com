@@ -5,29 +5,62 @@
 
 // The view model for the '#Home' page.
 function homeController($scope) {
-	$scope.news = "Current News";
-	$scope.newsFeed = [
+	$scope.greetingsContent = [
 	{
-		title: "Shamepile Software is now Telpirion.com",
-		body: "This web site has been rebranded to Telpirion.com, the personal " +
-				"web site for me, Eric M. Schmidt. Thank you for visiting the site!\n\n",
-		date: "June 28, 2016"
+		html: "Welcome to the professional and personal website for me, Eric " +
+		"M. Schmidt. Hi!"
+	}, {
+		html: "Check out the JavaScript and HTML5 video games " +
+			"published on the site. I programmed all of the video games " +
+			"myself (excluding external libraries). Some art in the games " +
+			"was donated by friends."
 	}];
 }
 
 // The view model for the '#Games' page.
 function gamesController($scope) {
-	$scope.title = "Games"; 
+	$scope.title = "Games";
 	$scope.games = [
-	    { title: "Vikings!!!", url: "#/Games/Vikings", description: "About this game"},
-	    { title: "Yahtzee", url: "#/Games/Yahtzee", description: "About this game" },
-	    { title: "Modulus", url: "#/Games/Modulus", description: "About this game" }
+	    {
+	    	title: "Vikings!!!",
+	    	url: "#/Games/Vikings",
+	    	description: "About this game"
+	    },
+	    {
+	    	title: "Yahtzy",
+	    	url: "#/Games/Yahtzy",
+	    	description: "About this game"
+	    },
+	    {
+	    	title: "Modulus",
+	    	url: "#/Games/Modulus",
+	    	description: "About this game"
+	    }
 	 ];
+}
+
+// The view model for the '#Apps' page
+function resumeController($scope) {
+	$scope.title = "Resume";
 }
 
 // The view model for the '#Apps' page
 function appsController($scope) {
 	$scope.title = "Apps";
+
+	$scope.appsList = [
+		{
+			title: "Latin Reader for Android",
+			url: "https://play.google.com/store/apps/details?id=com.ericmschmidt.latinreader",
+			about: "Read one of several classical works in the original Latin " +
+			"on your Android device."
+		}, {
+			title: "Latin Reader for Windows",
+			url: "https://www.microsoft.com/en-us/store/apps/latin-reader/9wzdncrfjjc0",
+			about: "Read one of several classical works in the original Latin " +
+			"on your Windows 10, Windows 8.1, or Windows Phone 8.1 device."
+		}
+	];
 }
 
 // The view model for the '#Blog' page.
@@ -37,13 +70,18 @@ function blogController($scope) {
 		title: "First blog post",
 		date: "December 22, 2015",
 		body: "First blog post on the new site!"
+	}, {
+		title: "Shamepile Software is now Telpirion.com",
+		body: "This web site has been rebranded to Telpirion.com, the personal " +
+				"web site for Eric M. Schmidt.",
+		date: "June 28, 2016"
 	}];
 }
 
 // The view model for the '#About' page.
 function aboutController($scope) {
 	$scope.title = "About";
-	$scope.bodyContent = "Hello! Welcome to Telpirion.com, the personal website for Eric M. Schmidt.";
+	$scope.bodyContent = "Find information about the games and apps on this site.";
 	$scope.gamesExpando = "About the games";
 	$scope.appsExpando = "About the apps";
 	$scope.appsBodyContent = "I have published a couple of apps on the Google Play Store and the Windows" +
@@ -55,7 +93,7 @@ function aboutController($scope) {
 	$(".expando").click(function(evt){
         var heading = evt.target.nodeName.toLowerCase() == "span" ?
                 evt.target.parentElement : evt.target;
-            
+
             var sectionContent = heading.nextElementSibling;
             var nextSection = sectionContent.parentElement.nextElementSibling;
 
@@ -73,32 +111,32 @@ function aboutController($scope) {
             }
 	});
 
-	// Add click handler to 
 }
 
 // The viewmodel for the "Vikings!!" game.
 function vikingsController($scope) {
 	$scope.title = "Vikings!!!";
-	
 	$.getScript("scripts/vikings/game.js");
 }
 
-// The viewmodel for the "Yahtzee" game page.
-function yahtzeeController($scope) {
-	$scope.title = "Yahtzee";
-	
+// The viewmodel for the "Yahtzy" game page.
+function yahtzyController($scope) {
+	$scope.title = "Yahtzy";
+
+	var base = "scripts/yahtzy";
+
 	$.when(
-		$.getScript( "scripts/yahtzee/game.js"),
-		$.getScript( "scripts/yahtzee/ui-controllers.js"),
-		$.getScript( "scripts/yahtzee/robot.js" ),
-		$.getScript( "scripts/yahtzee/utilities.js" ),
+		$.getScript( base + "/game.js"),
+		$.getScript( base + "/ui-controllers.js"),
+		$.getScript( base + "/robot.js" ),
+		$.getScript( base + "/utilities.js" ),
 		$.Deferred(function( deferred ){
 			$( deferred.resolve );
 		})
 	)
 	.done(function(){
 		console.log("yahtzee scripts loaded");
-		$.getScript( "scripts/yahtzee/main.js" )
+		$.getScript( base + "/main.js" )
 	});
 }
 
@@ -110,10 +148,11 @@ function scratchController($scope, $location) {
 
 telpirionApp
 	.controller("homeController", homeController)
+	.controller("resumeController", resumeController)
 	.controller("gamesController", gamesController)
 	.controller("appsController", appsController)
 	.controller("blogController", blogController)
 	.controller("aboutController", aboutController)
 	.controller("vikingsController", vikingsController)
-	.controller("yahtzeeController", yahtzeeController)
+	.controller("yahtzyController", yahtzyController)
 	.controller("scratchController", ["$scope", "$location", scratchController]);

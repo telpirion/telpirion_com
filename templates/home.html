@@ -1,6 +1,7 @@
-<h1>{{news}}</h1>
-<div class="news-item" ng-repeat="newsItem in newsFeed">
-    <p><b>{{newsItem.title}}</b> <span class="date">{{newsItem.date}}</span></p>
-	<br/>
-	<p>{{newsItem.body}}</p>
+<div class="news-item">
+    <div ng-repeat="para in greetingsContent">
+        <h2>{{para.subtitle}}</h2>
+        <p>{{para.html}}</p>
+        <br/>
+    </div>
 </div>

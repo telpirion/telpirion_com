@@ -5,18 +5,22 @@
 var telpirionApp = angular.module('telpirionApp', ["ngRoute"]);
 
 // Routing for the pages inside of this site.
-telpirionApp.config(["$routeProvider", "$locationProvider", 
+telpirionApp.config(["$routeProvider", "$locationProvider",
     function($routeProvider, $locationProvider){
-	
+
 	// Shim to ease pain between development and deployment.
 	console.log(location.href);
 	var relativePath = (location.href.indexOf("google") > -1) ?
 			"/telpirion/" : "";
-	
+
 	$routeProvider
     .when('/Home', {
         templateUrl: relativePath + 'templates/home.html',
         controller: 'homeController'
+    })
+    .when('/Resume', {
+        templateUrl: relativePath + 'templates/resume.html',
+        controller: 'resumeController'
     })
     .when('/Games', {
     	templateUrl: relativePath + 'templates/games.html',
@@ -42,20 +46,21 @@ telpirionApp.config(["$routeProvider", "$locationProvider",
     	templateUrl: relativePath + 'templates/vikings.html',
     	controller: 'vikingsController'
     })
-    .when('/Games/Yahtzee', {
-    	templateUrl: relativePath + 'templates/yahtzee.html',
-    	controller: 'yahtzeeController'
+    .when('/Games/Yahtzy', {
+    	templateUrl: relativePath + 'templates/yahtzy.html',
+    	controller: 'yahtzyController'
     })
     .otherwise('/Home');
 }]);
 
 // The view model for the site header navigation
 telpirionApp.controller('headerController', function ($scope) {
-	$scope.content = 
+	$scope.content =
 	{
 		title: "Telpirion.com",
 		links: [
 			{ title: "Home", url: "#Home" },
+            //{ title: "Resume", url: "#Resume" },
 			{ title: "Games", url: "#Games" },
             { title: "Apps", url: "#Apps"},
 			{ title: "Blog", url: "#Blog" },

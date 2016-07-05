@@ -14,13 +14,15 @@ body, html {
 
 .header {
 	display: inline-block;
-	background-color: #08a145;
+	background-color: #2E7D32;
 	width: 100%;
 	color: white;
 }
 
 .header h1 {
+	margin-top: 10px;
 	margin-left: 10px;
+	margin-bottom: 10px;
 }
 
 .nav {
@@ -98,3 +100,6 @@ body, html {
 	margin-bottom: 0.5em;
 }
 
+.about section ul {
+	margin-left: 20px;
+}
