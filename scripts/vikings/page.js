@@ -51,25 +51,33 @@ var page = (function () {
 	function startLevel(){
 
 		var levelScript;
-
-	    // Remove the previous level's script from the page.
 		levelCount++;
 
-		var levelFile = "scripts/vikings/level" + levelCount + ".js";
+		var levelFile = "scripts/vikings/level" + levelCount + ".json";
 
+		//$.getScript(levelFile, callback);
+		var xhr = new XMLHttpRequest();
 		var callback = function () {
 		    console.log(levelFile + " load complete.");
+		    var levelData = xhr.response;
+
+		    // Set the parameters for the level.
+		    game.setGround(levelData.ground);
+		    physics.setBlocks(levelData.blocks);
 
 			toggleDisplay("game-screen");
 
             // Update the background for the level.
-			$("#game-display").css("background-image", background);
+			$("#game-display").css("background-image", levelData.background);
 
 		    // Start the game sequence.
 			game.beginClock();
 		}
 
-		$.getScript(levelFile, callback);
+		xhr.addEventListener("load", callback);
+		xhr.responseType = "json";
+		xhr.open("GET", levelFile);
+		xhr.send();
 	}
 
     // Wire up event listeners for touch devices.

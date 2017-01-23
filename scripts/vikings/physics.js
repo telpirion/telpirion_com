@@ -1,10 +1,13 @@
-/* 
+/*
     Basic physics engine
     Version 5.2
     Eric Schmidt
     Published: 2012-12-08
+    Updated: 2017-01-23
 */
 var physics = {
+
+    blocks: undefined,
 
     // Test to see if the sprite
     // has collided with an object.
@@ -18,7 +21,7 @@ var physics = {
             verticalHit,
             horizontalHit,
             moveYStatus = null,
-            xLimit = ground.width;
+            xLimit = game.ground().width;
 
         // Test for a vertical and horizontal hit.
         verticalHit = this.testHit(startX, y, width, height, {startY : startY, moveDir : moveXDir});
@@ -36,7 +39,7 @@ var physics = {
             // Check for a hit and adjust
             // the x-value if so.
             else if (horizontalHit) {
-                newX = horizontalHit.x - (startX + width);                   
+                newX = horizontalHit.x - (startX + width);
             }
         }
         // The sprite is moving to the left.
@@ -99,7 +102,7 @@ var physics = {
             hTest2 = x < (block.x + block.width);
             vTest1 = (y + height) > block.y;
             vTest2 = y < (block.y + block.height);
-  
+
             // Test for exact hit inside of obstacle.
             if (hTest1 &&
                 hTest2 &&
@@ -113,15 +116,15 @@ var physics = {
 
             // Test for vertical passage through blocked space.
             if (options != null) {
-  
+
                 if (options.moveDir == moveTypes.falling) {
                     vTest3 = options.startY <= (block.y + 5);
                     vTest4 = (y + height + 5) >= block.y;
                 }
                 // Test for a vertical hit.
-                if (hTest1 && 
-                    hTest2 && 
-                    vTest3 && 
+                if (hTest1 &&
+                    hTest2 &&
+                    vTest3 &&
                     vTest4) {
                     //write((game.time / 1000).toFixed(2) + ": " + startY + " to " + newY + "; block: " + block.y);
                     return block;
@@ -133,7 +136,7 @@ var physics = {
         return null;
     },
 
-    // Determine whether the sprite can 
+    // Determine whether the sprite can
     // fall further to the ground.
     testFall: function (x, y) {
 
@@ -192,8 +195,11 @@ var physics = {
         result.status = status;
         result.time = time;
         return result;
-    }
+    },
 
+    setBlocks: function(_blocks) {
+        blocks = _blocks;
+    }
 };
 
 // An enum for storing expressing movement status.
@@ -220,32 +226,32 @@ function Sprite(x, y, width, height) {
 
 // Update the sprite's position in the game level.
 Sprite.prototype.update = function() {
-   
+
 	var deltaX = 0,
         deltaY = 0,
 	    gravityResults = null;
-    
+
     // Change the sprite's x value.
     switch (this.moveXStatus) {
-        case moveTypes.right:      
-            deltaX = this.move;  
+        case moveTypes.right:
+            deltaX = this.move;
             break;
-        
+
         case moveTypes.left:
             deltaX = 0 - this.move;
        	    break;
     }
-   
-    // Change the sprite's y value. 
+
+    // Change the sprite's y value.
     switch (this.moveYStatus) {
         case moveTypes.jumping:
-            gravityResults = physics.jump(this.airTime);              
+            gravityResults = physics.jump(this.airTime);
             break;
-            
-        case moveTypes.falling:    
+
+        case moveTypes.falling:
             gravityResults = physics.fall(this.airTime);
             break;
-            
+
         default:
              var isFalling = physics.testFall(this.x, this.y);
              if (isFalling) { this.moveYStatus = moveTypes.falling }
@@ -263,10 +269,10 @@ Sprite.prototype.update = function() {
 
     // Test the new coordinates for a hit,
     // and return the new coordinates.
-    var results = physics.adjustMove(this.x, this.y, 
+    var results = physics.adjustMove(this.x, this.y,
         this.width, this.height, deltaX, deltaY, this.moveXStatus,
         this.moveYStatus);
-        
+
     // Check to see if the object has hit ground yet or not.
     if (results.moveYStatus) {
         this.moveYStatus = results.moveYStatus;
