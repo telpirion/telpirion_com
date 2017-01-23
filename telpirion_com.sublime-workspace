@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"resume",
+				"resumeController"
+			],
+			[
 				"margin",
 				"margin-top"
 			],
@@ -15,6 +19,30 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "styles/telpirion-base.css",
+			"settings":
+			{
+				"buffer_size": 1252,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/games.html",
+			"settings":
+			{
+				"buffer_size": 281,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "scripts/controllers.js",
+			"settings":
+			{
+				"buffer_size": 4717,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -40,6 +68,16 @@
 	},
 	"file_history":
 	[
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/controllers.js",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/apps.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/home.js",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/yahtzy.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/styles/yahtzee.css",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/home.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/blog.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/yahtzee.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/resume.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/index.html",
 		"/Users/ericmschmidt/Documents/carmichael/pages/products.html",
 		"/Users/ericmschmidt/Documents/carmichael/pages/purchase.html",
 		"/Users/ericmschmidt/Documents/carmichael/pages/contact.html",
@@ -86,8 +124,89 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "styles/telpirion-base.css",
+					"settings":
+					{
+						"buffer_size": 1252,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1234,
+								1234
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 931.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "templates/games.html",
+					"settings":
+					{
+						"buffer_size": 281,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								224,
+								224
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "scripts/controllers.js",
+					"settings":
+					{
+						"buffer_size": 4717,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2305,
+								2305
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1385.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],

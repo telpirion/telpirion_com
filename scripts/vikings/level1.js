@@ -1,7 +1,7 @@
 // Define the order of the levels.
 var levelNum = 1;
 
-// Define the physical dimensions of the level. 
+// Define the physical dimensions of the level.
 var blocks = [
     {
         x : 320, // Square block.
@@ -11,7 +11,7 @@ var blocks = [
         color: "rgba(0,0,0,1)",
         url : "images/blocks.jpg"
     },
-    { 
+    {
         x : 380, // Square block.
         y : 120,
         width : 30,
@@ -33,7 +33,7 @@ var blocks = [
         height : 5,
         color : "rgba(170,69,19,1)"
     },
-    { 
+    {
         x : 980, // Square block.
         y : 80,
         width : 30,
@@ -41,7 +41,7 @@ var blocks = [
         color: "rgba(0,0,0,1)",
         url : "images/blocks.jpg"
     },
-    { 
+    {
         x : 1100, // Square block.
         y : 80,
         width : 30,
@@ -62,7 +62,7 @@ var blocks = [
         width : 30,
         height : 150,
         color: "rgba(0,0,0,1)"
-    }  
+    }
 ];
 
 var ground = {
@@ -73,4 +73,4 @@ var ground = {
     color: "rgba(100,100,100,1)"
 };
 
-var background = "url(images/MountainSandBG_01.png)";
+var background = "url(images/bg_river_1_2.jpg)";
