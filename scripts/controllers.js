@@ -117,7 +117,7 @@ function aboutController($scope) {
 // The viewmodel for the "Vikings!!" game.
 function vikingsController($scope) {
 	$scope.title = "Vikings!!!";
-	$.getScript("scripts/vikings/game.js");
+	$.getScript("scripts/vikings/main.js");
 }
 
 // The viewmodel for the "Yahtzy" game page.

@@ -1,6 +1,13 @@
+/*
+    UI handlers for Vikings!!!
+    Version 5.2
+    Eric Schmidt
+    Published: 2012-12-08
+    Updated: 2017-01-23
+*/
 var page = (function () {
 
-	// Define global variables.
+    // Define global variables.
 	var left,
 		right,
 		jumpButton,
@@ -11,7 +18,7 @@ var page = (function () {
 			"level-complete"
 		];
 
-	var loadLevel =  function () {
+	function loadLevel() {
 		startLevel();
 	}
 
@@ -62,7 +69,7 @@ var page = (function () {
 		    var levelData = xhr.response;
 
 		    // Set the parameters for the level.
-		    game.setGround(levelData.ground);
+		    animation.setGround(levelData.ground);
 		    physics.setBlocks(levelData.blocks);
 
 			toggleDisplay("game-screen");
@@ -71,7 +78,7 @@ var page = (function () {
 			$("#game-display").css("background-image", levelData.background);
 
 		    // Start the game sequence.
-			game.beginClock();
+			animation.beginClock();
 		}
 
 		xhr.addEventListener("load", callback);
@@ -199,7 +206,7 @@ var page = (function () {
 
 		try {
 			// Pass in the movement to the game.
-		    game.move("x", moveTypes.right);
+		    animation.move("x", moveTypes.right);
 		}
 		catch (err) {
 			console.log(err);
@@ -211,7 +218,7 @@ var page = (function () {
 
 		try {
 		    // Pass in the movement to the game.
-		    game.move("x", moveTypes.left);
+		    animation.move("x", moveTypes.left);
 		}
 		catch (err) {
 			console.log(err);
@@ -223,7 +230,7 @@ var page = (function () {
 
 		try {
 		    // Pass in the movement to the game.
-		    game.move("y", moveTypes.jumping);
+		    animation.move("y", moveTypes.jumping);
 		}
 		catch (err) {
 			console.log(err);
@@ -235,7 +242,7 @@ var page = (function () {
 
 		try {
 		    // Pass in the movement to the game.
-		    game.move("x", moveTypes.none);
+		    animation.move("x", moveTypes.none);
 		}
 		catch (err) {
 			console.log(err);

@@ -1,3 +1,10 @@
+/*
+    Entry point for Vikings!!!
+    Version 6.0
+    Eric Schmidt
+    Published: 2012-12-08
+    Updated: 2017-01-23
+*/
 var images = [];
 
 // Start the Vikings!!! game sequence.

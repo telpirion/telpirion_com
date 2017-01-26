@@ -1,6 +1,6 @@
 /*
     Basic physics engine
-    Version 5.2
+    Version 6.0
     Eric Schmidt
     Published: 2012-12-08
     Updated: 2017-01-23
@@ -21,7 +21,7 @@ var physics = {
             verticalHit,
             horizontalHit,
             moveYStatus = null,
-            xLimit = game.ground().width;
+            xLimit = animation.ground().width;
 
         // Test for a vertical and horizontal hit.
         verticalHit = this.testHit(startX, y, width, height, {startY : startY, moveDir : moveXDir});
@@ -126,7 +126,6 @@ var physics = {
                     hTest2 &&
                     vTest3 &&
                     vTest4) {
-                    //write((game.time / 1000).toFixed(2) + ": " + startY + " to " + newY + "; block: " + block.y);
                     return block;
                 }
 
