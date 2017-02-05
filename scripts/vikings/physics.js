@@ -33,7 +33,6 @@ var physics = {
             // Sprite hit the right edge.
             if (x > (xLimit - width)) {
                 newX = (xLimit - width) - startX;
-                //write("hit right edge");
             }
 
             // Check for a hit and adjust
