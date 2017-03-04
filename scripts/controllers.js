@@ -5,93 +5,118 @@
 
 // The view model for the '#Home' page.
 function homeController($scope) {
-	$scope.greetingsContent = [
-	{
-		html: "Welcome to the professional and personal website for me, Eric " +
-		"M. Schmidt. Hi!"
-	}, {
-		html: "Check out the JavaScript and HTML5 video games " +
-			"published on the site. I programmed all of the video games " +
-			"myself (excluding external libraries). Some art in the games " +
-			"was donated by friends."
-	}];
+
+    // Begin the slide carousel.
+    var slideIndex = 0;
+    var slides = document.querySelectorAll(".slide");
+
+    advanceSlide(0);
+
+    document.querySelector(".left").addEventListener("click",
+        function () {
+            advanceSlide(-1);
+        });
+
+    document.querySelector(".right").addEventListener("click",
+        function(){
+            advanceSlide(1);
+        });
+
+    function advanceSlide(delta) {
+
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+
+        var adjustedDelta = slideIndex + delta;
+
+        if ((adjustedDelta >= 0) &&
+            (adjustedDelta < slides.length)) {
+            slideIndex = adjustedDelta;
+        } else if (adjustedDelta == slides.length) {
+            slideIndex = 0;
+        } else {
+            slideIndex = slides.length - 1;
+        }
+        slides[slideIndex].style.display = "block";
+    }
 }
 
 // The view model for the '#Games' page.
 function gamesController($scope) {
-	$scope.title = "Games";
-	$scope.games = [
-	    {
-	    	title: "Vikings!!!",
-	    	url: "#/Games/Vikings",
-	    	description: "About this game",
-	    	img: "/images/vK_50x78.png"
-	    },
-	    {
-	    	title: "Yahtzy",
-	    	url: "#/Games/Yahtzy",
-	    	description: "About this game"
-	    },
-	    {
-	    	title: "Modulus",
-	    	url: "#/Games/Modulus",
-	    	description: "About this game"
-	    }
-	 ];
+    $scope.title = "Games";
+    $scope.games = [
+        {
+            title: "Vikings!!!",
+            url: "#/Games/Vikings",
+            description: "About this game",
+            img: "/images/vK_50x78.png"
+        },
+        {
+            title: "Yahtzy",
+            url: "#/Games/Yahtzy",
+            description: "About this game"
+        },
+        {
+            title: "Modulus",
+            url: "#/Games/Modulus",
+            description: "About this game"
+        }
+     ];
 }
 
 // The view model for the '#Apps' page
 function resumeController($scope) {
-	$scope.title = "Resume";
+    $scope.title = "Resume";
 }
 
 // The view model for the '#Apps' page
 function appsController($scope) {
-	$scope.title = "Apps";
+    $scope.title = "Apps";
 
-	$scope.appsList = [
-		{
-			title: "Latin Reader for Android",
-			url: "https://play.google.com/store/apps/details?id=com.ericmschmidt.latinreader",
-			about: "Read one of several classical works in the original Latin " +
-			"on your Android device."
-		}, {
-			title: "Latin Reader for Windows",
-			url: "https://www.microsoft.com/en-us/store/apps/latin-reader/9wzdncrfjjc0",
-			about: "Read one of several classical works in the original Latin " +
-			"on your Windows 10, Windows 8.1, or Windows Phone 8.1 device."
-		}
-	];
+    $scope.appsList = [
+        {
+            title: "Latin Reader for Android",
+            url: "https://play.google.com/store/apps/details?id=com.ericmschmidt.latinreader",
+            about: "Read one of several classical works in the original Latin " +
+            "on your Android device."
+        }, {
+            title: "Latin Reader for Windows",
+            url: "https://www.microsoft.com/en-us/store/apps/latin-reader/9wzdncrfjjc0",
+            about: "Read one of several classical works in the original Latin " +
+            "on your Windows 10, Windows 8.1, or Windows Phone 8.1 device."
+        }
+    ];
 }
 
 // The view model for the '#Blog' page.
 function blogController($scope) {
-	$scope.title = "Blog";
-	$scope.feed = [{
-		title: "First blog post",
-		date: "December 22, 2015",
-		body: "First blog post on the new site!"
-	}, {
-		title: "Shamepile Software is now Telpirion.com",
-		body: "This web site has been rebranded to Telpirion.com, the personal " +
-				"web site for Eric M. Schmidt.",
-		date: "June 28, 2016"
-	}];
+    $scope.title = "Blog";
+    $scope.feed = [{
+        title: "First blog post",
+        date: "December 22, 2015",
+        body: "First blog post on the new site!"
+    }, {
+        title: "Shamepile Software is now Telpirion.com",
+        body: "This web site has been rebranded to Telpirion.com, the personal " +
+                "web site for Eric M. Schmidt.",
+        date: "June 28, 2016"
+    }];
 }
 
 // The view model for the '#About' page.
 function aboutController($scope) {
-	$scope.title = "About";
-	$scope.bodyContent = "Find general information about the games and apps on this site.";
-	$scope.gamesExpando = "About the games";
-	$scope.appsExpando = "About the apps";
-	$scope.appsBodyContent = "I have published a couple of apps on the Google Play Store and the Windows" +
-		" Store.";
-	$scope.contactExpando = "Contact me";
-	$scope.contactMail = "admin@telpirion.com";
+    $scope.title = "About";
+    $scope.bodyContent = "Find general information about the games and apps on this site.";
+    $scope.gamesExpando = "About the games";
+    $scope.appsExpando = "About the apps";
+    $scope.appsBodyContent = "I have published a couple of apps on the Google Play Store and the Windows" +
+        " Store.";
+    $scope.contactExpando = "Contact me";
+    $scope.contactMail = "admin@telpirion.com";
 
-	// Wire up the expandos.
-	$(".expando").click(function(evt){
+    // Wire up the expandos.
+    $(".expando").click(function(evt){
         var heading = evt.target.nodeName.toLowerCase() == "span" ?
                 evt.target.parentElement : evt.target;
 
@@ -110,50 +135,50 @@ function aboutController($scope) {
                 sectionContent.classList.remove("shown");
                 sectionContent.classList.add("hidden");
             }
-	});
+    });
 
 }
 
 // The viewmodel for the "Vikings!!" game.
 function vikingsController($scope) {
-	$scope.title = "Vikings!!!";
-	$.getScript("scripts/vikings/main.js");
+    $scope.title = "Vikings!!!";
+    $.getScript("scripts/vikings/main.js");
 }
 
 // The viewmodel for the "Yahtzy" game page.
 function yahtzyController($scope) {
-	$scope.title = "Yahtzy";
+    $scope.title = "Yahtzy";
 
-	var base = "scripts/yahtzy";
+    var base = "scripts/yahtzy";
 
-	$.when(
-		$.getScript( base + "/game.js"),
-		$.getScript( base + "/ui-controllers.js"),
-		$.getScript( base + "/robot.js" ),
-		$.getScript( base + "/utilities.js" ),
-		$.Deferred(function( deferred ){
-			$( deferred.resolve );
-		})
-	)
-	.done(function(){
-		console.log("yahtzee scripts loaded");
-		$.getScript( base + "/main.js" )
-	});
+    $.when(
+        $.getScript( base + "/game.js"),
+        $.getScript( base + "/ui-controllers.js"),
+        $.getScript( base + "/robot.js" ),
+        $.getScript( base + "/utilities.js" ),
+        $.Deferred(function( deferred ){
+            $( deferred.resolve );
+        })
+    )
+    .done(function(){
+        console.log("yahtzee scripts loaded");
+        $.getScript( base + "/main.js" )
+    });
 }
 
 // The viewmodel for the "Scratch" page.
 function scratchController($scope, $location) {
-	$scope.title = "Scratch";
-	$scope.location = $location.absUrl();
+    $scope.title = "Scratch";
+    $scope.location = $location.absUrl();
 }
 
 telpirionApp
-	.controller("homeController", homeController)
-	.controller("resumeController", resumeController)
-	.controller("gamesController", gamesController)
-	.controller("appsController", appsController)
-	.controller("blogController", blogController)
-	.controller("aboutController", aboutController)
-	.controller("vikingsController", vikingsController)
-	.controller("yahtzyController", yahtzyController)
-	.controller("scratchController", ["$scope", "$location", scratchController]);
+    .controller("homeController", homeController)
+    .controller("resumeController", resumeController)
+    .controller("gamesController", gamesController)
+    .controller("appsController", appsController)
+    .controller("blogController", blogController)
+    .controller("aboutController", aboutController)
+    .controller("vikingsController", vikingsController)
+    .controller("yahtzyController", yahtzyController)
+    .controller("scratchController", ["$scope", "$location", scratchController]);

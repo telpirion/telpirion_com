@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"backgr",
+				"background-color"
+			],
+			[
 				"resume",
 				"resumeController"
 			],
@@ -20,53 +28,45 @@
 	"buffers":
 	[
 		{
-			"contents": "/*\n    Basic physics engine\n    Version 6.0\n    Eric Schmidt\n    Published: 2012-12-08\n    Updated: 2017-01-23\n*/\nvar physics = {\n\n    blocks: undefined,\n\n    // Test to see if the sprite\n    // has collided with an object.\n    adjustMove: function (startX, startY, width, height, deltaX, deltaY, moveXDir, moveYDir){\n\n        var result = {},\n            x = startX + deltaX,\n            y = startY + deltaY,\n            newX = deltaX,\n            newY = deltaY,\n            verticalHit,\n            horizontalHit,\n            moveYStatus = null,\n            xLimit = animation.ground().width;\n\n        // Test for a vertical and horizontal hit.\n        verticalHit = this.testHit(startX, y, width, height, {startY : startY, moveDir : moveXDir});\n        horizontalHit = this.testHit(x, startY, width, height);\n\n        // The sprite is moving to the right.\n        if (moveXDir  == moveTypes.right) {\n\n            // Sprite hit the right edge.\n            if (x > (xLimit - width)) {\n                newX = (xLimit - width) - startX;\n            }\n\n            // Check for a hit and adjust\n            // the x-value if so.\n            else if (horizontalHit) {\n                newX = horizontalHit.x - (startX + width);\n            }\n        }\n        // The sprite is moving to the left.\n        else if (moveXDir == moveTypes.left) {\n\n            // Sprite hit the left edge.\n            if (x < 0) {\n                newX = 0 - startX;\n            }\n\n                // Check for a hit and adjust\n                // x-value if so.\n            else if (horizontalHit) {\n                newX = (horizontalHit.x + horizontalHit.width) - startX;\n            }\n        }\n\n        // The sprite is jumping.\n        if (moveYDir == moveTypes.jumping) {\n            if (verticalHit) {\n               newY = (verticalHit.y + verticalHit.height) - startY;\n               moveYStatus = moveTypes.falling;\n           }\n        }\n\n        // The sprite is falling.\n        if (deltaY > 0) {\n\n            // Sprite hit the ground.\n            if (y > (280 - height)) {\n                newY = (280 - height) - startY;\n                moveYStatus = moveTypes.none;\n            }\n\n            // Check if the sprite hit a block.\n            else if (verticalHit) {\n                newY = verticalHit.y - (startY + height);\n                moveYStatus = moveTypes.none;\n            }\n        }\n\n        // Return the new x and y values.\n        result.x = newX;\n        result.y = newY;\n        result.moveYStatus = moveYStatus;\n        return result;\n    },\n\n    // Test each block in the level for a hit.\n    testHit: function (x, y, width, height, options) {\n\n        // Test to see if the sprite\n        // has run into a block in the level.\n        var block;\n        var hTest1, hTest2, vTest1, vTest2, vTest3, vTest4;\n        for (var i = 0; i < blocks.length; i++) {\n            block = blocks[i];\n\n            hTest1 = (x + width) > block.x;\n            hTest2 = x < (block.x + block.width);\n            vTest1 = (y + height) > block.y;\n            vTest2 = y < (block.y + block.height);\n\n            // Test for exact hit inside of obstacle.\n            if (hTest1 &&\n                hTest2 &&\n                vTest1 &&\n                vTest2) {\n\n                // Hit a block; return the block to\n                // the calling code.\n                return block;\n            }\n\n            // Test for vertical passage through blocked space.\n            if (options != null) {\n\n                if (options.moveDir == moveTypes.falling) {\n                    vTest3 = options.startY <= (block.y + 5);\n                    vTest4 = (y + height + 5) >= block.y;\n                }\n                // Test for a vertical hit.\n                if (hTest1 &&\n                    hTest2 &&\n                    vTest3 &&\n                    vTest4) {\n                    return block;\n                }\n\n            }\n        }\n\n        return null;\n    },\n\n    // Determine whether the sprite can\n    // fall further to the ground.\n    testFall: function (x, y) {\n\n        var isFalling = false;\n\n        // Test for collision 1 pixel below\n        // passed in coordinates.\n        if (!this.testHit(x, y + 1)) {\n            isFalling = true;\n        }\n\n        return isFalling;\n    },\n\n    // Determine sprite position during jump.\n    jump: function (t) {\n\n        // y = -t2 + 4t - 4\n        //return (Math.pow(t, 2) * -1) + (t * 4) - 4;\n\n        // Calculate the sprite's position\n        // on the x-axis using the formula:\n        // y = 2t - 4\n        var result = {},\n            y = (t * 2) - 4,\n            status = moveTypes.jumping,\n            time = t;\n\n        // Change the sprite status if it is\n        // approaching a delta of 0.\n        if (y > -0.5) {\n            status = moveTypes.falling;\n            time = 0;\n        }\n        else {\n            y = y * 10;\n        }\n\n        // Return the new values.\n        result.y = y;\n        result.status = status;\n        result.time = time;\n        return result;\n    },\n\n    // Determine sprite position during a fall.\n    fall: function (t) {\n        // y = t2\n        var result = {},\n            y = Math.pow(t, 2) * 10,\n            status = moveTypes.falling,\n            time = t;\n\n        // Return the new values.\n        result.y = y;\n        result.status = status;\n        result.time = time;\n        return result;\n    },\n\n    setBlocks: function(_blocks) {\n        blocks = _blocks;\n    }\n};\n\n// An enum for storing expressing movement status.\nvar moveTypes = {\n    none: \"none\",\n    right: \"right\",\n    left: \"left\",\n    jumping: \"jumping\",\n    falling: \"falling\"\n};\n\n// Define a base class for game characters.\nfunction Sprite(x, y, width, height) {\n	this.x = x;\n    this.y = y;\n    this.width = width;\n    this.height = height;\n    this.color = \"rgba(0,0,0,1)\";\n    this.airTime = 0;\n    this.moveXStatus = moveTypes.none;\n    this.moveYStatus = moveTypes.none;\n    this.move = 10;\n}\n\n// Update the sprite's position in the game level.\nSprite.prototype.update = function() {\n\n	var deltaX = 0,\n        deltaY = 0,\n	    gravityResults = null;\n\n    // Change the sprite's x value.\n    switch (this.moveXStatus) {\n        case moveTypes.right:\n            deltaX = this.move;\n            break;\n\n        case moveTypes.left:\n            deltaX = 0 - this.move;\n       	    break;\n    }\n\n    // Change the sprite's y value.\n    switch (this.moveYStatus) {\n        case moveTypes.jumping:\n            gravityResults = physics.jump(this.airTime);\n            break;\n\n        case moveTypes.falling:\n            gravityResults = physics.fall(this.airTime);\n            break;\n\n        default:\n             var isFalling = physics.testFall(this.x, this.y);\n             if (isFalling) { this.moveYStatus = moveTypes.falling }\n    }\n\n    // If there has been any change due to gravity,\n    // update the data for the y-axis.\n    if (gravityResults) {\n\n        // Update the jumping values.\n        this.airTime = gravityResults.time + (1 / 3);\n        this.moveYStatus = gravityResults.status;\n        deltaY = gravityResults.y;\n    }\n\n    // Test the new coordinates for a hit,\n    // and return the new coordinates.\n    var results = physics.adjustMove(this.x, this.y,\n        this.width, this.height, deltaX, deltaY, this.moveXStatus,\n        this.moveYStatus);\n\n    // Check to see if the object has hit ground yet or not.\n    if (results.moveYStatus) {\n        this.moveYStatus = results.moveYStatus;\n        this.airTime = 0;\n    }\n\n    this.x = this.x + results.x;\n    this.y = this.y + results.y;\n}",
-			"file": "scripts/vikings/physics.js",
-			"file_size": 7620,
-			"file_write_time": 1485210460000000,
+			"contents": "\n<html ng-app=\"telpirionApp\">\n    <head>\n        <title>Telpirion.com</title>\n        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js\"></script>\n        <script src=\"https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js\"></script>\n        <script src=\"https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js\"></script>\n        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/custom/phaser-minimum.js\"></script>\n\n        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>\n\n        <!--  Telpirion.com scripts -->\n        <script src=\"scripts/home.js\"></script>\n        <script src=\"scripts/controllers.js\"></script>\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"styles/telpirion-base.css\"/>\n    </head>\n    <body>\n    	<div class=\"main-body\">\n    		<div ng-controller=\"headerController\" class=\"header\">\n    			<h1>{{content.title}}</h1>\n    			<div class=\"nav\">\n    				<ul>\n    					<li ng-repeat=\"link in content.links\"><a ng-href=\"{{link.url}}\">{{link.title}}</a></li>\n    				</ul>\n    			</div>\n    		</div>\n			<div class=\"content\">\n			    <div ng-controller=\"mainController as main\">\n			        <ng-view></ng-view>\n			    </div>\n			</div>\n    	</div>\n    </body>\n</html>",
+			"file": "index.html",
+			"file_size": 1290,
+			"file_write_time": 1486329950000000,
 			"settings":
 			{
-				"buffer_size": 7577,
+				"buffer_size": 1302,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "scripts/vikings/animation.js",
+			"file": "templates/home.html",
 			"settings":
 			{
-				"buffer_size": 5854,
+				"buffer_size": 2532,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "scripts/vikings/page.js",
+			"file": "styles/telpirion-base.css",
 			"settings":
 			{
-				"buffer_size": 5206,
+				"buffer_size": 2016,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "scripts/vikings/main.js",
+			"file": "scripts/controllers.js",
 			"settings":
 			{
-				"buffer_size": 1617,
+				"buffer_size": 5661,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "scripts/vikings/level2.json",
+			"file": "templates/games.html",
 			"settings":
 			{
-				"buffer_size": 2271,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "scripts/vikings/level1.json",
-			"settings":
-			{
-				"buffer_size": 1362,
+				"buffer_size": 281,
 				"line_ending": "Unix"
 			}
 		}
@@ -74,15 +74,15 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 0.0,
+		"height": 392.0,
 		"selected_items":
 		[
 		],
-		"width": 0.0
+		"width": 392.0
 	},
 	"console":
 	{
-		"height": 0.0
+		"height": 174.0
 	},
 	"distraction_free":
 	{
@@ -95,16 +95,26 @@
 	},
 	"file_history":
 	[
+		"/Users/ericmschmidt/GitHub/telpirion_com/images/Hi-res-logo.png",
+		"/Users/ericmschmidt/Downloads/ic_chevron_right_black_24dp/web/ic_chevron_right_black_24dp_2x.png",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/home.html",
+		"/Users/ericmschmidt/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/ericmschmidt/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/external/angular-route.min.js",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/external/jquery.js",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/external/angular.min.js",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/physics.js",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/animation.js",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/page.js",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/main.js",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/level2.json",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/level1.json",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/angular.min.js/angular.min.js",
+		"/Users/ericmschmidt/GitHub/telpirion_com/README.md",
 		"/Users/ericmschmidt/Downloads/attachments/game background 2.3.jpg",
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/controllers.js",
-		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/main.js",
-		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/animation.js",
-		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/physics.js",
-		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/page.js",
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/game.js",
-		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/level2.json",
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/user-interface.js",
-		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/level1.json",
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/level2.js",
 		"/Users/ericmschmidt/GitHub/telpirion_com/styles/telpirion-base.css",
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/games.html",
@@ -115,7 +125,6 @@
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/home.js",
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/yahtzy.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/styles/yahtzee.css",
-		"/Users/ericmschmidt/GitHub/telpirion_com/templates/home.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/blog.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/yahtzee.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/resume.html",
@@ -128,9 +137,7 @@
 		"/Users/ericmschmidt/Documents/carmichael/pages/home.html",
 		"/Users/ericmschmidt/Documents/carmichael/pages/about.html",
 		"/Users/ericmschmidt/Documents/carmichael/styles/carmichael-base.css",
-		"/Users/ericmschmidt/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-		"/Users/ericmschmidt/Documents/carmichael/index.html",
-		"/Users/ericmschmidt/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings"
+		"/Users/ericmschmidt/Documents/carmichael/index.html"
 	],
 	"find":
 	{
@@ -138,7 +145,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 102.0,
 		"where_history":
 		[
 		]
@@ -148,6 +155,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"\\t",
 			"game",
 			"adjustMove",
 			"blocks",
@@ -161,9 +169,11 @@
 		"highlight": true,
 		"in_selection": false,
 		"preserve_case": false,
-		"regex": false,
+		"regex": true,
 		"replace_history":
 		[
+			"    ",
+			"\\s\\s\\s\\s"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -174,51 +184,106 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "scripts/vikings/physics.js",
+					"file": "index.html",
 					"settings":
 					{
-						"buffer_size": 7577,
+						"buffer_size": 1302,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1035,
-								1035
+								828,
+								828
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 158.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "scripts/vikings/animation.js",
+					"file": "templates/home.html",
 					"settings":
 					{
-						"buffer_size": 5854,
+						"buffer_size": 2532,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								50,
-								50
+								2457,
+								2457
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 444.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "styles/telpirion-base.css",
+					"settings":
+					{
+						"buffer_size": 2016,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								271,
+								264
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 501.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "scripts/controllers.js",
+					"settings":
+					{
+						"buffer_size": 5661,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								172,
+								172
 							]
 						],
 						"settings":
@@ -233,111 +298,27 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "scripts/vikings/page.js",
-					"settings":
-					{
-						"buffer_size": 5206,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								180,
-								180
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 8.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "scripts/vikings/main.js",
-					"settings":
-					{
-						"buffer_size": 1617,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								33,
-								33
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
 					"buffer": 4,
-					"file": "scripts/vikings/level2.json",
+					"file": "templates/games.html",
 					"settings":
 					{
-						"buffer_size": 2271,
+						"buffer_size": 281,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2263,
-								2263
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1657.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "scripts/vikings/level1.json",
-					"settings":
-					{
-						"buffer_size": 1362,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								855,
-								855
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 887.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -378,7 +359,7 @@
 	"menu_visible": true,
 	"replace":
 	{
-		"height": 0.0
+		"height": 70.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -401,6 +382,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 202.0,
+	"side_bar_width": 272.0,
 	"status_bar_visible": true
 }

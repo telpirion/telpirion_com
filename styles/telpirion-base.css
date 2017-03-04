@@ -1,109 +1,162 @@
 * { padding: 0; margin: 0; }
 
 body, html {
-	height: 100%;
-	font-size: 14pt;
+    height: 100%;
+    font-size: 14pt;
     font-family: 'Roboto', sans-serif;
 }
 
 .main-body {
-	width: 900px;
-	margin-left: auto;
-	margin-right: auto;
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .header {
-	display: inline-block;
-	background-color: #2E7D32;
-	width: 100%;
-	color: white;
+    display: inline-block;
+    background-color: #2E7D32;
+    width: 100%;
+    color: white;
 }
 
 .header h1 {
-	margin-top: 10px;
-	margin-left: 10px;
-	margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
 }
 
 .nav {
-	margin-left: 10px;
-	margin-bottom: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
 }
 
 .nav ul {
-	list-style-type: none;
-	margin: 0px;
-	padding: 0px;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
 }
 
 .nav ul li {
-	display: inline;
-	padding-right: 30px;
+    display: inline;
+    padding-right: 30px;
 }
 
 .nav ul li a {
-	text-decoration: none;
-	color: white;
+    text-decoration: none;
+    color: white;
 }
 
 .nav ul li a:hover {
-	color: black;
-}
-
-.content {
-	margin-top: 30px;
-	margin-left: 10px;
+    color: black;
 }
 
 .news-item {
-	margin-top: 30px;
+    margin-top: 30px;
 }
 
 .news-item span.date {
-	font-size: 10pt;
-	font-style: italic;
+    font-size: 10pt;
+    font-style: italic;
 }
 
 .expando .icon {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .hidden {
-	display: none;
+    display: none;
 }
 
 .shown {
-	display: block;
+    display: block;
 }
 
 @media only screen and (max-width: 714px) {
 
     body, html {
-	    height: 100%;
-	    font-size: 12pt;
+        height: 100%;
+        font-size: 12pt;
     }
 
     .main-body {
-    	width: 500px;
+        width: 500px;
     }
 }
 
+.home .carousel {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    background-color: #BBBBBB;
+}
+
+h2 {
+    margin-bottom: 30px;
+}
+
+.scroll-button {
+    position: relative;
+    z-index: 100;
+    top: 192px;
+    display: inline-block;
+}
+
+.scroll-button:hover {
+    box-shadow: 0px 0px 5px #000000;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.carousel-content {
+    position: absolute;
+    clear: both;
+    height: inherit;
+}
+
+.slide {
+    width: 100%;
+    height: inherit;
+    padding-left: 48px;
+    padding-top: 30px;
+}
+
+.slide-content {
+    display: inline-block;
+    width: 90%;
+
+}
+
+.slide p {
+    margin-bottom: 10px;
+}
+
+.badge {
+    height: 100px;
+}
+
 .about h1 {
-	margin-bottom: 0.8em;
+    margin-bottom: 0.8em;
 }
 
 .about section {
-	margin-bottom: 2em;
+    margin-bottom: 2em;
 }
 
 .about section h3 {
-	margin-bottom: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 .about section ul {
-	margin-left: 20px;
+    margin-left: 20px;
 }
 
 .games img {
-	box-shadow: 5px 5px 5px #888888;
+    box-shadow: 5px 5px 5px #888888;
 }
