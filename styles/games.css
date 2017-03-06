@@ -1,0 +1,17 @@
+.games img {
+    box-shadow: 5px 5px 5px #888888;
+}
+
+.game-item-div {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border-bottom-width: 2px;
+    border-bottom-color: rgba(100, 100, 100, .5);
+    border-bottom-style: solid;
+}
+
+.game-item-div:hover {
+    cursor: pointer;
+    background-color: #eeeeee;
+}

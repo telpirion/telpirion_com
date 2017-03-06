@@ -50,6 +50,10 @@ telpirionApp.config(["$routeProvider", "$locationProvider",
     	templateUrl: relativePath + 'templates/yahtzy.html',
     	controller: 'yahtzyController'
     })
+    .when('/Games/Conway', {
+        templateUrl: relativePath + 'templates/conway.html',
+        controller: 'conwayController'
+    })
     .otherwise('/Home');
 }]);
 

@@ -43,26 +43,37 @@ function homeController($scope) {
 }
 
 // The view model for the '#Games' page.
-function gamesController($scope) {
+function gamesController($scope, $window, $location) {
     $scope.title = "Games";
     $scope.games = [
         {
             title: "Vikings!!!",
-            url: "#/Games/Vikings",
-            description: "About this game",
+            url: "/Games/Vikings",
+            description: "Vikings!!! is a simple platformer, built " +
+                "entirely using HTML, CSS, and JavaScript. The " +
+                "game uses a physics engine of my own design " +
+                "and code.",
             img: "/images/vK_50x78.png"
         },
         {
             title: "Yahtzy",
-            url: "#/Games/Yahtzy",
-            description: "About this game"
+            url: "/Games/Yahtzy",
+            description: "Roll five dice and try to complete " +
+                "a pair, three-of-a-kind, full-house, or even " +
+                "a Yahtzy!"
         },
         {
-            title: "Modulus",
-            url: "#/Games/Modulus",
-            description: "About this game"
+            title: "Conway's Game of Life",
+            url: "/Games/Conway",
+            description: "Build a colony of microbes that can " +
+                "survive from one generation to the next."
         }
-     ];
+    ];
+    $scope.onClick = function(url) {
+        console.log(url);
+        $location.path(url);
+        //$window.location = url;
+    }
 }
 
 // The view model for the '#Apps' page
@@ -145,7 +156,7 @@ function vikingsController($scope) {
     $.getScript("scripts/vikings/main.js");
 }
 
-// The viewmodel for the "Yahtzy" game page.
+// The viewmodel for #/Games/Yahtzy
 function yahtzyController($scope) {
     $scope.title = "Yahtzy";
 
@@ -166,6 +177,25 @@ function yahtzyController($scope) {
     });
 }
 
+// The viewModel for #/Games/Conway
+function conwayController($scope) {
+    $scope.title = "Conway's Game of Life";
+
+    var base = "scripts/conway";
+
+    $.when(
+        $.getScript( base + "/game.js"),
+        $.getScript( base + "/ui.js"),
+        $.Deferred(function( deferred ){
+            $( deferred.resolve );
+        })
+    )
+    .done(function(){
+        console.log("conway scripts loaded");
+        $.getScript( base + "/main.js" )
+    });
+}
+
 // The viewmodel for the "Scratch" page.
 function scratchController($scope, $location) {
     $scope.title = "Scratch";
@@ -175,10 +205,11 @@ function scratchController($scope, $location) {
 telpirionApp
     .controller("homeController", homeController)
     .controller("resumeController", resumeController)
-    .controller("gamesController", gamesController)
+    .controller("gamesController", ["$scope", "$window", "$location", gamesController])
     .controller("appsController", appsController)
     .controller("blogController", blogController)
     .controller("aboutController", aboutController)
     .controller("vikingsController", vikingsController)
     .controller("yahtzyController", yahtzyController)
+    .controller("conwayController", conwayController)
     .controller("scratchController", ["$scope", "$location", scratchController]);
