@@ -197,7 +197,7 @@ function conwayController($scope) {
 }
 
 // The viewmodel for the "Scratch" page.
-function scratchController($scope, $location) {
+function demoController($scope, $location) {
     $scope.title = "Scratch";
     $scope.location = $location.absUrl();
 }
@@ -212,4 +212,4 @@ telpirionApp
     .controller("vikingsController", vikingsController)
     .controller("yahtzyController", yahtzyController)
     .controller("conwayController", conwayController)
-    .controller("scratchController", ["$scope", "$location", scratchController]);
+    .controller("demoController", ["$scope", "$location", demoController]);

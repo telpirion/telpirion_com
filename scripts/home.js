@@ -38,9 +38,9 @@ telpirionApp.config(["$routeProvider", "$locationProvider",
     	templateUrl: relativePath + 'templates/about.html',
     	controller: 'aboutController'
     })
-    .when('/Scratch', {
-    	templateUrl: relativePath + 'templates/scratch.html',
-    	controller: 'scratchController'
+    .when('/Demo', {
+    	templateUrl: relativePath + 'templates/demo.html',
+    	controller: 'demoController'
     })
     .when('/Games/Vikings', {
     	templateUrl: relativePath + 'templates/vikings.html',

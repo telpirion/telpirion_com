@@ -1,53 +1,53 @@
-<h1>{{title}}</h1>
-<link rel="stylesheet" type="text/css" href="styles/vikings.css"/>
-<div class="content-root">
+<div class="vikings page">
+    <h1>{{title}}</h1>
+    <link rel="stylesheet" type="text/css" href="styles/vikings.css"/>
+    <div class="content-root">
 
-    <!-- Load screen --><br /><br />
-    <div id="load-screen" class="">
-        <div id="load"><div id="progress"></div></div>
-        <div id="message">Loading</div>
-    </div>
+        <!-- Load screen --><br /><br />
+        <div id="load-screen" class="">
+            <div id="load"><div id="progress"></div></div>
+            <div id="message">Loading</div>
+        </div>
 
-    <!-- Game screen -->
-    <div id="game-screen" class="hidden">
-        <div id="game-display">
-            <div id="coords">
-                X: <span id="x-coord">0</span>, Y: <span id="y-coord">0</span>
+        <!-- Game screen -->
+        <div id="game-screen" class="hidden">
+            <div id="game-display">
+                <div id="coords">
+                    X: <span id="x-coord">0</span>, Y: <span id="y-coord">0</span>
+                </div>
+                <div id="clock">000</div>
+                <canvas id="canvas" width="600" height="300"></canvas>
+                <br />
             </div>
-            <div id="clock">000</div>
-            <canvas id="canvas" width="600" height="300"></canvas>
-            <br />
+            <div id="buttons">
+                <svg xmlns="http://www.w3.org/2000/svg" width="610" height="200">
+                    <rect width="100%" height="100%"
+                          fill="rgba(20,20,20,1" />
+                    <path id="left" d="M 50 100 L 60 75 H 100 V 125 H 60 Z"
+                          fill="white" />
+                    <path id="right" d="M 190 75 H 150 V 125 H 190 L 200 100 Z" fill="white" />
+                    <g id="jump">
+                        <circle cx="500" cy="100" r="50"
+                                fill="rgba(100,20,20,1)" />
+                        <text x="467" y="107"
+                              opacity="0.5"
+                              style="font-size:20pt;">
+                            Jump
+                        </text>
+                    </g>
+                </svg>
+            </div>
+            <div id="keys">Press left or right arrow keys to move; spacebar or up arrow to jump.</div>
+            <br style="clear:both" /><br />
         </div>
-        <div id="buttons">
-            <svg xmlns="http://www.w3.org/2000/svg" width="610" height="200">
-                <rect width="100%" height="100%"
-                      fill="rgba(20,20,20,1" />
-                <path id="left" d="M 50 100 L 60 75 H 100 V 125 H 60 Z"
-                      fill="white" />
-                <path id="right" d="M 190 75 H 150 V 125 H 190 L 200 100 Z" fill="white" />
-                <g id="jump">
-                    <circle cx="500" cy="100" r="50"
-                            fill="rgba(100,20,20,1)" />
-                    <text x="467" y="107"
-                          opacity="0.5"
-                          style="font-size:20pt;">
-                        Jump
-                    </text>
-                </g>
-            </svg>
-        </div>
-        <div id="keys">Press left or right arrow keys to move; spacebar or up arrow to jump.</div>
-        <br style="clear:both" /><br />
-    </div>
 
-    <!-- End game screen -->
-    <div id="level-complete" class="hidden">
-        <h1>Level Complete!</h1>
-        <br />
-        <div id="time"></div>
-        <br />
-        <button id="nextlevel">Start Next Level</button>
+        <!-- End game screen -->
+        <div id="level-complete" class="hidden">
+            <h1>Level Complete!</h1>
+            <br />
+            <div id="time"></div>
+            <br />
+            <button id="nextlevel">Start Next Level</button>
+        </div>
     </div>
 </div>
-
-
