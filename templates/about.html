@@ -4,7 +4,8 @@
     <p>{{bodyContent}}</p>
     <br />
     <section>
-        <h3 class="expando"><span class="icon">+</span> {{gamesExpando}}</h3>
+        <h3 class="expando">
+            <img class="icon" ng-src="{{arrowDownUrl}}"/>{{gamesExpando}}</h3>
         <div class="hidden">
             <ul>
                 <li>To play one of the games, select one of titles displayed on the <b>Home</b> page. </li>
@@ -16,7 +17,8 @@
         </div>
     </section>
     <section>
-        <h3 class="expando"><span class="icon">+</span> {{appsExpando}}</h3>
+        <h3 class="expando">
+            <img class="icon" ng-src="{{arrowDownUrl}}"/> {{appsExpando}}</h3>
         <div class="hidden">
             {{appsBodyContent}}
             <ul>
@@ -30,9 +32,12 @@
         </div>
     </section>
     <section>
-        <h3 class="expando"><span class="icon">+</span> {{contactExpando}}</h3>
+        <h3 class="expando">
+            <img class="icon" ng-src="{{arrowDownUrl}}"/> {{contactExpando}}</h3>
         <div class="hidden">
-            <p class="contact">{{contactMail}}</p>
+            <p class="contact">
+                <a ng-href="mailto:{{contactMail}}">Send me an email</a>
+            </p>
         </div>
     </section>
     <br/>

@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"border-bottom",
+				"border-bottom-width"
+			],
+			[
 				"inline",
 				"inline-block"
 			],
@@ -28,45 +32,10 @@
 	"buffers":
 	[
 		{
-			"contents": "\n<html ng-app=\"telpirionApp\">\n    <head>\n        <title>Telpirion.com</title>\n        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js\"></script>\n        <script src=\"https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js\"></script>\n        <script src=\"https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js\"></script>\n        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/custom/phaser-minimum.js\"></script>\n\n        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>\n\n        <!--  Telpirion.com scripts -->\n        <script src=\"scripts/home.js\"></script>\n        <script src=\"scripts/controllers.js\"></script>\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"styles/telpirion-base.css\"/>\n    </head>\n    <body>\n    	<div class=\"main-body\">\n    		<div ng-controller=\"headerController\" class=\"header\">\n    			<h1>{{content.title}}</h1>\n    			<div class=\"nav\">\n    				<ul>\n    					<li ng-repeat=\"link in content.links\"><a ng-href=\"{{link.url}}\">{{link.title}}</a></li>\n    				</ul>\n    			</div>\n    		</div>\n			<div class=\"content\">\n			    <div ng-controller=\"mainController as main\">\n			        <ng-view></ng-view>\n			    </div>\n			</div>\n    	</div>\n    </body>\n</html>",
-			"file": "index.html",
-			"file_size": 1290,
-			"file_write_time": 1486329950000000,
-			"settings":
-			{
-				"buffer_size": 1302,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "templates/home.html",
-			"settings":
-			{
-				"buffer_size": 2532,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "styles/telpirion-base.css",
 			"settings":
 			{
-				"buffer_size": 2016,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "scripts/controllers.js",
-			"settings":
-			{
-				"buffer_size": 5661,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "templates/games.html",
-			"settings":
-			{
-				"buffer_size": 281,
+				"buffer_size": 1143,
 				"line_ending": "Unix"
 			}
 		}
@@ -95,9 +64,29 @@
 	},
 	"file_history":
 	[
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/vikings.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/styles/home.css",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/yahtzy.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/resume.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/demo.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/controllers.js",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/home.js",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/home.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/games.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/conway.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/blog.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/styles/about.css",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/apps.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/about.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/conway/ui.js",
+		"/Users/ericmschmidt/GitHub/telpirion_com/styles/conway.css",
+		"/Users/ericmschmidt/Downloads/game-of-life/_life.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/conway/main.js",
+		"/Users/ericmschmidt/GitHub/telpirion_com/index.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/styles/games.css",
+		"/Users/ericmschmidt/GitHub/telpirion_com/styles/telpirion-base.css",
 		"/Users/ericmschmidt/GitHub/telpirion_com/images/Hi-res-logo.png",
 		"/Users/ericmschmidt/Downloads/ic_chevron_right_black_24dp/web/ic_chevron_right_black_24dp_2x.png",
-		"/Users/ericmschmidt/GitHub/telpirion_com/templates/home.html",
 		"/Users/ericmschmidt/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/Users/ericmschmidt/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/external/angular-route.min.js",
@@ -112,23 +101,13 @@
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/angular.min.js/angular.min.js",
 		"/Users/ericmschmidt/GitHub/telpirion_com/README.md",
 		"/Users/ericmschmidt/Downloads/attachments/game background 2.3.jpg",
-		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/controllers.js",
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/game.js",
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/user-interface.js",
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/level2.js",
-		"/Users/ericmschmidt/GitHub/telpirion_com/styles/telpirion-base.css",
-		"/Users/ericmschmidt/GitHub/telpirion_com/templates/games.html",
-		"/Users/ericmschmidt/GitHub/telpirion_com/templates/vikings.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/level1.js",
 		"/Users/ericmschmidt/GitHub/telpirion_com/images/bg_river_1_2.jpg",
-		"/Users/ericmschmidt/GitHub/telpirion_com/templates/apps.html",
-		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/home.js",
-		"/Users/ericmschmidt/GitHub/telpirion_com/templates/yahtzy.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/styles/yahtzee.css",
-		"/Users/ericmschmidt/GitHub/telpirion_com/templates/blog.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/yahtzee.html",
-		"/Users/ericmschmidt/GitHub/telpirion_com/templates/resume.html",
-		"/Users/ericmschmidt/GitHub/telpirion_com/index.html",
 		"/Users/ericmschmidt/Documents/carmichael/pages/products.html",
 		"/Users/ericmschmidt/Documents/carmichael/pages/purchase.html",
 		"/Users/ericmschmidt/Documents/carmichael/pages/contact.html",
@@ -145,7 +124,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 102.0,
+		"height": 0.0,
 		"where_history":
 		[
 		]
@@ -184,138 +163,30 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "index.html",
-					"settings":
-					{
-						"buffer_size": 1302,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								828,
-								828
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 158.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "templates/home.html",
-					"settings":
-					{
-						"buffer_size": 2532,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2457,
-								2457
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 444.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "styles/telpirion-base.css",
 					"settings":
 					{
-						"buffer_size": 2016,
+						"buffer_size": 1143,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								271,
-								264
+								1110,
+								1110
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 501.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "scripts/controllers.js",
-					"settings":
-					{
-						"buffer_size": 5661,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								172,
-								172
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "templates/games.html",
-					"settings":
-					{
-						"buffer_size": 281,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

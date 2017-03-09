@@ -8,12 +8,12 @@ var telpirionApp = angular.module('telpirionApp', ["ngRoute"]);
 telpirionApp.config(["$routeProvider", "$locationProvider",
     function($routeProvider, $locationProvider){
 
-	// Shim to ease pain between development and deployment.
-	console.log(location.href);
-	var relativePath = (location.href.indexOf("google") > -1) ?
-			"/telpirion/" : "";
+    // Shim to ease pain between development and deployment.
+    console.log(location.href);
+    var relativePath = (location.href.indexOf("google") > -1) ?
+            "/telpirion/" : "";
 
-	$routeProvider
+    $routeProvider
     .when('/Home', {
         templateUrl: relativePath + 'templates/home.html',
         controller: 'homeController'
@@ -23,32 +23,32 @@ telpirionApp.config(["$routeProvider", "$locationProvider",
         controller: 'resumeController'
     })
     .when('/Games', {
-    	templateUrl: relativePath + 'templates/games.html',
-    	controller: 'gamesController'
+        templateUrl: relativePath + 'templates/games.html',
+        controller: 'gamesController'
     })
     .when('/Apps', {
         templateUrl: relativePath + 'templates/apps.html',
         controller: 'appsController'
     })
     .when('/Blog', {
-    	templateUrl: relativePath + 'templates/blog.html',
-    	controller: 'blogController'
+        templateUrl: relativePath + 'templates/blog.html',
+        controller: 'blogController'
     })
     .when('/About', {
-    	templateUrl: relativePath + 'templates/about.html',
-    	controller: 'aboutController'
+        templateUrl: relativePath + 'templates/about.html',
+        controller: 'aboutController'
     })
     .when('/Demo', {
-    	templateUrl: relativePath + 'templates/demo.html',
-    	controller: 'demoController'
+        templateUrl: relativePath + 'templates/demo.html',
+        controller: 'demoController'
     })
     .when('/Games/Vikings', {
-    	templateUrl: relativePath + 'templates/vikings.html',
-    	controller: 'vikingsController'
+        templateUrl: relativePath + 'templates/vikings.html',
+        controller: 'vikingsController'
     })
     .when('/Games/Yahtzy', {
-    	templateUrl: relativePath + 'templates/yahtzy.html',
-    	controller: 'yahtzyController'
+        templateUrl: relativePath + 'templates/yahtzy.html',
+        controller: 'yahtzyController'
     })
     .when('/Games/Conway', {
         templateUrl: relativePath + 'templates/conway.html',
@@ -59,18 +59,18 @@ telpirionApp.config(["$routeProvider", "$locationProvider",
 
 // The view model for the site header navigation
 telpirionApp.controller('headerController', function ($scope) {
-	$scope.content =
-	{
-		title: "Telpirion.com",
-		links: [
-			{ title: "Home", url: "#Home" },
+    $scope.content =
+    {
+        title: "Telpirion.com",
+        links: [
+            { title: "Home", url: "#Home" },
             //{ title: "Resume", url: "#Resume" },
-			{ title: "Games", url: "#Games" },
+            { title: "Games", url: "#Games" },
             { title: "Apps", url: "#Apps"},
-			{ title: "Blog", url: "#Blog" },
-			{ title: "About", url: "#About" }
-		]
-	};
+            //{ title: "Blog", url: "#Blog" },
+            { title: "About", url: "#About" }
+        ]
+    };
 });
 
 // The viewmodel for the top-level scope.

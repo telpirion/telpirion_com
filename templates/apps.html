@@ -1,8 +1,12 @@
 <div class="apps page">
     <h1>{{title}}</h1>
-    <div class="news-item" ng-repeat="app in appsList">
-        <p><b>{{app.title}}</b> <a ng-href="{{app.url}}">link</a></p>
-        <br/>
-        <p>{{app.about}}</p>
+    <div class="news-item" ng-repeat="item in appsList">
+        <div class="list-item-div" ng-click="onClick(item.url)">
+            <h2>{{item.title}}</h2>
+            <span>{{item.description}}</span>
+            <div>
+                <img ng-src="{{item.img}}" />
+            </div>
+        </div>
     </div>
 </div>

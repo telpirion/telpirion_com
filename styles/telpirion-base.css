@@ -69,6 +69,7 @@ body, html {
 
 .shown {
     display: block;
+    transition: opacity 2s ease-in;
 }
 
 @media only screen and (max-width: 714px) {
@@ -89,4 +90,26 @@ body, html {
 
 h2 {
     margin-bottom: 30px;
+}
+
+.list-item-div {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border-bottom-width: 2px;
+    border-bottom-color: rgba(100, 100, 100, .5);
+    border-bottom-style: solid;
+}
+
+.list-item-div:hover {
+    cursor: pointer;
+    background-color: #eeeeee;
+}
+
+.list-item-div div {
+    padding-top: 30px;
+}
+
+.list-item-div div img {
+    height: 100px;
 }
