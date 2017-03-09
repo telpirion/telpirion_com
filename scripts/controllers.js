@@ -83,7 +83,7 @@ function resumeController($scope) {
 }
 
 // The view model for the '#Apps' page
-function appsController($scope, $location) {
+function appsController($scope, $window) {
     $scope.title = "Apps";
 
     $scope.appsList = [
@@ -103,7 +103,7 @@ function appsController($scope, $location) {
     ];
     $scope.onClick = function(url) {
         console.log(url);
-        $location.path(url);
+        $window.location.href = url;
     }
 }
 
@@ -220,7 +220,7 @@ telpirionApp
     .controller("homeController", homeController)
     .controller("resumeController", resumeController)
     .controller("gamesController", ["$scope", "$location", gamesController])
-    .controller("appsController", ["$scope", "$location",appsController])
+    .controller("appsController", ["$scope", "$window",appsController])
     .controller("blogController", blogController)
     .controller("aboutController", aboutController)
     .controller("vikingsController", vikingsController)
