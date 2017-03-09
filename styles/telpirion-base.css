@@ -64,12 +64,23 @@ body, html {
 }
 
 .hidden {
-    display: none;
+    /*display: none;*/
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in;
+    -moz-transition: max-height 0.5s; /* Firefox 4 */
+    -webkit-transition: max-height 0.5s; /* Safari and Chrome */
+    -o-transition: max-height 0.5s; /* Opera */
 }
 
 .shown {
-    display: block;
-    transition: opacity 2s ease-in;
+    /**display: block;**/
+    max-height: 120px;
+    overflow: hidden;
+    transition: max-height 1s ease-in;
+    -moz-transition: max-height 1s; /* Firefox 4 */
+    -webkit-transition: max-height 1s; /* Safari and Chrome */
+    -o-transition: max-height 1s; /* Opera */
 }
 
 @media only screen and (max-width: 714px) {
