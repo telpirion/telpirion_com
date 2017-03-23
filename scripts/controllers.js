@@ -6,39 +6,57 @@
 // The view model for the '#Home' page.
 function homeController($scope) {
 
-    // Begin the slide carousel.
-    var slideIndex = 0;
-    var slides = document.querySelectorAll(".slide");
-
-    advanceSlide(0);
-
+    // Add event listeners to buttons on carousel.
     document.querySelector(".left").addEventListener("click",
         function () {
-            advanceSlide(-1);
+            advanceSlide("l", function (newSlide, oldSlide, parent) {
+                parent.insertBefore(newSlide, oldSlide);
+            });
         });
 
     document.querySelector(".right").addEventListener("click",
         function(){
-            advanceSlide(1);
+            advanceSlide("r", function (newSlide, oldSlide, parent) {
+                parent.removeChild(oldSlide);
+                parent.appendChild(oldSlide);
+            });
         });
 
-    function advanceSlide(delta) {
+    function removeAllAnimations(slides) {
+        var animations = ["carousel-in-r", "carousel-out-r",
+            "carousel-in-l", "carousel-out-l", "carousel-pre-fade"];
 
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
+        for (var i = 0; i < slides.length; i++) {
+            for (var j = 0; j < animations.length; j++){
+                slides[i].classList.remove(animations[j]);
+            }
+        }
+    }
+
+    function advanceSlide(direction, fn) {
+        var fadeout = "carousel-out-" + direction;
+        var fadein = "carousel-in-" + direction;
+        var prefade = "carousel-pre-fade";
+        var slides = document.querySelectorAll(".slide");
+
+        removeAllAnimations(slides);
+
+        var oldSlide = slides[0],
+            parentNode = oldSlide.parentNode,
+            newSlide = (direction === "r") ?
+                slides[1] :
+                slides[slides.length - 1];
+
+        var onTransitionEnd = function () {
+            fn(newSlide, oldSlide, parentNode);
+            newSlide.classList.add(fadein);
+            oldSlide.removeEventListener("transitionend", onTransitionEnd);
         }
 
-        var adjustedDelta = slideIndex + delta;
-
-        if ((adjustedDelta >= 0) &&
-            (adjustedDelta < slides.length)) {
-            slideIndex = adjustedDelta;
-        } else if (adjustedDelta == slides.length) {
-            slideIndex = 0;
-        } else {
-            slideIndex = slides.length - 1;
-        }
-        slides[slideIndex].style.display = "block";
+        // Begin animation
+        oldSlide.addEventListener("transitionend", onTransitionEnd);
+        newSlide.classList.add("carousel-pre-fade");
+        oldSlide.classList.add(fadeout);
     }
 }
 

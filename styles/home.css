@@ -13,8 +13,8 @@
     display: inline-block;
 }
 
-.scroll-button:hover {
-    box-shadow: 0px 0px 5px #000000;
+.scroll-button path:hover {
+    fill: white;
 }
 
 .left {
@@ -29,19 +29,52 @@
     position: absolute;
     clear: both;
     height: inherit;
+    overflow: hidden;
+    height: 400px;
+    max-width: 1000px;
+    background-color: #eeeeee;
 }
 
 .slide {
-    width: 100%;
+    display: inline-block;
     height: inherit;
-    padding-left: 48px;
-    padding-top: 30px;
+    width: 100%;
+    overflow: hidden;
+    float: left;
 }
 
 .slide-content {
+    overflow: hidden;
+    padding-left: 48px;
+    padding-top: 30px;
     display: inline-block;
     width: 90%;
+}
 
+.carousel-pre-fade {
+    opacity: 0;
+}
+
+.carousel-in-r {
+    opacity: 1.0;
+    transition: opacity 0.5s;
+}
+
+.carousel-out-r {
+    transform: translateX(-1000px);
+    opacity: 0;
+    transition: opacity 2s, transform 2s;
+}
+
+.carousel-in-l {
+    opacity: 1.0;
+    transition: opacity 0.5s;
+}
+
+.carousel-out-l {
+    transform: translateX(1000px);
+    opacity: 0;
+    transition: opacity 2s, transform 2s;
 }
 
 .slide p {
