@@ -3,6 +3,27 @@
 * Copyright 2015, Eric M. Schmidt. All rights reserved.
 */
 
+// The view model for the header.
+function headerController($scope) {
+    $scope.content =
+    {
+        title: "Telpirion.com",
+        links: [
+            { title: "Home", url: "#Home" },
+            //{ title: "Resume", url: "#Resume" },
+            { title: "Games", url: "#Games" },
+            { title: "Apps", url: "#Apps"},
+            //{ title: "Blog", url: "#Blog" },
+            { title: "About", url: "#About" }
+        ]
+    };
+}
+
+// The viewmodel for the top-level scope.
+function mainController($scope, $location) {
+
+}
+
 // The view model for the '#Home' page.
 function homeController($scope) {
 
@@ -215,6 +236,8 @@ function demoController($scope, $location) {
 }
 
 telpirionApp
+    .controller('mainController', ["$scope", "$location", mainController])
+    .controller("headerController", headerController)
     .controller("homeController", homeController)
     .controller("resumeController", resumeController)
     .controller("gamesController", ["$scope", "$location", gamesController])

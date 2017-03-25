@@ -56,27 +56,3 @@ telpirionApp.config(["$routeProvider", "$locationProvider",
     })
     .otherwise('/Home');
 }]);
-
-// The view model for the site header navigation
-telpirionApp.controller('headerController', function ($scope) {
-    $scope.content =
-    {
-        title: "Telpirion.com",
-        links: [
-            { title: "Home", url: "#Home" },
-            //{ title: "Resume", url: "#Resume" },
-            { title: "Games", url: "#Games" },
-            { title: "Apps", url: "#Apps"},
-            //{ title: "Blog", url: "#Blog" },
-            { title: "About", url: "#About" }
-        ]
-    };
-});
-
-// The viewmodel for the top-level scope.
-function mainController($scope, $location) {
-
-}
-
-// The main controller for the app.
-telpirionApp.controller('mainController', ["$scope", "$location", mainController]);

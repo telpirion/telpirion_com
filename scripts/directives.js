@@ -2,7 +2,7 @@
  * directives.js for telpirion.com.
  * Copyright 2017, Eric M. Schmidt. All rights reserved.
  *
- * Directives docs: https://docs.angularjs.org/guide/directive
+ * Angular Directives docs: https://docs.angularjs.org/guide/directive
  */
 
 // The directive for an expando control
