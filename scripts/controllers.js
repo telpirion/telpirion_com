@@ -22,6 +22,10 @@ function homeController($scope) {
             });
         });
 
+    // This is a bit of a hack. Should be able to remove the
+    // last applied class in the transitionend event listener,
+    // but that listener can't seem to remove the first-applied
+    // classes.
     function removeAllAnimations(slides) {
         var animations = ["carousel-in-r", "carousel-out-r",
             "carousel-in-l", "carousel-out-l", "carousel-pre-fade"];
@@ -55,7 +59,7 @@ function homeController($scope) {
 
         // Begin animation
         oldSlide.addEventListener("transitionend", onTransitionEnd);
-        newSlide.classList.add("carousel-pre-fade");
+        newSlide.classList.add(prefade);
         oldSlide.classList.add(fadeout);
     }
 }

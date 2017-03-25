@@ -103,6 +103,8 @@ h2 {
     margin-bottom: 30px;
 }
 
+/* Directives */
+
 .list-item-div {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -110,6 +112,8 @@ h2 {
     border-bottom-width: 2px;
     border-bottom-color: rgba(100, 100, 100, .5);
     border-bottom-style: solid;
+    text-decoration: none;
+    color: black;
 }
 
 .list-item-div:hover {

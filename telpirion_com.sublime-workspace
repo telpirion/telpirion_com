@@ -4,12 +4,44 @@
 		"selected_items":
 		[
 			[
-				"slid",
-				"slideToBeRemoved"
+				"remo",
+				"removeAllAnimations"
+			],
+			[
+				"remov",
+				"removeEventListener"
+			],
+			[
+				"add",
+				"addEventListener"
+			],
+			[
+				"new",
+				"newSlide"
+			],
+			[
+				"on",
+				"onTransitionEnd"
+			],
+			[
+				"old",
+				"oldSlide"
+			],
+			[
+				"query",
+				"querySelectorAll"
+			],
+			[
+				"d",
+				"direction"
 			],
 			[
 				"slide",
-				"slideIndex"
+				"slideToBeRemoved"
+			],
+			[
+				"slid",
+				"slideToBeRemoved"
 			],
 			[
 				"carousel",
@@ -43,33 +75,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "templates/home.html",
-			"settings":
-			{
-				"buffer_size": 3244,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "styles/home.css",
-			"settings":
-			{
-				"buffer_size": 1078,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "/*\n* controllers.js for telpirion.com.\n* Copyright 2015, Eric M. Schmidt. All rights reserved.\n*/\n\n// The view model for the '#Home' page.\nfunction homeController($scope) {\n\n    // Begin the slide carousel.\n    var slideIndex = 0;\n    var slides = document.querySelectorAll(\".slide\");\n    var show = \"carousel-show\";\n    var hide = \"carousel-hide\";\n    var clear = \"carousel-clear\";\n\n  /*function onClick(e) {\n    slides[1].classList.add(fadeout);\n\n    slides[0].classList.add(hide);\n    slides[0].addEventListener(\"transitionend\", function() {\n      slides[1].classList.remove(fadeout);\n      slides[1].classList.add(show);\n    });\n  }*/\n\n    document.querySelector(\".left\").addEventListener(\"click\",\n        function () {\n            advanceSlide(-1);\n        });\n\n    document.querySelector(\".right\").addEventListener(\"click\",\n        function(){\n            advanceSlide(1);\n        });\n\n    function advanceSlide(delta) {\n        var slideToBeRemoved = slideIndex;\n        slideIndex = slideIndex + delta;\n\n        if (slideIndex == slides.length) {\n            slideIndex = 0;\n        } else if (slideIndex < 0) {\n            slideIndex = slides.length - 1;\n        }\n\n        console.log(\"slideIndex: \" + slideIndex + \"; \" +\n            \"slideToBeRemoved: \" + slideToBeRemoved);\n\n        //TODO: Move removed slide from position in the\n        // sequence of <div> elements and place it at the end.\n        // Use CSS transform for out-animation (no more changing widths).\n        // Remove all animation classes from removed div after replacement.\n\n        slides[slideToBeRemoved].classList.add(hide);\n        slides[slideIndex].classList.add(clear);\n        slides[slideToBeRemoved].addEventListener(\"transitionend\", function() {\n          slides[slideIndex].classList.remove(clear);\n          slides[slideIndex].classList.add(show);\n        });\n    }\n}\n\n// The view model for the '#Games' page.\nfunction gamesController($scope, $location) {\n    $scope.title = \"Games\";\n    $scope.games = [\n        {\n            title: \"Vikings!!!\",\n            url: \"/Games/Vikings\",\n            description: \"Vikings!!! is a simple platformer, built \" +\n                \"entirely using HTML, CSS, and JavaScript. The \" +\n                \"game uses a physics engine of my own design \" +\n                \"and code.\",\n            img: \"/images/vikings-promo.png\"\n        },\n        {\n            title: \"Yahtzy\",\n            url: \"/Games/Yahtzy\",\n            description: \"Roll five dice and try to complete \" +\n                \"a pair, three-of-a-kind, full-house, or even \" +\n                \"a Yahtzy!\",\n            img: \"/images/yahtzy-promo.png\"\n        },\n        {\n            title: \"Conway's Game of Life\",\n            url: \"/Games/Conway\",\n            description: \"Build a colony of microbes that can \" +\n                \"survive from one generation to the next.\"\n        }\n    ];\n    $scope.onClick = function(url) {\n        console.log(url);\n        $location.path(url);\n        //$window.location = url;\n    }\n}\n\n// The view model for the '#Apps' page\nfunction resumeController($scope) {\n    $scope.title = \"Resume\";\n}\n\n// The view model for the '#Apps' page\nfunction appsController($scope, $window) {\n    $scope.title = \"Apps\";\n\n    $scope.appsList = [\n        {\n            title: \"Latin Reader for Android\",\n            url: \"https://play.google.com/store/apps/details?id=com.ericmschmidt.latinreader\",\n            description: \"Read one of several classical works in the original Latin \" +\n            \"on your Android device.\",\n            img: \"images/google-play-badge.png\"\n        }, {\n            title: \"Latin Reader for Windows\",\n            url: \"https://www.microsoft.com/en-us/store/apps/latin-reader/9wzdncrfjjc0\",\n            description: \"Read one of several classical works in the original Latin \" +\n            \"on your Windows 10, Windows 8.1, or Windows Phone 8.1 device.\",\n            img: \"https://assets.windowsphone.com/f2f77ec7-9ba9-4850-9ebe-77e366d08adc/English_Get_it_Win_10_InvariantCulture_Default.png\"\n        }\n    ];\n    $scope.onClick = function(url) {\n        console.log(url);\n        $window.location.href = url;\n    }\n}\n\n// The view model for the '#Blog' page.\nfunction blogController($scope) {\n    $scope.title = \"Blog\";\n    $scope.feed = [{\n        title: \"First blog post\",\n        date: \"December 22, 2015\",\n        body: \"First blog post on the new site!\"\n    }, {\n        title: \"Shamepile Software is now Telpirion.com\",\n        body: \"This web site has been rebranded to Telpirion.com, the personal \" +\n                \"web site for Eric M. Schmidt.\",\n        date: \"June 28, 2016\"\n    }];\n}\n\n// The view model for the '#About' page.\nfunction aboutController($scope) {\n    $scope.arrowDownUrl = \"images/ic_arrow_drop_down_black_24dp_2x.png\";\n    $scope.arrowUpUrl = \"images/ic_arrow_drop_up_black_24dp_2x.png\";\n\n    $scope.title = \"About\";\n    $scope.bodyContent = \"Find general information about the games and apps on this site.\";\n    $scope.gamesExpando = \"About the games\";\n    $scope.appsExpando = \"About the apps\";\n    $scope.appsBodyContent = \"I have published a couple of apps on the Google Play Store and the Windows\" +\n        \" Store.\";\n    $scope.contactExpando = \"Contact me\";\n    $scope.contactMail = \"eric.schmidt@telpirion.com\";\n\n    // Wire up the expandos.\n    $(\".expando\").click(function(evt){\n        var heading = evt.target.nodeName.toLowerCase() == \"img\" ?\n                evt.target.parentElement : evt.target;\n\n            console.log(evt.target);\n\n            var sectionContent = heading.nextElementSibling;\n            var nextSection = sectionContent.parentElement.nextElementSibling;\n\n            if (sectionContent.classList.contains(\"hidden\")) { // Expand\n                $(heading).children(\".icon\")\n                    .attr(\"src\", $scope.arrowUpUrl);\n\n                sectionContent.classList.remove(\"hidden\");\n                sectionContent.classList.add(\"shown\");\n\n            } else { // Collapse\n                $(heading).children(\".icon\")\n                    .attr(\"src\", $scope.arrowDownUrl);\n\n                sectionContent.classList.remove(\"shown\");\n                sectionContent.classList.add(\"hidden\");\n            }\n    });\n\n}\n\n// The viewmodel for the \"Vikings!!\" game.\nfunction vikingsController($scope) {\n    $scope.title = \"Vikings!!!\";\n    $.getScript(\"scripts/vikings/main.js\");\n}\n\n// The viewmodel for #/Games/Yahtzy\nfunction yahtzyController($scope) {\n    $scope.title = \"Yahtzy\";\n\n    var base = \"scripts/yahtzy\";\n\n    $.when(\n        $.getScript( base + \"/game.js\"),\n        $.getScript( base + \"/ui-controllers.js\"),\n        $.getScript( base + \"/robot.js\" ),\n        $.getScript( base + \"/utilities.js\" ),\n        $.Deferred(function( deferred ){\n            $( deferred.resolve );\n        })\n    )\n    .done(function(){\n        console.log(\"yahtzee scripts loaded\");\n        $.getScript( base + \"/main.js\" )\n    });\n}\n\n// The viewModel for #/Games/Conway\nfunction conwayController($scope) {\n    $scope.title = \"Conway's Game of Life\";\n\n    var base = \"scripts/conway\";\n\n    $.when(\n        $.getScript( base + \"/game.js\"),\n        $.getScript( base + \"/ui.js\"),\n        $.Deferred(function( deferred ){\n            $( deferred.resolve );\n        })\n    )\n    .done(function(){\n        console.log(\"conway scripts loaded\");\n        $.getScript( base + \"/main.js\" )\n    });\n}\n\n// The viewmodel for the \"Scratch\" page.\nfunction demoController($scope, $location) {\n    $scope.title = \"Scratch\";\n    $scope.location = $location.absUrl();\n}\n\ntelpirionApp\n    .controller(\"homeController\", homeController)\n    .controller(\"resumeController\", resumeController)\n    .controller(\"gamesController\", [\"$scope\", \"$location\", gamesController])\n    .controller(\"appsController\", [\"$scope\", \"$window\",appsController])\n    .controller(\"blogController\", blogController)\n    .controller(\"aboutController\", aboutController)\n    .controller(\"vikingsController\", vikingsController)\n    .controller(\"yahtzyController\", yahtzyController)\n    .controller(\"conwayController\", conwayController)\n    .controller(\"demoController\", [\"$scope\", \"$location\", demoController]);",
-			"file": "scripts/controllers.js",
-			"file_size": 7888,
-			"file_write_time": 1490075422000000,
-			"settings":
-			{
-				"buffer_size": 8158,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -95,13 +100,16 @@
 	},
 	"file_history":
 	[
+		"/Users/ericmschmidt/GitHub/telpirion_com/styles/home.css",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/controllers.js",
+		"/Users/ericmschmidt/GitHub/telpirion_com/index.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/shamepilesoftware/index.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/home.html",
 		"/Users/ericmschmidt/Downloads/widgets/carousel.js",
 		"/Users/ericmschmidt/Downloads/widgets/index.html",
-		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/controllers.js",
 		"/Users/ericmschmidt/GitHub/telpirion_com/styles/telpirion-base.css",
 		"/Users/ericmschmidt/GitHub/telpirion_com/styles/conway.css",
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/conway/ui.js",
-		"/Users/ericmschmidt/GitHub/telpirion_com/styles/home.css",
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/about.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/blog.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/firebase.json",
@@ -113,12 +121,10 @@
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/yahtzy.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/resume.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/demo.html",
-		"/Users/ericmschmidt/GitHub/telpirion_com/templates/home.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/conway.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/styles/about.css",
 		"/Users/ericmschmidt/Downloads/game-of-life/_life.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/conway/main.js",
-		"/Users/ericmschmidt/GitHub/telpirion_com/index.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/images/Hi-res-logo.png",
 		"/Users/ericmschmidt/Downloads/ic_chevron_right_black_24dp/web/ic_chevron_right_black_24dp_2x.png",
 		"/Users/ericmschmidt/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
@@ -197,93 +203,8 @@
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "templates/home.html",
-					"settings":
-					{
-						"buffer_size": 3244,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2802,
-								2802
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 730.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "styles/home.css",
-					"settings":
-					{
-						"buffer_size": 1078,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								845,
-								845
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 846.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "scripts/controllers.js",
-					"settings":
-					{
-						"buffer_size": 8158,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1555,
-								1555
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 578.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
