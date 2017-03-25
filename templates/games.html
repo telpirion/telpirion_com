@@ -1,11 +1,7 @@
 <div class="games page">
     <link rel="stylesheet" type="text/css" href="styles/games.css"/>
     <h1>{{title}}</h1>
-    <div class="news-item" ng-repeat="item in games">
-        <div class="list-item-div" ng-click="onClick(item.url)">
-            <h2>{{item.title}}</h2>
-            <!--<img ng-src="{{item.img}}" />-->
-            <span>{{item.description}}</span>
-        </div>
-    </div>
+    <tel-list-view
+        tel-list="gamesList"
+        on-click="onClick(url)"></tel-list-view>
 </div>

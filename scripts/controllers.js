@@ -67,7 +67,7 @@ function homeController($scope) {
 // The view model for the '#Games' page.
 function gamesController($scope, $location) {
     $scope.title = "Games";
-    $scope.games = [
+    $scope.gamesList = [
         {
             title: "Vikings!!!",
             url: "/Games/Vikings",

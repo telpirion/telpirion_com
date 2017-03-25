@@ -1,9 +1,11 @@
-/*
-* directives.js for telpirion.com.
-* Copyright 2017, Eric M. Schmidt. All rights reserved.
-*/
+/**
+ * directives.js for telpirion.com.
+ * Copyright 2017, Eric M. Schmidt. All rights reserved.
+ *
+ * Directives docs: https://docs.angularjs.org/guide/directive
+ */
 
-// Directive for list view control.
+// The directive for list view control.
 function telListViewDirective() {
     return {
         templateUrl: "templates/list-view.html",
@@ -14,7 +16,7 @@ function telListViewDirective() {
     };
 }
 
-// Directive for list view item control.
+// The directive for list view item control.
 function telListViewItemDirective() {
     return {
             templateUrl: "templates/list-view-item.html",
