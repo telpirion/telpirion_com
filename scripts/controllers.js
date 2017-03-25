@@ -146,44 +146,20 @@ function blogController($scope) {
 
 // The view model for the '#About' page.
 function aboutController($scope) {
-    $scope.arrowDownUrl = "images/ic_arrow_drop_down_black_24dp_2x.png";
-    $scope.arrowUpUrl = "images/ic_arrow_drop_up_black_24dp_2x.png";
-
     $scope.title = "About";
     $scope.bodyContent = "Find general information about the games and apps on this site.";
-    $scope.gamesExpando = "About the games";
-    $scope.appsExpando = "About the apps";
-    $scope.appsBodyContent = "I have published a couple of apps on the Google Play Store and the Windows" +
-        " Store.";
-    $scope.contactExpando = "Contact me";
-    $scope.contactMail = "eric.schmidt@telpirion.com";
-
-    // Wire up the expandos.
-    $(".expando").click(function(evt){
-        var heading = evt.target.nodeName.toLowerCase() == "img" ?
-                evt.target.parentElement : evt.target;
-
-            console.log(evt.target);
-
-            var sectionContent = heading.nextElementSibling;
-            var nextSection = sectionContent.parentElement.nextElementSibling;
-
-            if (sectionContent.classList.contains("hidden")) { // Expand
-                $(heading).children(".icon")
-                    .attr("src", $scope.arrowUpUrl);
-
-                sectionContent.classList.remove("hidden");
-                sectionContent.classList.add("shown");
-
-            } else { // Collapse
-                $(heading).children(".icon")
-                    .attr("src", $scope.arrowDownUrl);
-
-                sectionContent.classList.remove("shown");
-                sectionContent.classList.add("hidden");
-            }
-    });
-
+    $scope.games = {
+        title: "About the games"
+    };
+    $scope.apps = {
+        title: "About the apps",
+        content: "I have published a couple of apps on the Google Play Store and the Windows" +
+        " Store."
+    };
+    $scope.contact = {
+        title: "Contact me",
+        mail: "eric.schmidt@telpirion.com"
+    };
 }
 
 // The viewmodel for the "Vikings!!" game.

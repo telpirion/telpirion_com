@@ -4,9 +4,7 @@
     <p>{{bodyContent}}</p>
     <br />
     <section>
-        <h3 class="expando">
-            <img class="icon" ng-src="{{arrowDownUrl}}"/>{{gamesExpando}}</h3>
-        <div class="hidden">
+        <tel-expando item="games">
             <ul>
                 <li>To play one of the games, select one of titles displayed on the <b>Home</b> page. </li>
                 <li>The games are compatible with most browsers.</li>
@@ -14,13 +12,11 @@
                 <li><b>Play at your own risk.</b> There is no expressed or implied level of polish or functionality to the games.</li>
                 <li><b>Bug fixes.</b> If you encounter any bugs in the games, you can log a bug in the <a href="https://github.com/telpirion/telpirion_com/issues">GitHub repository</a>.</li>
             </ul>
-        </div>
+        </tel-expando>
     </section>
     <section>
-        <h3 class="expando">
-            <img class="icon" ng-src="{{arrowDownUrl}}"/> {{appsExpando}}</h3>
-        <div class="hidden">
-            {{appsBodyContent}}
+        <tel-expando item="apps">
+            {{apps.content}}
             <ul>
                 <li><a target="_new"
                     href="https://play.google.com/store/apps/details?id=com.ericmschmidt.latinreader">
@@ -29,16 +25,14 @@
                     href="https://www.microsoft.com/en-us/store/apps/latin-reader/9wzdncrfjjc0">
                     Latin Reader for Windows Store</a></li>
             </ul>
-        </div>
+        </tel-expando>
     </section>
     <section>
-        <h3 class="expando">
-            <img class="icon" ng-src="{{arrowDownUrl}}"/> {{contactExpando}}</h3>
-        <div class="hidden">
+        <tel-expando item="contact">
             <p class="contact">
-                <a ng-href="mailto:{{contactMail}}">Send me an email</a>
+                <a ng-href="mailto:{{contact.mail}}">Send me an email</a>
             </p>
-        </div>
+        </tel-expando>
     </section>
     <br/>
 

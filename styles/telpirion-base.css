@@ -59,30 +59,6 @@ body, html {
     font-style: italic;
 }
 
-.expando .icon {
-    cursor: pointer;
-}
-
-.hidden {
-    /*display: none;*/
-    max-height: 0px;
-    overflow: hidden;
-    transition: max-height 0.5s ease-in;
-    -moz-transition: max-height 0.5s; /* Firefox 4 */
-    -webkit-transition: max-height 0.5s; /* Safari and Chrome */
-    -o-transition: max-height 0.5s; /* Opera */
-}
-
-.shown {
-    /**display: block;**/
-    max-height: 120px;
-    overflow: hidden;
-    transition: max-height 1s ease-in;
-    -moz-transition: max-height 1s; /* Firefox 4 */
-    -webkit-transition: max-height 1s; /* Safari and Chrome */
-    -o-transition: max-height 1s; /* Opera */
-}
-
 @media only screen and (max-width: 714px) {
 
     body, html {
@@ -103,8 +79,11 @@ h2 {
     margin-bottom: 30px;
 }
 
-/* Directives */
+/* DIRECTIVES */
 
+/*
+   List item
+*/
 .list-item-div {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -127,4 +106,30 @@ h2 {
 
 .list-item-div div img {
     height: 100px;
+}
+
+/*
+   Expando
+*/
+.expando .icon {
+    cursor: pointer;
+    width: 23px;
+}
+
+.hidden {
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in;
+    -moz-transition: max-height 0.5s; /* Firefox 4 */
+    -webkit-transition: max-height 0.5s; /* Safari and Chrome */
+    -o-transition: max-height 0.5s; /* Opera */
+}
+
+.shown {
+    max-height: 120px;
+    overflow: hidden;
+    transition: max-height 1s ease-in;
+    -moz-transition: max-height 1s; /* Firefox 4 */
+    -webkit-transition: max-height 1s; /* Safari and Chrome */
+    -o-transition: max-height 1s; /* Opera */
 }

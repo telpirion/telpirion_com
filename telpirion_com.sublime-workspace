@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"listV",
+				"listViewDirective"
+			],
+			[
 				"remo",
 				"removeAllAnimations"
 			],
@@ -75,6 +79,46 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "scripts/controllers.js",
+			"settings":
+			{
+				"buffer_size": 8501,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "scripts/directives.js",
+			"settings":
+			{
+				"buffer_size": 799,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/apps.html",
+			"settings":
+			{
+				"buffer_size": 149,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "styles/telpirion-base.css",
+			"settings":
+			{
+				"buffer_size": 2088,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/games.html",
+			"settings":
+			{
+				"buffer_size": 220,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -100,9 +144,12 @@
 	},
 	"file_history":
 	[
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/list-view-item.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/list-view.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/apps.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/index.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/styles/home.css",
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/controllers.js",
-		"/Users/ericmschmidt/GitHub/telpirion_com/index.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/shamepilesoftware/index.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/home.html",
 		"/Users/ericmschmidt/Downloads/widgets/carousel.js",
@@ -113,7 +160,6 @@
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/about.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/blog.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/firebase.json",
-		"/Users/ericmschmidt/GitHub/telpirion_com/templates/apps.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/home.js",
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/games.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/styles/games.css",
@@ -174,6 +220,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			">\n",
 			"\\t",
 			"game",
 			"adjustMove",
@@ -203,8 +250,145 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "scripts/controllers.js",
+					"settings":
+					{
+						"buffer_size": 8501,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2330,
+								2339
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "scripts/directives.js",
+					"settings":
+					{
+						"buffer_size": 799,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								399,
+								399
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "templates/apps.html",
+					"settings":
+					{
+						"buffer_size": 149,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								149,
+								149
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "styles/telpirion-base.css",
+					"settings":
+					{
+						"buffer_size": 2088,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1913,
+								1913
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1874.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "templates/games.html",
+					"settings":
+					{
+						"buffer_size": 220,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								135,
+								135
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
