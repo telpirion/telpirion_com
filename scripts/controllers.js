@@ -27,9 +27,15 @@ function mainController($scope, $location) {
 // The view model for the '#Home' page.
 function homeController($scope) {
 
+    var slideIndex = 0;
+    var numSlides = document.querySelectorAll(".slide").length;
+
+    setPositionIndicator();
+
     // Add event listeners to buttons on carousel.
     document.querySelector(".left").addEventListener("click",
         function () {
+            updatePositionIndicator(-1);
             advanceSlide("l", function (newSlide, oldSlide, parent) {
                 parent.insertBefore(newSlide, oldSlide);
             });
@@ -37,6 +43,7 @@ function homeController($scope) {
 
     document.querySelector(".right").addEventListener("click",
         function(){
+            updatePositionIndicator(1);
             advanceSlide("r", function (newSlide, oldSlide, parent) {
                 parent.removeChild(oldSlide);
                 parent.appendChild(oldSlide);
@@ -82,6 +89,46 @@ function homeController($scope) {
         oldSlide.addEventListener("transitionend", onTransitionEnd);
         newSlide.classList.add(prefade);
         oldSlide.classList.add(fadeout);
+    }
+
+    function setPositionIndicator() {
+        var svgNS = "http://www.w3.org/2000/svg";
+        var positionIndicator = document.querySelector(".position-indicator");
+        var circle;
+
+        for (var i = 0; i < numSlides; i++) {
+            circle = document.createElementNS(svgNS, "circle");
+            circle.setAttributeNS(null, "cx", 400 + (i * 20));
+            circle.setAttributeNS(null, "cy", 10);
+            circle.setAttributeNS(null, "r", 5);
+            circle.setAttributeNS(null, "class", "position-circle");
+            positionIndicator.appendChild(circle);
+        }
+
+        updatePositionIndicator(0);
+    }
+
+    function updatePositionIndicator(delta) {
+        var tempIndex = slideIndex + delta;
+
+        if (tempIndex >= numSlides) {
+            tempIndex = 0;
+        } else if (tempIndex < 0) {
+            tempIndex = numSlides - 1;
+        }
+
+        slideIndex = tempIndex;
+        document
+            .querySelectorAll(".position-indicator circle")
+            .forEach(function (element, index) {
+                if (index == tempIndex) {
+                    element.classList.remove("position-circle");
+                    element.classList.add("position-current");
+                } else {
+                    element.classList.remove("position-current");
+                    element.classList.add("position-circle");
+                }
+            });
     }
 }
 

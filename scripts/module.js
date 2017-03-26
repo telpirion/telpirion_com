@@ -1,5 +1,5 @@
 ﻿/*
-* home.js for telpirion.com.
+* module.js for telpirion.com.
 * Copyright 2015, Eric M. Schmidt. All rights reserved.
 */
 var telpirionApp = angular.module('telpirionApp', ["ngRoute"]);

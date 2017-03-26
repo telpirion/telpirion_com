@@ -25,6 +25,23 @@
     float: right;
 }
 
+.position-indicator {
+    float: left;
+    width: inherit;
+    position: relative;
+    z-index: 100;
+    top: 350px;
+    display: inline-block;
+}
+
+.position-current {
+    fill: #fff;
+}
+
+.position-circle {
+    fill: #999;
+}
+
 .carousel-content {
     position: absolute;
     clear: both;

@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"head",
+				"headerController"
+			],
+			[
+				"arr",
+				"arrowUpUrl"
+			],
+			[
+				"template",
+				"templateUrl"
+			],
+			[
 				"listV",
 				"listViewDirective"
 			],
@@ -80,42 +92,37 @@
 	"buffers":
 	[
 		{
+			"contents": "/*\n* controllers.js for telpirion.com.\n* Copyright 2015, Eric M. Schmidt. All rights reserved.\n*/\n\n// The view model for the header.\nfunction headerController($scope) {\n    $scope.content =\n    {\n        title: \"Telpirion.com\",\n        links: [\n            { title: \"Home\", url: \"#Home\" },\n            //{ title: \"Resume\", url: \"#Resume\" },\n            { title: \"Games\", url: \"#Games\" },\n            { title: \"Apps\", url: \"#Apps\"},\n            //{ title: \"Blog\", url: \"#Blog\" },\n            { title: \"About\", url: \"#About\" }\n        ]\n    };\n}\n\n// The viewmodel for the top-level scope.\nfunction mainController($scope, $location) {\n\n}\n\n// The view model for the '#Home' page.\nfunction homeController($scope) {\n\n    // Set up position indicator.\n    var numSlides = document.querySelectorAll(\".slide\").length;\n    var svgNS = \"http://www.w3.org/2000/svg\";\n\n    for (var i = 0; i < numSlides; i++) {\n        \n    }\n\n    // Add event listeners to buttons on carousel.\n    document.querySelector(\".left\").addEventListener(\"click\",\n        function () {\n            advanceSlide(\"l\", function (newSlide, oldSlide, parent) {\n                parent.insertBefore(newSlide, oldSlide);\n            });\n        });\n\n    document.querySelector(\".right\").addEventListener(\"click\",\n        function(){\n            advanceSlide(\"r\", function (newSlide, oldSlide, parent) {\n                parent.removeChild(oldSlide);\n                parent.appendChild(oldSlide);\n            });\n        });\n\n    // This is a bit of a hack. Should be able to remove the\n    // last applied class in the transitionend event listener,\n    // but that listener can't seem to remove the first-applied\n    // classes.\n    function removeAllAnimations(slides) {\n        var animations = [\"carousel-in-r\", \"carousel-out-r\",\n            \"carousel-in-l\", \"carousel-out-l\", \"carousel-pre-fade\"];\n\n        for (var i = 0; i < slides.length; i++) {\n            for (var j = 0; j < animations.length; j++){\n                slides[i].classList.remove(animations[j]);\n            }\n        }\n    }\n\n    function advanceSlide(direction, fn) {\n        var fadeout = \"carousel-out-\" + direction;\n        var fadein = \"carousel-in-\" + direction;\n        var prefade = \"carousel-pre-fade\";\n        var slides = document.querySelectorAll(\".slide\");\n\n        removeAllAnimations(slides);\n\n        var oldSlide = slides[0],\n            parentNode = oldSlide.parentNode,\n            newSlide = (direction === \"r\") ?\n                slides[1] :\n                slides[slides.length - 1];\n\n        var onTransitionEnd = function () {\n            fn(newSlide, oldSlide, parentNode);\n            newSlide.classList.add(fadein);\n            oldSlide.removeEventListener(\"transitionend\", onTransitionEnd);\n        }\n\n        // Begin animation\n        oldSlide.addEventListener(\"transitionend\", onTransitionEnd);\n        newSlide.classList.add(prefade);\n        oldSlide.classList.add(fadeout);\n    }\n}\n\n// The view model for the '#Games' page.\nfunction gamesController($scope, $location) {\n    $scope.title = \"Games\";\n    $scope.gamesList = [\n        {\n            title: \"Vikings!!!\",\n            url: \"/Games/Vikings\",\n            description: \"Vikings!!! is a simple platformer, built \" +\n                \"entirely using HTML, CSS, and JavaScript. The \" +\n                \"game uses a physics engine of my own design \" +\n                \"and code.\",\n            img: \"/images/vikings-promo.png\"\n        },\n        {\n            title: \"Yahtzy\",\n            url: \"/Games/Yahtzy\",\n            description: \"Roll five dice and try to complete \" +\n                \"a pair, three-of-a-kind, full-house, or even \" +\n                \"a Yahtzy!\",\n            img: \"/images/yahtzy-promo.png\"\n        },\n        {\n            title: \"Conway's Game of Life\",\n            url: \"/Games/Conway\",\n            description: \"Build a colony of microbes that can \" +\n                \"survive from one generation to the next.\"\n        }\n    ];\n    $scope.onClick = function(url) {\n        console.log(url);\n        $location.path(url);\n        //$window.location = url;\n    }\n}\n\n// The view model for the '#Apps' page\nfunction resumeController($scope) {\n    $scope.title = \"Resume\";\n}\n\n// The view model for the '#Apps' page\nfunction appsController($scope, $window) {\n    $scope.title = \"Apps\";\n\n    $scope.appsList = [\n        {\n            title: \"Latin Reader for Android\",\n            url: \"https://play.google.com/store/apps/details?id=com.ericmschmidt.latinreader\",\n            description: \"Read one of several classical works in the original Latin \" +\n            \"on your Android device.\",\n            img: \"images/google-play-badge.png\"\n        }, {\n            title: \"Latin Reader for Windows\",\n            url: \"https://www.microsoft.com/en-us/store/apps/latin-reader/9wzdncrfjjc0\",\n            description: \"Read one of several classical works in the original Latin \" +\n            \"on your Windows 10, Windows 8.1, or Windows Phone 8.1 device.\",\n            img: \"https://assets.windowsphone.com/f2f77ec7-9ba9-4850-9ebe-77e366d08adc/English_Get_it_Win_10_InvariantCulture_Default.png\"\n        }\n    ];\n    $scope.onClick = function(url) {\n        console.log(url);\n        $window.location.href = url;\n    }\n}\n\n// The view model for the '#Blog' page.\nfunction blogController($scope) {\n    $scope.title = \"Blog\";\n    $scope.feed = [{\n        title: \"First blog post\",\n        date: \"December 22, 2015\",\n        body: \"First blog post on the new site!\"\n    }, {\n        title: \"Shamepile Software is now Telpirion.com\",\n        body: \"This web site has been rebranded to Telpirion.com, the personal \" +\n                \"web site for Eric M. Schmidt.\",\n        date: \"June 28, 2016\"\n    }];\n}\n\n// The view model for the '#About' page.\nfunction aboutController($scope) {\n    $scope.title = \"About\";\n    $scope.bodyContent = \"Find general information about the games and apps on this site.\";\n    $scope.games = {\n        title: \"About the games\"\n    };\n    $scope.apps = {\n        title: \"About the apps\",\n        content: \"I have published a couple of apps on the Google Play Store and the Windows\" +\n        \" Store.\"\n    };\n    $scope.contact = {\n        title: \"Contact me\",\n        mail: \"eric.schmidt@telpirion.com\"\n    };\n}\n\n// The viewmodel for the \"Vikings!!\" game.\nfunction vikingsController($scope) {\n    $scope.title = \"Vikings!!!\";\n    $.getScript(\"scripts/vikings/main.js\");\n}\n\n// The viewmodel for #/Games/Yahtzy\nfunction yahtzyController($scope) {\n    $scope.title = \"Yahtzy\";\n\n    var base = \"scripts/yahtzy\";\n\n    $.when(\n        $.getScript( base + \"/game.js\"),\n        $.getScript( base + \"/ui-controllers.js\"),\n        $.getScript( base + \"/robot.js\" ),\n        $.getScript( base + \"/utilities.js\" ),\n        $.Deferred(function( deferred ){\n            $( deferred.resolve );\n        })\n    )\n    .done(function(){\n        console.log(\"yahtzee scripts loaded\");\n        $.getScript( base + \"/main.js\" )\n    });\n}\n\n// The viewModel for #/Games/Conway\nfunction conwayController($scope) {\n    $scope.title = \"Conway's Game of Life\";\n\n    var base = \"scripts/conway\";\n\n    $.when(\n        $.getScript( base + \"/game.js\"),\n        $.getScript( base + \"/ui.js\"),\n        $.Deferred(function( deferred ){\n            $( deferred.resolve );\n        })\n    )\n    .done(function(){\n        console.log(\"conway scripts loaded\");\n        $.getScript( base + \"/main.js\" )\n    });\n}\n\n// The viewmodel for the \"Scratch\" page.\nfunction demoController($scope, $location) {\n    $scope.title = \"Scratch\";\n    $scope.location = $location.absUrl();\n}\n\ntelpirionApp\n    .controller('mainController', [\"$scope\", \"$location\", mainController])\n    .controller(\"headerController\", headerController)\n    .controller(\"homeController\", homeController)\n    .controller(\"resumeController\", resumeController)\n    .controller(\"gamesController\", [\"$scope\", \"$location\", gamesController])\n    .controller(\"appsController\", [\"$scope\", \"$window\",appsController])\n    .controller(\"blogController\", blogController)\n    .controller(\"aboutController\", aboutController)\n    .controller(\"vikingsController\", vikingsController)\n    .controller(\"yahtzyController\", yahtzyController)\n    .controller(\"conwayController\", conwayController)\n    .controller(\"demoController\", [\"$scope\", \"$location\", demoController]);",
 			"file": "scripts/controllers.js",
+			"file_size": 8315,
+			"file_write_time": 1490486175000000,
 			"settings":
 			{
-				"buffer_size": 8501,
+				"buffer_size": 8323,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "scripts/directives.js",
+			"file": "templates/home.html",
 			"settings":
 			{
-				"buffer_size": 799,
+				"buffer_size": 3147,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "templates/apps.html",
+			"file": "scripts/module.js",
 			"settings":
 			{
-				"buffer_size": 149,
+				"buffer_size": 1844,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "styles/telpirion-base.css",
+			"file": "styles/home.css",
 			"settings":
 			{
-				"buffer_size": 2088,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "templates/games.html",
-			"settings":
-			{
-				"buffer_size": 220,
+				"buffer_size": 1393,
 				"line_ending": "Unix"
 			}
 		}
@@ -144,24 +151,30 @@
 	},
 	"file_history":
 	[
+		"/Users/ericmschmidt/GitHub/telpirion_com/index.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/directives.js",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/external/angular-route.js",
+		"/Users/ericmschmidt/GitHub/telpirion_com/styles/telpirion-base.css",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/expando.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/external/Roboto.css",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/external/angular.js",
+		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/external/jquery.js",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/about.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/games.html",
+		"/Users/ericmschmidt/GitHub/telpirion_com/templates/apps.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/list-view-item.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/list-view.html",
-		"/Users/ericmschmidt/GitHub/telpirion_com/templates/apps.html",
-		"/Users/ericmschmidt/GitHub/telpirion_com/index.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/styles/home.css",
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/controllers.js",
 		"/Users/ericmschmidt/GitHub/telpirion_com/shamepilesoftware/index.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/home.html",
 		"/Users/ericmschmidt/Downloads/widgets/carousel.js",
 		"/Users/ericmschmidt/Downloads/widgets/index.html",
-		"/Users/ericmschmidt/GitHub/telpirion_com/styles/telpirion-base.css",
 		"/Users/ericmschmidt/GitHub/telpirion_com/styles/conway.css",
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/conway/ui.js",
-		"/Users/ericmschmidt/GitHub/telpirion_com/templates/about.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/blog.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/firebase.json",
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/home.js",
-		"/Users/ericmschmidt/GitHub/telpirion_com/templates/games.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/styles/games.css",
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/vikings.html",
 		"/Users/ericmschmidt/GitHub/telpirion_com/templates/yahtzy.html",
@@ -176,7 +189,6 @@
 		"/Users/ericmschmidt/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/Users/ericmschmidt/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/external/angular-route.min.js",
-		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/external/jquery.js",
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/external/angular.min.js",
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/physics.js",
 		"/Users/ericmschmidt/GitHub/telpirion_com/scripts/vikings/animation.js",
@@ -258,15 +270,15 @@
 					"file": "scripts/controllers.js",
 					"settings":
 					{
-						"buffer_size": 8501,
+						"buffer_size": 8323,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2330,
-								2339
+								906,
+								906
 							]
 						],
 						"settings":
@@ -276,30 +288,30 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 157.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "scripts/directives.js",
+					"file": "templates/home.html",
 					"settings":
 					{
-						"buffer_size": 799,
+						"buffer_size": 3147,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								399,
-								399
+								500,
+								500
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
@@ -311,23 +323,25 @@
 				},
 				{
 					"buffer": 2,
-					"file": "templates/apps.html",
+					"file": "scripts/module.js",
 					"settings":
 					{
-						"buffer_size": 149,
+						"buffer_size": 1844,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								149,
-								149
+								11,
+								11
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -337,18 +351,18 @@
 				},
 				{
 					"buffer": 3,
-					"file": "styles/telpirion-base.css",
+					"file": "styles/home.css",
 					"settings":
 					{
-						"buffer_size": 2088,
+						"buffer_size": 1393,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1913,
-								1913
+								456,
+								456
 							]
 						],
 						"settings":
@@ -356,32 +370,6 @@
 							"syntax": "Packages/CSS/CSS.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1874.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "templates/games.html",
-					"settings":
-					{
-						"buffer_size": 220,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								135,
-								135
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
