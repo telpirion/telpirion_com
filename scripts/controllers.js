@@ -95,10 +95,11 @@ function homeController($scope) {
         var svgNS = "http://www.w3.org/2000/svg";
         var positionIndicator = document.querySelector(".position-indicator");
         var circle;
+        var startWidth = (900 - (numSlides * 20)) / 2;
 
         for (var i = 0; i < numSlides; i++) {
             circle = document.createElementNS(svgNS, "circle");
-            circle.setAttributeNS(null, "cx", 400 + (i * 20));
+            circle.setAttributeNS(null, "cx", startWidth + (i * 20));
             circle.setAttributeNS(null, "cy", 10);
             circle.setAttributeNS(null, "r", 5);
             circle.setAttributeNS(null, "class", "position-circle");
