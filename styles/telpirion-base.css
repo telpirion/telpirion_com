@@ -86,13 +86,26 @@ h2 {
 */
 .list-item-div {
     padding-top: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     padding-left: 10px;
     border-bottom-width: 2px;
     border-bottom-color: rgba(100, 100, 100, .5);
     border-bottom-style: solid;
     text-decoration: none;
     color: black;
+    display: flex;
+    flex-flow: row;
+}
+
+.list-item-div-icon {
+    -webkit-flex: none;
+    flex: none;
+    width: 130px;
+}
+
+.list-item-div-details {
+    -webkit-flex: 9;
+    flex: 9;
 }
 
 .list-item-div:hover {

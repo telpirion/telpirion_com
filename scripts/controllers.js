@@ -144,7 +144,7 @@ function gamesController($scope, $location) {
                 "entirely using HTML, CSS, and JavaScript. The " +
                 "game uses a physics engine of my own design " +
                 "and code.",
-            img: "/images/vikings-promo.png"
+            icon: "/images/vikings-promo.png"
         },
         {
             title: "Yahtzy",
@@ -152,7 +152,7 @@ function gamesController($scope, $location) {
             description: "Roll five dice and try to complete " +
                 "a pair, three-of-a-kind, full-house, or even " +
                 "a Yahtzy!",
-            img: "/images/yahtzy-promo.png"
+            icon: "/images/yahtzy-promo.png"
         },
         {
             title: "Conway's Game of Life",
