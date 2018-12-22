@@ -283,6 +283,18 @@ function demoController($scope, $location) {
     $scope.location = $location.absUrl();
 }
 
+// The viewmodel for the "Scratch" page.
+function phaserController($scope) {
+    $scope.title = "Phaser";
+
+    var phaserCDN = "https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/phaser.js";
+
+    $.when($.getScript(phaserCDN))
+    .done(function () {
+        $.getScript("scripts/phaser/main.js");
+    });
+}
+
 telpirionApp
     .controller('mainController', ["$scope", "$location", mainController])
     .controller("headerController", headerController)
@@ -295,4 +307,5 @@ telpirionApp
     .controller("vikingsController", vikingsController)
     .controller("yahtzyController", yahtzyController)
     .controller("conwayController", conwayController)
-    .controller("demoController", ["$scope", "$location", demoController]);
+    .controller("demoController", ["$scope", "$location", demoController])
+    .controller("phaserController", phaserController);
