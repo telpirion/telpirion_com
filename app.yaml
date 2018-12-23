@@ -1,0 +1,22 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /js
+  static_dir: js
+- url: /server
+  script: main.app
+- url: /api
+  script: main.app
+- url: /
+  static_files: ng/index.html
+  upload: ng/index.html
+- url: /
+  static_dir: ng
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
+- name: jinja2
+  version: latest
