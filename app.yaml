@@ -3,17 +3,27 @@ api_version: 1
 threadsafe: true
 
 handlers:
+# Python / AppEngine / Jinja
 - url: /js
   static_dir: js
 - url: /server
   script: main.app
 - url: /api
   script: main.app
-- url: /
+# Angular app
+- url: /(.*\.js)
+  static_files: ng/\1
+  upload: ng/(.*\.js)
+- url: /.*
   static_files: ng/index.html
   upload: ng/index.html
-- url: /
-  static_dir: ng
+- url: (.*)/
+  static_files: ng/index.html
+  upload: ng
+- url: (.*)
+  static_files: ng/index.html
+  upload: ng
+
 
 libraries:
 - name: webapp2

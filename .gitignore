@@ -4,6 +4,7 @@
 */dist
 */tmp
 */out-tsc
+*.pyc
 
 # dependencies
 */node_modules
