@@ -26,6 +26,13 @@ To build the Angular app, use the following command from the
 ng build --prod --outputPath=../ng --deleteOutputPath=true
 ```
 
+To build the entire site using the Gulp file, use the
+following command from the root folder:
+
+```
+gulp build
+```
+
 To run the site, use the following command from the site root folder:
 
 ```
@@ -44,13 +51,14 @@ Google Cloud AppEngine Standard:
 Angular:
   * [Getting started](https://angular.io/guide/quickstart#getting-started)
   * [Angular CLI ref](https://angular.io/cli/build)
+  * [Angular Material getting started](https://material.angular.io/guide/getting-started)
 
 Gulp:
-  * https://fettblog.eu/gulp-4-parallel-and-series/
-  * https://www.smashingmagazine.com/2014/06/building-with-gulp/
-  * https://www.npmjs.com/package/gulp-exec
-  * https://github.com/gulpjs/gulp/blob/master/docs/recipes/delete-files-folder.md
-  * https://www.npmjs.com/package/gulp-concat
-  * https://www.npmjs.com/package/gulp-uglify
-  * https://www.npmjs.com/package/gulp-html-replace
-  * https://www.npmjs.com/package/gulp-clean-css
+  * [Gulp 4 how-to](https://fettblog.eu/gulp-4-parallel-and-series/)
+  * [Old Gulp how-to](https://www.smashingmagazine.com/2014/06/building-with-gulp/)
+  * [gulp-exec](https://www.npmjs.com/package/gulp-exec)
+  * [del](https://github.com/gulpjs/gulp/blob/master/docs/recipes/delete-files-folder.md)
+  * [gulp-concat](https://www.npmjs.com/package/gulp-concat)
+  * [gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
+  * [gulp-html-replace](https://www.npmjs.com/package/gulp-html-replace)
+  * [gulp-clean-css](https://www.npmjs.com/package/gulp-clean-css)

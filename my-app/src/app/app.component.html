@@ -1,2 +1,14 @@
-    <!--The content below is only a placeholder and can be replaced.-->
+<div class="header">
+    <h1>
+        <button mat-button #menu (click)="drawer.toggle()" >
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>{{title}}</span>
+    </h1>
+</div>
+<mat-drawer-container class="example-container" style="height: 100%">
+  <mat-drawer #drawer mode="side" closed>Drawer content</mat-drawer>
+  <mat-drawer-content>
     <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

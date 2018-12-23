@@ -6,6 +6,7 @@
  * @copyright Eric Schmidt
  */
 var gulp = require('gulp'),
+    del = require('del'),
     exec = require('child_process').exec;
 
 gulp.task('pre', () => {

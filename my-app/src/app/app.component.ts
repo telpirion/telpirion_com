@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styles: []
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent {}
+export class AppComponent {
+    title = "Telpirion.com";
+}
