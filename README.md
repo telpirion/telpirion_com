@@ -32,16 +32,25 @@ To run the site, use the following command from the site root folder:
 dev_appserver.py app.yaml
 ```
 
-TODO: Create a Gulp file that has multiple build targets: Angular
-runserver, AppEngine runserver
+TODO: Merge Angular build files with Gulp files.
 
 ## References
 
-About the Google Cloud AppEngine Standard environment:
+Google Cloud AppEngine Standard:
   * [Overview](https://cloud.google.com/appengine/docs/standard/python/runtime#customized-libraries-in-python-version-27)
   * [Deploying Angular to AppEngine](https://medium.com/@asanoop24/deploying-angular-6-app-on-google-app-engine-b6259d4c16c2)
   * [Code sample](https://github.com/googlecodelabs/cloud-cardboard-viewer)
 
-About Angular:
+Angular:
   * [Getting started](https://angular.io/guide/quickstart#getting-started)
   * [Angular CLI ref](https://angular.io/cli/build)
+
+Gulp:
+  * https://fettblog.eu/gulp-4-parallel-and-series/
+  * https://www.smashingmagazine.com/2014/06/building-with-gulp/
+  * https://www.npmjs.com/package/gulp-exec
+  * https://github.com/gulpjs/gulp/blob/master/docs/recipes/delete-files-folder.md
+  * https://www.npmjs.com/package/gulp-concat
+  * https://www.npmjs.com/package/gulp-uglify
+  * https://www.npmjs.com/package/gulp-html-replace
+  * https://www.npmjs.com/package/gulp-clean-css
