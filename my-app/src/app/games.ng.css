@@ -1,0 +1,30 @@
+.content {
+    margin: 10px;
+}
+
+.game-card {
+    max-width: 400px;
+    margin: 10px;
+}
+
+.mat-card-content {
+    margin-left: 16px;
+}
+
+.list-item-div {
+    display: flex;
+    flex-flow: row;
+}
+
+.list-item-div-icon {
+    -webkit-flex: none;
+    flex: none;
+    width: 100px;
+    height: 100px;
+}
+
+.list-item-div-details {
+    margin-left: 16px;
+    -webkit-flex: 9;
+    flex: 9;
+}

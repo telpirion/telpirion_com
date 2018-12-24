@@ -26,9 +26,14 @@ gulp.task('copy-prod', () => {
         .pipe(gulp.dest('ng'));
 });
 
+gulp.task('copy-images', () => {
+    return gulp.src('my-app/dist/my-app/assets/images/*.*')
+        .pipe(gulp.dest('images'));
+});
+
 gulp.task('post', () => {
     return del(['my-app/dist']);
 });
 
 gulp.task('build',
-    gulp.series('pre', 'ng-build', 'copy-prod', 'post'));
+    gulp.series('pre', 'ng-build', 'copy-prod', 'copy-images', 'post'));

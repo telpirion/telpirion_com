@@ -8,6 +8,8 @@ handlers:
 # Python / AppEngine / Jinja
 - url: /js
   static_dir: js
+- url: /images
+  static_dir: images
 - url: /server
   script: main.app
 - url: /api
