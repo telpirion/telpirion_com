@@ -8,12 +8,16 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about.ng';
+import { AppsPageComponent } from './apps-page.ng';
+import { GamesComponent } from './games.ng';
 import { HomeComponent } from './home.ng';
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
+    AppsPageComponent,
+    GamesComponent,
     HomeComponent,
   ],
   imports: [

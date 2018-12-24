@@ -4,3 +4,12 @@
     width: 100%;
     color: white;
 }
+
+.drawer-links {
+    margin: 10px;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+}

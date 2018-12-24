@@ -7,7 +7,13 @@
     </h1>
 </div>
 <mat-drawer-container class="example-container" style="height: 100%">
-  <mat-drawer #drawer mode="side" closed>Drawer content</mat-drawer>
+  <mat-drawer #drawer mode="side" closed>
+    <div class="drawer-links">
+      <p *ngFor="let link of links; index as i">
+        <a class="nav-link" href="{{link.url}}">{{link.label}}</a>
+      </p>
+    </div>
+  </mat-drawer>
   <mat-drawer-content>
     <router-outlet></router-outlet>
   </mat-drawer-content>
