@@ -16,6 +16,9 @@ handlers:
 - url: /(.*\.js)
   static_files: ng/\1
   upload: ng/(.*\.js)
+- url: /(.*\.css)
+  static_files: ng/\1
+  upload: ng/(.*\.css)
 - url: /.*
   static_files: ng/index.html
   upload: ng/index.html

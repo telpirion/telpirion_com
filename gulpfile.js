@@ -27,7 +27,7 @@ gulp.task('copy-prod', () => {
 });
 
 gulp.task('post', () => {
-    return del(['my-app/dist/*']);
+    return del(['my-app/dist']);
 });
 
 gulp.task('build',
