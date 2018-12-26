@@ -1,8 +1,7 @@
 ﻿/*
     Starts the Yahtzee game.
 */
-(function () {
-    "use strict";
+window.onload = function () {
 
     // Add event handlers to images and categories.
     $("svg").click(function (arg) {
@@ -31,4 +30,4 @@
 
     // Start a new game.
     game.init();
-})();
+};

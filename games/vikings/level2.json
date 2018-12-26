@@ -104,5 +104,5 @@
     "height": 20,
     "color": "rgba(100,100,100,1)"
   },
-  "background": "url(images/bg_ruins_ship_2_3.jpg)"
+  "background": "url(/images/bg_ruins_ship_2_3.jpg)"
 }

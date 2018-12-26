@@ -160,7 +160,7 @@
     // Add up the roll scored and return the roll.
     function scoreRoll(diceVals, type) {
 
-        var scoredValues = (type == "Chance") ? 
+        var scoredValues = (type == "Chance") ?
             diceVals :
             validateRoll(diceVals, type);
         var score = 0;
@@ -188,4 +188,4 @@
         scoreRoll: scoreRoll,
         generateRoll: generateRoll
     };
-})()
+})();

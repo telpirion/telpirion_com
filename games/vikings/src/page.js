@@ -60,7 +60,7 @@ var page = (function () {
 		var levelScript;
 		levelCount++;
 
-		var levelFile = "scripts/vikings/level" + levelCount + ".json";
+		var levelFile = "level" + levelCount + ".json";
 
 		//$.getScript(levelFile, callback);
 		var xhr = new XMLHttpRequest();

@@ -1,28 +1,24 @@
 /*
     Entry point for Vikings!!!
-    Version 6.0
+    Version 6.1
     Eric Schmidt
     Published: 2012-12-08
-    Updated: 2017-01-23
+    Updated: 2018-12-26
 */
 var images = [];
 
 // Start the Vikings!!! game sequence.
-(function () {
+window.onload = function () {
 
 	// Create a list of the images to load.
 	var imageNames = [
-		"images/block.png",
-		"images/vK_50x78.png"
+		"/images/block.png",
+		"/images/vK_50x78.png"
 	];
 
     console.log("start game load");
 
 	$.when(
-
-		$.getScript( "scripts/vikings/physics.js"),
-		$.getScript( "scripts/vikings/animation.js" ),
-		$.getScript( "scripts/vikings/page.js" ),
 		$.Deferred(function(deferred){
 			var img1 = new Image();
 			img1.onload = function () {
@@ -69,4 +65,4 @@ var images = [];
 
 	});
 
-})();
+};

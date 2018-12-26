@@ -69,5 +69,5 @@
     "height": 20,
     "color": "rgba(100,100,100,1)"
   },
-  "background": "url(images/bg_river_1_3.jpg)"
+  "background": "url(/images/bg_river_1_3.jpg)"
 }

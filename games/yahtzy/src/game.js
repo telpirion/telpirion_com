@@ -105,7 +105,7 @@
     function scoreRoll(category) {
         var diceValue = utilities.scoreRoll(_dice, category);
         _playerScore += diceValue;
-        
+
         // Check if the bonus has been hit.
         if ((category == "Ones") ||
             (category == "Twos") ||
@@ -125,7 +125,7 @@
 
     }
 
-    // Get the total score the the specified AI opponent. 
+    // Get the total score the the specified AI opponent.
     function getOpponentsScore(number) {
         var robot = _opponents[number];
         robot.roll();
@@ -159,4 +159,4 @@
     });
 
     return _returnedObject;
-})()
+})();

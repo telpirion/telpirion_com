@@ -1,0 +1,27 @@
+{
+  "name": "telpirion_com",
+  "version": "4.0.0",
+  "description": "Personal site for Eric M. Schmidt",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-exec": "^3.0.2",
+    "gulp-uglify": "^3.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/telpirion/telpirion_com.git"
+  },
+  "author": "Eric Schmidt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/telpirion/telpirion_com/issues"
+  },
+  "homepage": "https://github.com/telpirion/telpirion_com#readme"
+}
