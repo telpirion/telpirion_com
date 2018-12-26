@@ -1,3 +1,9 @@
+body, html {
+    height: 100%;
+    font-size: 14pt;
+    font-family: 'Roboto', sans-serif;
+}
+
 .contentroot {
     margin-left: 10px;
 }
@@ -14,8 +20,8 @@
     padding-top : 50px;
     width : 600px;
     height : 300px;
-    background-color: Black; 
-    text-align : center;   
+    background-color: Black;
+    text-align : center;
     color: white;
 }
 
@@ -80,8 +86,8 @@
 
 #output {
     height : 300px;
-    width: 300px;   
-    border-style: solid; 
+    width: 300px;
+    border-style: solid;
     overflow : scroll;
     clear : both;
     padding : 5px;

@@ -1,4 +1,10 @@
-﻿.game-frame {
+﻿body, html {
+    height: 100%;
+    font-size: 14pt;
+    font-family: 'Roboto', sans-serif;
+}
+
+.game-frame {
     margin-top: 10px;
     display: -ms-grid;
     -ms-grid-columns: 600px 1fr;
