@@ -39,6 +39,13 @@ To run the site, use the following command from the site root folder:
 dev_appserver.py app.yaml
 ```
 
+To reinstall all of the NodeJS dependencies (for example, after changing
+git branches), use the following command:
+
+```
+npm install
+```
+
 TODO: Merge Angular build files with Gulp files.
 
 ## References

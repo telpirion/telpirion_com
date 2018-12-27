@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 // TODO: Determine whether we can combine next four lines
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';

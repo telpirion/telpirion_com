@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import { Router } from '@angular/router';
 
 export interface Game {
     title: string;
@@ -23,24 +24,38 @@ export class GamesComponent {
         subtitle: "Platformer",
         imgUrl: "images/vikings-promo.png",
         content: "Vikings!!! is a simple platformer. It uses a physics engine of my own design and code.",
-        gameUrl: "/games/vikings",
-        codeUrl: "http://github.com/telpirion" //TODO
+        gameUrl: "/games/vikings/vikings.html",
+        codeUrl: "https://github.com/telpirion/telpirion_com/tree/appengine/games/vikings/src"
     },
     {
         title: "Yahtzy",
         subtitle: "Dice",
         imgUrl: "images/yahtzy-promo.png",
         content: "Roll five dice and try to make three-of-a-kind, a full house, or even a Yahtzy!",
-        gameUrl: "/games/yahtzy",
-        codeUrl: "http://github.com/telpirion" //TODO
+        gameUrl: "/games/yahtzy/yahtzy.html",
+        codeUrl: "https://github.com/telpirion/telpirion_com/tree/appengine/games/yahtzy/src"
     },
     {
         title: "Conway's Game of Life",
         subtitle: "Puzzle",
-        imgUrl: "images/conway-promo.png", // TODO
+        imgUrl: "images/conway-promo.png",
         content: "Build a colony of microbes that survives from one generation to the next.",
-        gameUrl: "/games/conway",
-        codeUrl: "http://github.com/telpirion" //TODO
+        gameUrl: "/games/conway/conway.html",
+        codeUrl: "https://github.com/telpirion/telpirion_com/tree/appengine/games/conway/src"
     }
   ];
+
+  constructor(private router: Router) {
+    this.router = router;
+  }
+
+  playGame(game) {
+    console.log(`Play game: ${game.title}`);
+    window.location.href = game.gameUrl;
+  }
+
+  viewCode(game) {
+    console.log(`View code: ${game.title}`);
+    window.location.href = game.codeUrl;
+  }
 }
