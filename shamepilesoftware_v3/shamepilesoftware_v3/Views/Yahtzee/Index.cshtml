@@ -1,0 +1,127 @@
+﻿@{
+    ViewBag.Title = "Yahtzee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/bundles/yahtzee-css")
+@Scripts.Render("~/bundles/yahtzee-js")
+<nav class="game-nav">
+    <p>@Html.ActionLink("Yahtzee", "Index", "Yahtzee")</p>
+    <p>@Html.ActionLink("About", "About", "Yahtzee")</p>
+    <p>Version: @ViewBag.Version. <br />Published on @ViewBag.Published</p>
+</nav>
+<div class="content-root">
+    <!--
+        Yahtzee emulator
+        Version 1.0
+        Eric Schmidt
+        Yahtzee is TM by Hasbro, Inc.
+    -->
+    <div class="spacer"></div>
+    <div class="game-frame">
+        <div class="categories">
+            <div class="cat-upper">
+                <svg class="cat borderBlack Ones">
+                    <g class="canvas">
+                        <circle r="10" cx="37" cy="37"></circle>
+                    </g>
+                </svg>
+                <svg class="cat borderBlack Twos">
+                    <g class="canvas">
+                        <circle r="10" cx="15" cy="15"></circle>
+                        <circle r="10" cx="60" cy="60"></circle>
+                    </g>
+                </svg>
+                <svg class="cat borderBlack Threes">
+                    <g class="canvas">
+                        <circle r="10" cx="15" cy="15"></circle>
+                        <circle r="10" cx="37" cy="37"></circle>
+                        <circle r="10" cx="60" cy="60"></circle>
+                    </g>
+                </svg>
+                <svg class="cat borderBlack Fours">
+                    <g class="canvas">
+                        <circle r="10" cx="15" cy="15"></circle>
+                        <circle r="10" cx="15" cy="60"></circle>
+                        <circle r="10" cx="60" cy="15"></circle>
+                        <circle r="10" cx="60" cy="60"></circle>
+                    </g>
+                </svg>
+                <svg class="cat borderBlack Fives">
+                    <g class="canvas">
+                        <circle r="10" cx="15" cy="15"></circle>
+                        <circle r="10" cx="15" cy="60"></circle>
+                        <circle r="10" cx="37" cy="37"></circle>
+                        <circle r="10" cx="60" cy="15"></circle>
+                        <circle r="10" cx="60" cy="60"></circle>
+                    </g>
+                </svg>
+                <svg class="cat borderBlack Sixes">
+                    <g class="canvas">
+                        <circle r="10" cx="15" cy="15"></circle>
+                        <circle r="10" cx="15" cy="60"></circle>
+                        <circle r="10" cx="15" cy="37"></circle>
+                        <circle r="10" cx="60" cy="15"></circle>
+                        <circle r="10" cx="60" cy="60"></circle>
+                        <circle r="10" cx="60" cy="37"></circle>
+                    </g>
+                </svg>
+            </div>
+            <div class="cat-lower">
+                <div class="cat borderBlack ThreeKind"><span>Three of a Kind</span></div>
+                <div class="cat borderBlack FourKind"><span>Four of a Kind</span></div>
+                <div class="cat borderBlack Small"><span>Small Straight</span></div>
+                <div class="cat borderBlack Large"><span>Large Straight</span></div>
+                <div class="cat borderBlack FullHouse"><span>Full House</span></div>
+                <div class="cat borderBlack Chance"><span>Chance</span></div>
+            </div>
+            <div class="yahtzee">
+                <div class="cat borderBlack Yahtzee">Yahtzee!</div>
+            </div>
+        </div>
+        <div class="scoring">
+            Score<br /><br />
+            <div class="score">
+                Your score: 0<br />
+                Player 2: 0<br />
+                Player 3: 0<br />
+                Player 4: 0<br />
+            </div><br />
+            <div class="bonus">Bonus achieved!</div><br />
+            <div class="game-over">Game over</div>
+            <div class="output"></div>
+        </div>
+        <div class="dice">
+            <svg class="die borderBlack A">
+                <g class="canvas">
+                    <circle r="10" cx="37" cy="37"></circle>
+                </g>
+            </svg>
+            <svg class="die borderBlack B">
+                <g class="canvas">
+                    <circle r="10" cx="37" cy="37"></circle>
+                </g>
+            </svg>
+            <svg class="die borderBlack C">
+                <g class="canvas">
+                    <circle r="10" cx="37" cy="37"></circle>
+                </g>
+            </svg>
+            <svg class="die borderBlack D">
+                <g class="canvas">
+                    <circle r="10" cx="37" cy="37"></circle>
+                </g>
+            </svg>
+            <svg class="die borderBlack E">
+                <g class="canvas">
+                    <circle r="10" cx="37" cy="37"></circle>
+                </g>
+            </svg>
+        </div>
+        <div class="controls">
+            <button id="reset">Reset</button>
+            <button id="enter">Enter</button>
+            <button id="roll">Roll</button>
+        </div>
+    </div>
+</div>

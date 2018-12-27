@@ -1,0 +1,28 @@
+﻿.game-nav {
+    background-color: rgb(0, 50, 200); 
+    margin-top: 50px;
+    padding: 5px;
+    float:left;
+    margin-left:50px;
+    width: 150px;
+    height: 320px;
+}
+
+.game-nav * a {
+    color: #c0c0c0;
+    text-decoration: none;
+}
+
+.game-nav * a:hover {
+    color: #ffffff;
+}
+
+.content-root {
+    margin-top: 10px;
+    margin-left: 230px;
+    margin-right: 50px;
+}
+
+.spacer {
+    height: 40px;
+}

@@ -1,0 +1,23 @@
+﻿<div>
+    <h3>{{title}}</h3><br/><br/>
+    <div>
+        <div>Browser is: <span>{{browser}}</span></div>
+        <div>Version is: <span>{{version}}</span></div>
+        <div>Platform is: <span>{{platform}}</span></div>
+        <div>Product is: <span>{{product}}</span></div>
+        <div>Protocol is supported: <span>{{isSupported}}</span></div>
+        <div>Raw user agent data is: <span>{{userAgent}}</span></div>
+    </div><br/><br/>
+    <div>
+        <h3>Protocol and redirect</h3><br/>
+        <input ng-model="protocolToTry" /><br/><br/>
+        <input ng-model="urlToRedirectTo" /><br/> </br>
+        <input type="checkbox" ng-model="isInSameWindow"/>&nbsp;Redirect in same window?
+    </div><br /><br />
+    <div>
+        <h3>Launch app</h3><br/>
+        <button ng-click="openApp()">Try</button>
+        <button ng-click="reset()">Reset</button>
+        <button ng-click="openAppTweetableJS()">Tweetable</button>
+    </div>
+</div>

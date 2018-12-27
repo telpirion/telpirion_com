@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Modulus - About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<nav class="game-nav">
+    <p><a href="Index">@ViewBag.Name</a></p>
+    <p>@Html.ActionLink("About", "About", "Modulus")</p>
+    <p>Version: @ViewBag.Version. <br />Published on @ViewBag.Published</p>
+</nav>
+<div class="content-root">
+    <div class="spacer"></div>
+    <h2>About <i>@ViewBag.Name</i></h2>
+    <div>
+        <h3>Instructions</h3>
+        <p>
+            This game uses the <b>d20 System</b> distributed by Wizards of the Coast,Inc. under the Open Gaming License 1.0a.
+            You can read more about the Modern System Reference Document on the Wizards of the Coast on their <a href="http://www.wizards.com/default.asp?x=d20/article/msrd">Web site</a>.
+            Wizards of the Coast, Inc is not affiliated with nor a sponsor of Shamepile Software. (We simply use their gaming system because it's awesome!)
+        </p>
+    </div><br />
+    <div>
+        <h3>Requirements</h3>
+        <p>A Web browser. The game works best on the desktop, but can be played by touch.</p>
+    </div><br />
+    <div>
+        <h3>Basic troubleshooting</h3>
+        <p>If you encounter a problem or the game becomes unresponsive, refresh the browser.</p>
+    </div>
+    <div>
+        <br />
+        <h3>Known bugs</h3>
+
+    </div><br />
+    <div>
+        <h3>Version history</h3>
+        Current version: @ViewBag.Version
+    </div>
+</div>
+

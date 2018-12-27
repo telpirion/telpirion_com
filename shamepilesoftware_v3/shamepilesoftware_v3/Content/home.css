@@ -1,0 +1,57 @@
+﻿.game-list {
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.game-list-item {
+    background-color: rgb(0, 50, 200);
+    padding: 10px;
+    height: 200px;
+    width: 200px;
+}
+
+    .game-list-item a {
+        text-decoration: none;
+        color: #c0c0c0;
+    }
+
+    .game-list-item a:hover {
+        color: #ffffff;
+    }
+
+
+
+@media only screen and (max-width: 714px) {
+    .game-list-item {
+        font-size: 12pt;
+        height: 75px;
+        width: 100px;
+    }
+
+        .game-list-item h3 {
+            font-size: 14pt;
+        }
+}
+
+
+.expando {
+    cursor: pointer;
+}
+
+    .expando .icon {
+        display: inline-block;
+        width: 25px;
+        color: rgb(105, 155, 255);
+    }
+
+.hidden {
+    display: none;
+}
+
+.shown {
+    display: block;
+}
+
+section ul {
+    margin-left: 20px;
+}

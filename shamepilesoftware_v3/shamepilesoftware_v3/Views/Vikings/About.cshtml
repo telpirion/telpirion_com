@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<nav class="game-nav">
+    <p>@Html.ActionLink("Vikings!!!", "Index", "Vikings")</p>
+    <p>@Html.ActionLink("About", "About", "Vikings")</p>
+    <p>Version: @ViewBag.Version. <br />Published on @ViewBag.Published.</p>
+</nav>
+<div class="content-root">
+    <div class="spacer"></div>
+    <h2 class="title">About <i>@ViewBag.Name</i></h2>
+    <div>
+        <h3>Instructions</h3>
+        <p><i>@ViewBag.Name</i> is a simple platform jumping game. The goal is to get to the far right side of the level.</p>
+        <p>On the desktop version, you control the game sprite using the keyboard. Use the left and right arrow keys for left and right movement. Use the up arrow key or space bar for jumping.</p>
+        <p>On the touch version, you control the game sprite with the on-screen controls. Use the white directional controls on the left to move the character to the right or left. Use the red button on the right to jump.</p>
+    </div>
+    <div>
+        <h3>Requirements</h3>
+        Web browser. The game has been maximized for use in Google Chrome, FireFox, and Safari on iPad. There are known bugs in IE 9 and IE 10.
+    </div>
+    <div>
+        <h3>Basic troubleshooting</h3>
+        <ul>
+            <li>If you encounter a problem or the game becomes unresponsive, refresh the browser.</li>
+        </ul>
+    </div>
+    <div>
+        <h3>Known bugs</h3>
+        <ul>
+            <li>Loading performance issues. The game can take about 10 seconds to load, depending on the connection.</li>
+        </ul>
+    </div>
+    <div>
+        <h3>Version history</h3>
+        Current version: 5.3.<br />
+        <h4>Version 5.3</h4>
+        <div>Published 12/23/2012.</div>
+        <div>
+            Changes in this version:<br />
+            <ul>
+                <li>Added new graphic UI for ease of play on touch devices.</li>
+                <li>Added touch capability check on game start and modified game start screen.</li>
+            </ul>
+        </div>
+        <h4>Version 5.2</h4>
+        <div>Published 12/18/2012.</div>
+        <div>
+            Changes in this version:<br />
+            <ul>
+                <li>Disabled default event behavior.</li>
+            </ul>
+        </div>
+        <h4>Version 5.1</h4>
+        <div>Published 12/16/2012.</div>
+        <div>
+            Changes in this version:<br />
+            <ul>
+                <li>Added image loading to loader script.</li>
+            </ul>
+        </div>
+        <h4>Version 5.0</h4>
+        <div>Published 12/8/2012.</div>
+        <div>
+            Changes in this version:<br />
+            <ul>
+                <li>Refactored all of the code to conform to module pattern.</li>
+            </ul>
+        </div>
+        <h4>Version 4.0</h4>
+        <div>Published </div>
+        <div>
+            Changes in this version:<br />
+            <ul>
+                <li>Added second level.</li>
+                <li>Added level complete screen.</li>
+                <li>Added winning condition for levels.</li>
+                <li>Added logic for changing background for different levels.</li>
+                <li>Added title / opening screen for game.</li>
+                <li>Fixed bug that caused the character to move too quickly when level 2 is loaded.</li>
+                <li>Changed debug function / class. </li>
+            </ul>
+        </div>
+        <h3>Version 3.0</h3>
+        <div>Published </div>
+        <div>
+            Changes in this version:<br />
+            <ul>
+                <li>Added art assets for character sprite, some in-game obstacles, and background.</li>
+                <li>Changed behavior of character sprite to face the direction that he’s moving.</li>
+                <li>Fixed the bug allowing the character to jump through and onto thin platforms.</li>
+                <li>(Related to previous) Fixed the behavior where the character becomes wedged under a block.</li>
+            </ul>
+        </div>
+        <h4>Version 2.1</h4>
+        <div>Published </div>
+        <div>
+            Changes in this version:<br />
+            <ul>
+                <li>Added level background.</li>
+                <li>Fixed bug that prevents landing on thin platforms where there is no exact hit.</li>
+                <li>(Related to previous) Fixed bug that allows character to walk up stepped blocks.</li>
+            </ul>
+        </div>
+        <h4>Version 2.0</h4>
+        <div>Published </div>
+        <div>
+            Changes in this version:<br />
+            <ul>
+                <li>The first level has been expanded.</li>
+                <li>Double-jumping has been disabled.</li>
+                <li>The space bar can be used to jump.</li>
+            </ul>
+        </div>
+    </div>
+</div>
