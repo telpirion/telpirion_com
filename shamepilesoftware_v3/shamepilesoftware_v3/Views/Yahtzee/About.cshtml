@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Yahtzee - About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<nav class="game-nav">
+    @*<p>@Html.ActionLink("Yahtzee", "Index", "Yahtzee")</p>*@
+    <p><a href="Index">@ViewBag.Name</a></p>
+    <p>@Html.ActionLink("About", "About", "Yahtzee")</p>
+    <p>Version: @ViewBag.Version. <br />Published on @ViewBag.Published</p>
+</nav>
+<div class="content-root">
+    <div class="spacer"></div><z
+        <h2>About <i>@ViewBag.Name</i></h2>
+	    <div>
+		    <h3>Instructions</h3>
+		    <p><i>@ViewBag.Name</i> is a registered trademark of Hasbro, Inc.</p>
+		    <p>To play, click the <b>Roll</b> button.</p>
+		    <p>To hold a die after it's been rolled, click or tap the die. The border will turn red.</p>
+            <p>To select a category to score a roll, click or tap the category. The border will turn yellow.</p>
+            <p>To scrore a rolle, click the <b>Enter</b> button. After a category has been used to score a roll, its border turns green.</p>
+	    </div><br />
+	    <div>
+		    <h3>Requirements</h3>
+            <p>A Web browser. The game works best on the desktop, but can be played by touch.</p>
+	    </div><br />
+	    <div>
+		    <h3>Basic troubleshooting</h3>
+		    <p>If you encounter a problem or the game becomes unresponsive, refresh the browser.</p>
+	    </div>
+	    <div><br />
+		    <h3>Known bugs</h3>
+		    <ul>
+				<li>AI for computer players not yet hooked up.</li>
+		    </ul>
+	    </div><br />
+	    <div>
+		    <h3>Version history</h3>
+		    Current version: 1.1.<br/><br />
+
+            <h4>Version 1.1</h4>
+		    <div>Published 2015-03-08</div>
+
+		    <h4>Version 1.0</h4>
+		    <div>Published 2014-08-27</div>
+	    </div>
+</div>
+

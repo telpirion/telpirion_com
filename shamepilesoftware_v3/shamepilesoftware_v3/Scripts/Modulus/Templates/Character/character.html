@@ -1,0 +1,20 @@
+﻿<div class="character">
+    <h2>{{Resources.Menu.createCharacter}}</h2>
+    <div>
+        <p>Enter a name: <input ng-model="currCharacterName" /></p>
+        <p>Choose a class: <select ng-model="currCharacterClass.obj" ng-options="class.text for class in classTypes"></select></p>
+        <div>
+            <p>STR: <span ng-bind="character.str"></span></p>
+            <p>DEX: <span ng-bind="character.dex"></span></p>
+            <p>CON: <span ng-bind="character.con"></span></p>
+            <p>INT: <span ng-bind="character.int"></span></p>
+            <p>WIS: <span ng-bind="character.wis"></span></p>
+            <p>CHA: <span ng-bind="character.cha"></span></p>
+            <p>Hit points: <span ng-bind="character.maxHP"></span></p>
+        </div>
+        <div class="selection">
+            <button ng-click="roll()">{{Resources.Character.roll}}</button>
+            <button ng-click="save()">{{Resources.Character.keep}}</button>
+        </div>
+    </div>
+</div>

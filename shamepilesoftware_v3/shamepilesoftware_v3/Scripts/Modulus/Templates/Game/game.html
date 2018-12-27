@@ -1,0 +1,16 @@
+﻿<div class="game">
+    <h2>{{Resources.Game.playingGame}}</h2>
+    <div>
+        <div>
+            <textarea ng-model="gameOutput" class="console"></textarea><br/><br/>
+            <div ng-hide="isGameOver">
+                <button ng-click="attack()">{{Resources.Game.attack}}</button><br /><br />
+                <button ng-click="defend()">{{Resources.Game.defend}}</button><br /><br />
+                <button ng-click="takePotion()">{{Resources.Game.takePotion}}</button>
+            </div>
+            <div>
+                <a href="#/Menu">{{Resources.Game.returnToMenu}}</a>
+            </div>
+        </div>
+    </div>
+</div>

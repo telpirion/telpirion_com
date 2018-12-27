@@ -1,0 +1,18 @@
+﻿<div class="character-select">
+    <h2>{{Resources.CharacterSelect.selectCharacter}}</h2>
+    <div class="character-list">
+        <!-- TODO: When the user has more characters, use an ng-repeat here.-->
+        <div class="characters-loaded" ng-show="character">
+            <p>{{Resources.CharacterSelect.characterName}} {{character.name}}</p>
+            <p>{{character.characterClass.name}}, {{Resources.CharacterSelect.level}} {{character.level}}</p>
+            <p>{{Resources.CharacterSelect.maxHP}} {{character.maxHP}}</p>
+            <div>
+                <button ng-click="startGame()">{{Resources.CharacterSelect.playGame}}</button>
+            </div>
+        </div>
+        <div class="characters-none" ng-hide="character">
+            <p>{{Resources.CharacterSelect.noCharacterInMemory}}</p>
+            <button ng-click="makeCharacter()">{{Resources.Menu.createCharacter}}</button>
+        </div>
+    </div>
+</div>

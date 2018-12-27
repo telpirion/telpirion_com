@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<div id="layout">
+    <div class="game-list-template"
+         data-win-control="WinJS.Binding.Template">
+        <div class="game-list-item">
+            <h3 data-win-bind="textContent: title"></h3>
+            <p><a data-win-bind="href: aboutURL">About</a></p>
+        </div>
+    </div>
+    <div class="game-list">
+
+    </div>
+    <script src="~/Scripts/home.js"></script>
+</div>
