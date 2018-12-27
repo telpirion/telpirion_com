@@ -7,23 +7,26 @@ and illustrative purposes only.
 All code provided here is copyrighted by me,
 [Eric Schmidt](https://www.linkedin.com/in/eric-schmidt-692640/).
 
+You can find a deployed version of the site
+[here](https://telpirion-com.appspot.com/home).
+
 ## Documentation
 
 The website is built on Google Cloud AppEngine, using
 Python and Angular.
 
 To run the Angular app on the Angular runserver, use
-the following command from the `my-app` folder:
+the following command from the root folder:
 
 ```
 ng serve --open
 ```
 
 To build the Angular app, use the following command from the
-`my-app` folder:
+root folder:
 
 ```
-ng build --prod --outputPath=../ng --deleteOutputPath=true
+ng build --prod
 ```
 
 To build the entire site using the Gulp file, use the
@@ -45,8 +48,6 @@ git branches), use the following command:
 ```
 npm install
 ```
-
-TODO: Merge Angular build files with Gulp files.
 
 ## References
 

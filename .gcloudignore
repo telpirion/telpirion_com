@@ -1,0 +1,13 @@
+.git/
+node_modules/
+src/
+games/conway/src/
+games/yahtzy/src/
+games/vikings/src/
+.gitignore
+angular.json
+gulpfile.js
+package-lock.json
+package.json
+README.md
+tsconfig.json

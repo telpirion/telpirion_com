@@ -7,5 +7,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
   styleUrls: ['./about.ng.css']
 })
 export class AboutComponent {
-  foo = 'bar';
+  title: string = 'About';
+  content: string = 'Find general information about the games and apps on this site.';
 }

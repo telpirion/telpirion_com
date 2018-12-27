@@ -17,7 +17,8 @@ export interface Game {
   styleUrls: ['./games.ng.css']
 })
 export class GamesComponent {
-  content = 'I built these games entirely using HTML, CSS, and JavaScript with some art donated form friends.';
+  title : string = 'Games';
+  content : string = 'I built these games entirely using HTML, CSS, and JavaScript with some art donated form friends.';
   games : Game[] = [
     {
         title: "Vikings!!!",
@@ -49,12 +50,12 @@ export class GamesComponent {
     this.router = router;
   }
 
-  playGame(game) {
+  playGame(game : Game) {
     console.log(`Play game: ${game.title}`);
     window.location.href = game.gameUrl;
   }
 
-  viewCode(game) {
+  viewCode(game : Game) {
     console.log(`View code: ${game.title}`);
     window.location.href = game.codeUrl;
   }
