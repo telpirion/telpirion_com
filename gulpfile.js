@@ -16,17 +16,18 @@ gulp.task('pre', () => {
 });
 
 gulp.task('ng-build', (cb) => {
-    exec('cd my-app && ng build --prod', (err, stdout, stderr) => {
+    exec('ng build --prod', (err, stdout, stderr) => {
         console.log(stdout);
         console.log(stderr);
         cb(err);
     });
 });
-
+/*
 gulp.task('copy-prod', () => {
     return gulp.src('my-app/dist/my-app/*.*')
         .pipe(gulp.dest('ng'));
 });
+*/
 
 gulp.task('copy-images', () => {
     return gulp.src('my-app/dist/my-app/assets/images/*.*')
@@ -80,4 +81,4 @@ gulp.task('post', () => {
 });
 
 gulp.task('build',
-    gulp.series('pre', 'ng-build', 'copy-prod', 'copy-images', 'post'));
+    gulp.series('pre', 'ng-build', 'copy-images', 'post'));

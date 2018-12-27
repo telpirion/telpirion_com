@@ -1,8 +1,13 @@
 .header {
     display: inline-block;
     background-color: #2E7D32;
-    width: 100vh;
+    width: 100vw;
     color: white;
+    height: 8vh;
+}
+
+.drawer-container {
+    height: 92vh;
 }
 
 .drawer-links {
@@ -12,4 +17,5 @@
 .nav-link {
     color: #fff;
     text-decoration: none;
+    margin-bottom: 10px;
 }
