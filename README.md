@@ -16,27 +16,27 @@ The website is built on Google Cloud AppEngine, using
 Python and Angular.
 
 To run the Angular app on the Angular runserver, use
-the following command from the root folder:
+the following command from the `site` folder:
 
 ```
 ng serve --open
 ```
 
 To build the Angular app, use the following command from the
-root folder:
+`site` folder:
 
 ```
 ng build --prod
 ```
 
 To build the entire site using the Gulp file, use the
-following command from the root folder:
+following command from the `site` folder:
 
 ```
 gulp build
 ```
 
-To run the site, use the following command from the site root folder:
+To run the site, use the following command from the `site` folder:
 
 ```
 dev_appserver.py app.yaml
@@ -60,6 +60,8 @@ Angular:
   * [Getting started](https://angular.io/guide/quickstart#getting-started)
   * [Angular CLI ref](https://angular.io/cli/build)
   * [Angular Material getting started](https://material.angular.io/guide/getting-started)
+  * [Material Design icon set](https://material.io/tools/icons/)
+  * [Angular Flex layout](https://github.com/angular/flex-layout)
 
 Gulp:
   * [Gulp 4 how-to](https://fettblog.eu/gulp-4-parallel-and-series/)

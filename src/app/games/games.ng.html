@@ -1,0 +1,36 @@
+<div class="content">
+  <section>
+    <h2>{{title}}</h2>
+    <p>
+    {{content}}
+    </p>
+  </section>
+  <section class="card-section"
+           fxLayout="row"
+           fxLayout.xs="column"
+           fxLayoutWrap
+           fxLayoutGap="2rem"
+           fxLayoutAlign="center">
+    <div class="card-container" *ngFor="let game of games; index as i">
+        <mat-card class="game-card">
+          <mat-card-header fxLayout.gt-xs="row" fxLayout.xs="column">
+            <mat-card-title>{{game.title}}</mat-card-title>
+            <mat-card-subtitle>{{game.subtitle}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content class="list-item-div" >
+            <img class="list-item-div-icon"
+                 [src]="game.imgUrl">
+            <p class="list-item-div-details">
+              {{game.content}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions class="list-item-actions">
+            <button mat-button
+                    (click)="playGame(game)">PLAY GAME</button>
+            <button mat-button
+                    (click)="viewCode(game)">VIEW CODE</button>
+          </mat-card-actions>
+        </mat-card>
+    </div>
+  </section>
+</div>

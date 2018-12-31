@@ -7,3 +7,24 @@ body, html {
     font-size: 14pt;
     font-family: 'Roboto', sans-serif;
 }
+
+a {
+    color: #fff;
+}
+
+section h2 {
+    margin-bottom: 10px;
+}
+
+section p {
+    margin-top: 10px;
+}
+
+.content {
+    margin: 10px;
+}
+
+mat-icon.launch {
+    font-size: 12px;
+    width: 12px;
+}

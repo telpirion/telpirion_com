@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
 
@@ -18,7 +19,7 @@ export interface Game {
 })
 export class GamesComponent {
   title : string = 'Games';
-  content : string = 'I built these games entirely using HTML, CSS, and JavaScript with some art donated form friends.';
+  content : string = 'I built these games entirely using HTML, CSS, and JavaScript with some art donated from friends.';
   games : Game[] = [
     {
         title: "Vikings!!!",

@@ -1,7 +1,14 @@
-<div>
-    <h2>
-        {{title}}
-    </h2>
+<div class="content">
+  <section>
+    <h2>{{title}}</h2>
+    <p>{{content}}</p>
+  </section>
+  <section class="cards-section"
+           fxLayout="row"
+           fxLayout.xs="column"
+           fxLayoutWrap
+           fxLayoutGap="2rem"
+           fxLayoutAlign="center">
     <div *ngFor="let app of apps; index as i">
         <mat-card class="app-card">
           <mat-card-header>
@@ -14,9 +21,12 @@
             <img class="list-item-div-icon"
                  [src]="app.img">
           </mat-card-content>
-          <mat-card-actions>
+          <mat-card-actions class="list-item-actions">
             <button mat-button (click)="viewApp(app)">VIEW APP</button>
+            <button mat-button
+                    (click)="viewCode(app)">VIEW CODE</button>
           </mat-card-actions>
         </mat-card>
     </div>
+  </section>
 </div>

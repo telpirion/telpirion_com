@@ -2,9 +2,12 @@
     margin: 10px;
 }
 
+.card-container {
+    margin-right: 10px;
+}
+
 .game-card {
-    max-width: 400px;
-    margin: 10px;
+    margin-top: 10px;
 }
 
 .mat-card-content {
@@ -27,4 +30,8 @@
     margin-left: 16px;
     -webkit-flex: 9;
     flex: 9;
+}
+
+.list-item-actions {
+    margin-left: 16px;
 }

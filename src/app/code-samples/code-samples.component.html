@@ -1,0 +1,14 @@
+<div class="content">
+  <section>
+    <h2>{{title}}</h2>
+    <p>{{content}}</p>
+  </section>
+  <section class="samples-section">
+    <ul class="samples-list">
+        <li *ngFor="let sample of samples; index as i;">
+          <a [href]="sample.url">{{sample.title}} [{{sample.lang}}]<mat-icon class="launch">launch</mat-icon></a>.
+          {{sample.technologies}}.
+        </li>
+    </ul>
+  </section>
+</div>

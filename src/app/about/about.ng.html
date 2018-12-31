@@ -1,9 +1,10 @@
-<div>
+<div class="content">
+  <section>
     <h2>{{title}}</h2>
-    <div>
-    {{content}}
-    </div>
-    <mat-accordion>
+    <p>{{content}}</p>
+  </section>
+  <section class="about-section">
+    <mat-accordion class="about-accordion">
         <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
@@ -11,7 +12,7 @@
               </mat-panel-title>
             </mat-expansion-panel-header>
             <div>
-            <ul>
+            <ul class="about-games-list">
                 <li>To play one of the games, select one of titles displayed on the <b>Games</b> page. </li>
                 <li>The games are compatible with most browsers.</li>
                 <li>All of the games are free to play. </li>
@@ -41,4 +42,5 @@
             </div>
         </mat-expansion-panel>
     </mat-accordion>
+  </section>
 </div>

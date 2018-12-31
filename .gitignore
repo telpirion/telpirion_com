@@ -5,6 +5,7 @@
 */tmp
 */out-tsc
 *.pyc
+*/ng
 
 # dependencies
 */node_modules

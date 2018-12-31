@@ -1,0 +1,13 @@
+<div class="content">
+  <section>
+    <h2>{{title}}</h2>
+    <p>{{content}}</p>
+  </section>
+  <section class="publications-section">
+    <ul class="publications-list">
+        <li *ngFor="let pub of published; index as i;">
+          <a [href]="pub.url">{{pub.title}}<mat-icon class="launch">launch</mat-icon></a>. {{pub.host}}. {{pub.date}}.
+        </li>
+    </ul>
+  </section>
+</div>
