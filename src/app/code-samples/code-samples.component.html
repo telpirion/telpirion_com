@@ -6,8 +6,15 @@
   <section class="samples-section">
     <ul class="samples-list">
         <li *ngFor="let sample of samples; index as i;">
-          <a [href]="sample.url">{{sample.title}} [{{sample.lang}}]<mat-icon class="launch">launch</mat-icon></a>.
-          {{sample.technologies}}.
+          <a [href]="sample.url">{{sample.title}}<mat-icon class="launch">launch</mat-icon></a>.<br>
+          Technologies:&nbsp;
+          <span *ngFor="let t of sample.technologies; index as i">{{t}}
+          <span *ngIf="i != (sample.technologies.length - 1)">,&nbsp;</span>
+          </span>.<br>
+          Languages:&nbsp;
+          <span *ngFor="let l of sample.lang; index as i">{{l}}
+          <span *ngIf="i != (sample.lang.length - 1)">,&nbsp;</span>
+          </span>.
         </li>
     </ul>
   </section>

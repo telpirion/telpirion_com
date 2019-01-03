@@ -5,3 +5,7 @@
 .samples-list {
     margin-left: 20px;
 }
+
+.samples-list li {
+    margin-top: 10px;
+}

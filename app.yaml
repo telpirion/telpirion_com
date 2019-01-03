@@ -6,6 +6,9 @@ threadsafe: true
 
 handlers:
 # Python / AppEngine / Jinja
+- url: /favicon.ico
+  static_files: favicon.ico
+  upload: favicon.ico
 - url: /js
   static_dir: js
 - url: /images

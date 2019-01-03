@@ -18,8 +18,8 @@ interface App {
 })
 export class AppsPageComponent {
   title : string = 'Apps';
-  content : string = 'I\'ve built the following apps for the Google Play Store' +
-                     ' or the Windows Store.';
+  content : string = 'I\'ve built the following apps for the Google Play ' +
+                     'Store and the Windows Store.';
   apps : App[] = [{
             title: "Latin Reader for Android",
             url: "https://play.google.com/store/apps/details?id=com.ericmschmidt.latinreader",
