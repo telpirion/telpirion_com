@@ -15,6 +15,8 @@ You can find a deployed version of the site
 The website is built on Google Cloud AppEngine, using
 Python and Angular.
 
+### Build and run the app (dev environment)
+
 To run the Angular app on the Angular runserver, use
 the following command from the `site` folder:
 
@@ -47,6 +49,16 @@ git branches), use the following command:
 
 ```
 npm install
+```
+
+### Deploy the app
+
+First, build the app locally to create a new version of the Angular app.
+
+To deploy the app, run the following command from the `site` folder:
+
+```
+gcloud app deploy
 ```
 
 ## References
