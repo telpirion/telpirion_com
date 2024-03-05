@@ -1,3 +1,11 @@
+<!-- 
+ README for Telpirion.com site.
+ 
+ author     Eric Schmidt
+ version    1.1 2024/03/04
+ copyright  Eric Schmidt
+-->
+
 # Telpirion.com
 
 This code repository contains the source code for Telpirion.com,
@@ -18,27 +26,27 @@ Python and Angular.
 ### Build and run the app (dev environment)
 
 To run the Angular app on the Angular runserver, use
-the following command from the `site` folder:
+the following command from the `src` folder:
 
 ```
 ng serve --open
 ```
 
 To build the Angular app, use the following command from the
-`site` folder:
+`src` folder:
 
 ```
 ng build --prod
 ```
 
 To build the entire site using the Gulp file, use the
-following command from the `site` folder:
+following command from the `src` folder:
 
 ```
 gulp build
 ```
 
-To run the site, use the following command from the `site` folder:
+To run the site, use the following command from the `src` folder:
 
 ```
 dev_appserver.py app.yaml
