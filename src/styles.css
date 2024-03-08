@@ -6,7 +6,7 @@ body, html {
     height: 100%;
     font-size: 14pt;
     font-family: 'Roboto', sans-serif;
-    background-image: image("images/wood-background.jpeg");
+    background-image: url("/images/wood-background.jpeg");
 }
 
 a {
@@ -28,4 +28,9 @@ section p {
 mat-icon.launch {
     font-size: 12px;
     width: 12px;
+}
+
+/* Material design overrides */
+.mat-drawer-container, .mat-app-background {
+    background-color: transparent !important;
 }

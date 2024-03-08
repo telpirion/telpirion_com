@@ -28,11 +28,11 @@ gulp.task('ng-build', (cb) => {
 
 gulp.task('yahtzy', () => {
     return gulp.src([
-        'games/yahtzy/src/game.js',
-        'games/yahtzy/src/robot.js',
-        'games/yahtzy/src/ui-controllers.js',
-        'games/yahtzy/src/utilities.js',
-        'games/yahtzy/src/main.js'
+        'gsrc/yahtzy/src/game.js',
+        'gsrc/yahtzy/src/robot.js',
+        'gsrc/yahtzy/src/ui-controllers.js',
+        'gsrc/yahtzy/src/utilities.js',
+        'gsrc/yahtzy/src/main.js'
     ])
     .pipe(concat('yahtzy.js'))
     .pipe(uglify().on('error', (e) => {
@@ -43,9 +43,9 @@ gulp.task('yahtzy', () => {
 
 gulp.task('conway', () => {
     return gulp.src([
-        'games/conway/src/game.js',
-        'games/conway/src/ui.js',
-        'games/conway/src/main.js'
+        'gsrc/conway/src/game.js',
+        'gsrc/conway/src/ui.js',
+        'gsrc/conway/src/main.js'
     ])
     .pipe(concat('conway.js'))
     .pipe(uglify().on('error', (e) => {
@@ -56,10 +56,10 @@ gulp.task('conway', () => {
 
 gulp.task('vikings', () => {
     return gulp.src([
-        'games/vikings/src/animation.js',
-        'games/vikings/src/physics.js',
-        'games/vikings/src/page.js',
-        'games/vikings/src/main.js'
+        'gsrc/vikings/src/animation.js',
+        'gsrc/vikings/src/physics.js',
+        'gsrc/vikings/src/page.js',
+        'gsrc/vikings/src/main.js'
     ])
     .pipe(concat('vikings.js'))
     .pipe(uglify().on('error', (e) => {

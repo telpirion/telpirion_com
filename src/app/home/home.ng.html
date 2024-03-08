@@ -2,52 +2,57 @@
     <section>
         <p>
             Welcome to the professional and personal website for me,
+        </p>
+        <p class="hero">
             <a href="https://www.linkedin.com/in/eric-schmidt-692640/">Eric M. Schmidt
                 <mat-icon>launch</mat-icon>
-            </a>. Hi!
+            </a>
         </p>
     </section>
     <section>
-        <h2>Software Development</h2>
-        <p>
-            Check out the JavaScript and HTML5 video games <a href="/games">published
-                on the site</a>.
-            I programmed all of the video games myself (excluding external libraries).
-            Some art in the games was donated by friends.
-        </p>
-        <p>
-            I have also released apps to the Google Play Store and the Windows
-            Store. You can see a list of my apps on the <a href="/apps">Apps page</a>.
-        <p>
-            I built this website using
-            <a href="https://angular.io/">Angular<mat-icon>launch</mat-icon></a>.
-            I have the site hosted using
-            <a href="https://cloud.google.com/">Google AppEngine on Google Cloud<mat-icon>launch</mat-icon></a>.
-        </p>
+        <mat-card>
+            <mat-card-title>Software Development</mat-card-title>
+            <mat-card-content>
+                <p>
+                    Check out the JavaScript and HTML5 video games <a href="/games">published
+                        on the site</a>.
+                    I programmed all of the video games myself (excluding external libraries).
+                    Some art in the games was donated by friends.
+                </p>
+                <p>
+                    I have also released apps to the Google Play Store and the Windows
+                    Store. You can see a list of my apps on the <a href="/apps">Apps page</a>.
+                </p>
+            </mat-card-content>
+        </mat-card>
     </section>
     <section>
-        <h2>Developer Relations</h2>
-        <p>
-            I currently work full-time at Google as a developer relations engineer.
-            I build client libraries and code samples in Java, Node.js, and Python,
-            for Google Cloud AI services including
-            <span *ngFor="let doc of docSets; index as i">
-                <span *ngIf="i == (docSets.length - 1)"> and </span>
-                <a href="{{doc.url}}" target="_blank">{{doc.title}}
-                    <mat-icon>launch</mat-icon>
-                </a>
-                <span *ngIf="i != (docSets.length - 1)">, </span> </span> services.
-        </p>
-        <p>
-            Previously, I worked as a technical writer, creating developer
-            documentation for several flagship products and platforms, including
-            Microsoft Office, Microsoft Windows Store apps, Android Frameworks,
-            Google Hangouts Chat (Bots API), and Google Cloud AI.
-        </p>
-        <p>
-            I have also published several articles to a trade publication,
-            MSDN Magazine. You can see a list of my published works
-            <a href="/publications">here</a>.
-        </p>
+        <mat-card>
+            <mat-card-title>Developer Relations</mat-card-title>
+            <mat-card-content>
+                <p>
+                    I currently work full-time at Google as a developer relations engineer.
+                    I build client libraries and code samples in Go, C#, Java, Node.js, and Python,
+                    for Google Cloud AI services including
+                    <span *ngFor="let doc of docSets; index as i">
+                        <span *ngIf="i == (docSets.length - 1)"> and </span>
+                        <a href="{{doc.url}}" target="_blank">{{doc.title}}
+                            <mat-icon>launch</mat-icon>
+                        </a>
+                        <span *ngIf="i != (docSets.length - 1)">, </span> </span> services.
+                </p>
+                <p>
+                    Previously, I worked as a technical writer, creating developer
+                    documentation for several flagship products and platforms, including
+                    Microsoft Office, Microsoft Windows Store apps, Android Frameworks,
+                    Google Hangouts Chat (Bots API), and Google Cloud AI.
+                </p>
+                <p>
+                    I have also published several articles to a trade publication,
+                    MSDN Magazine. You can see a list of my published works
+                    <a href="/publications">here</a>.
+                </p>
+            </mat-card-content>
+        </mat-card>
     </section>
 </div>

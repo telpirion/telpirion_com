@@ -17,6 +17,7 @@ func main() {
 	r.Use(static.Serve("/", static.LocalFile("./ng", false)))
 	r.Use(static.Serve("/favicon.ico", static.LocalFile("./favicon.ico", true)))
 	r.Use(static.Serve("/images", static.LocalFile("./images", true)))
+	r.Use(static.Serve("/gsrc", static.LocalFile("./gsrc", true)))
 	r.NoRoute(func(c *gin.Context) {
 		c.File("./ng/index.html")
 	})

@@ -26,7 +26,7 @@ export class GamesComponent {
         subtitle: "Platformer",
         imgUrl: "images/vikings-promo.png",
         content: "Vikings!!! is a simple platformer. It uses a physics engine of my own design and code.",
-        gameUrl: "/games/vikings/vikings.html",
+        gameUrl: "/gsrc/vikings/vikings.html",
         codeUrl: "https://github.com/telpirion/telpirion_com/tree/appengine/games/vikings/src"
     },
     {
@@ -34,7 +34,7 @@ export class GamesComponent {
         subtitle: "Dice",
         imgUrl: "images/yahtzy-promo.png",
         content: "Roll five dice and try to make three-of-a-kind, a full house, or even a Yahtzy!",
-        gameUrl: "/games/yahtzy/yahtzy.html",
+        gameUrl: "/gsrc/yahtzy/yahtzy.html",
         codeUrl: "https://github.com/telpirion/telpirion_com/tree/appengine/games/yahtzy/src"
     },
     {
@@ -42,7 +42,7 @@ export class GamesComponent {
         subtitle: "Puzzle",
         imgUrl: "images/conway-promo.png",
         content: "Build a colony of microbes that survives from one generation to the next.",
-        gameUrl: "/games/conway/conway.html",
+        gameUrl: "/gsrc/conway/conway.html",
         codeUrl: "https://github.com/telpirion/telpirion_com/tree/appengine/games/conway/src"
     }
   ];

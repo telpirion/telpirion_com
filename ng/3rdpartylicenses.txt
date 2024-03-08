@@ -330,6 +330,8 @@ THE SOFTWARE.
 
 @angular/material/expansion
 
+@angular/material/icon
+
 @angular/material/card
 
 @angular/flex-layout
@@ -358,8 +360,6 @@ THE SOFTWARE.
 
 
 @angular/material/button
-
-@angular/material/icon
 
 @angular/material/sidenav
 

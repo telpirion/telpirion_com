@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
 interface DocSet {
@@ -13,8 +14,19 @@ interface DocSet {
   styleUrls: ['./home.ng.css']
 })
 export class HomeComponent {
-  title: string = 'Eric\'s awesome Angular site';
   docSets: DocSet[] = [
+    {
+      title: "Vertex AI",
+      url: "https://cloud.google.com/vertex-ai/docs"
+    },
+    {
+      title: "Duet AI for Developers",
+      url: "https://cloud.google.com/duet-ai/docs"
+    },
+    {
+      title: "AutoML",
+      url: "https://cloud.google.com/natural-language/automl/docs"
+    },
     {
       title: "Cloud Translation",
       url: "https://cloud.google.com/translate/docs"
@@ -22,10 +34,6 @@ export class HomeComponent {
     {
       title: "Cloud Natural Language",
       url: "https://cloud.google.com/natural-language/docs"
-    },
-    {
-      title: "AutoML",
-      url: "https://cloud.google.com/natural-language/automl/docs"
     },
     {
       title: "Document AI",

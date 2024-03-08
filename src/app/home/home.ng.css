@@ -1,3 +1,19 @@
+.hero {
+    font-size: 64pt;
+}
+
+@media only screen and (max-width: 360) {
+    .mat-card {
+        max-width: 300px;
+        background-color: #28262685 !important;
+    }
+}
+
+.mat-card {
+    max-width: 500px;
+    background-color: #28262685 !important;
+}
+
 .home-content {
     margin-left: 10px;
     margin-top: 10px;
