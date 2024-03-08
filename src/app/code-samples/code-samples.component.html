@@ -4,18 +4,30 @@
     <p>{{content}}</p>
   </section>
   <section class="samples-section">
-    <ul class="samples-list">
-        <li *ngFor="let sample of samples; index as i;">
-          <a [href]="sample.url">{{sample.title}}<mat-icon class="launch">launch</mat-icon></a>.<br>
-          Technologies:&nbsp;
-          <span *ngFor="let t of sample.technologies; index as i">{{t}}
-          <span *ngIf="i != (sample.technologies.length - 1)">,&nbsp;</span>
-          </span>.<br>
-          Languages:&nbsp;
-          <span *ngFor="let l of sample.lang; index as i">{{l}}
-          <span *ngIf="i != (sample.lang.length - 1)">,&nbsp;</span>
-          </span>.
-        </li>
-    </ul>
+    <div class="card-container code" *ngFor="let sample of samples; index as i;">
+      <mat-card>
+        <mat-card-header fxLayout.gt-xs="row" fxLayout.xs="column">
+          <mat-card-title>{{sample.title}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="code-blurb">
+          <p>
+            Technologies:&nbsp;
+            <span *ngFor="let t of sample.technologies; index as i">{{t}}
+            <span *ngIf="i != (sample.technologies.length - 1)">,&nbsp;</span>
+            </span>
+          </p>
+          <p>
+            Languages:&nbsp;
+            <span *ngFor="let l of sample.lang; index as i">{{l}}
+            <span *ngIf="i != (sample.lang.length - 1)">,&nbsp;</span>
+            </span>
+          </p>
+        </mat-card-content>
+        <mat-card-actions class="list-item-actions">
+          <button mat-button
+                  (click)="view(sample)">VIEW CODE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </section>
 </div>
