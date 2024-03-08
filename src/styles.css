@@ -34,3 +34,15 @@ mat-icon.launch {
 .mat-drawer-container, .mat-app-background {
     background-color: transparent !important;
 }
+
+@media only screen and (max-width: 360) {
+    .mat-card {
+        max-width: 300px;
+        background-color: #28262685 !important;
+    }
+}
+
+.mat-card {
+    max-width: 500px;
+    background-color: #28262685 !important;
+}
