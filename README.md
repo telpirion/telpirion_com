@@ -16,7 +16,7 @@ All code provided here is copyrighted by me,
 [Eric Schmidt](https://www.linkedin.com/in/eric-schmidt-692640/).
 
 You can find a deployed version of the site
-[here](https://telpirion-com.appspot.com/home).
+[here](https://base-image-jq6kqb2l4q-uw.a.run.app).
 
 ## Documentation
 
@@ -77,13 +77,21 @@ docker run -it --rm -p 8080:8080 --name telpirion-com-running telpirion-com
 
 ### Deploy the app
 
-First, build the app locally to create a new version of the Angular app.
-
-To deploy the app, run the following command from the `site` folder:
+First, add a version tag for this image:
 
 ```
-gcloud app deploy
+docker tag telpirion-com \
+us-west1-docker.pkg.dev/telpirion-com/telpirion-com/base-image:v1
 ```
+
+Next, update the image in the Google Cloud Artifact registry:
+
+```
+docker push us-west1-docker.pkg.dev/PROJECT_ID/telpirion-com/base-image:TAG
+```
+
+Finally, go to Cloud Run and create a service from this image. Be sure
+to
 
 ## References
 
