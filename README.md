@@ -87,10 +87,7 @@ gcloud app deploy
 
 ## References
 
-Google Cloud AppEngine Standard:
-  * [Overview](https://cloud.google.com/appengine/docs/standard/python/runtime#customized-libraries-in-python-version-27)
-  * [Deploying Angular to AppEngine](https://medium.com/@asanoop24/deploying-angular-6-app-on-google-app-engine-b6259d4c16c2)
-  * [Code sample](https://github.com/googlecodelabs/cloud-cardboard-viewer)
+<!--TODO: add links to Go, Gin, Docker, etc-->
 
 Angular:
   * [Getting started](https://angular.io/guide/quickstart#getting-started)
