@@ -90,8 +90,7 @@ Next, update the image in the Google Cloud Artifact registry:
 docker push us-west1-docker.pkg.dev/PROJECT_ID/telpirion-com/base-image:TAG
 ```
 
-Finally, go to Cloud Run and create a service from this image. Be sure
-to
+Finally, go to Cloud Run and create a service from this image.
 
 ## References
 
