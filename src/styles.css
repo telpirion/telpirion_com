@@ -6,6 +6,7 @@ body, html {
     height: 100%;
     font-size: 14pt;
     font-family: 'Roboto', sans-serif;
+    background-image: image("images/wood-background.jpeg");
 }
 
 a {
@@ -21,7 +22,7 @@ section p {
 }
 
 .content {
-    margin: 10px;
+    padding-left: 50px;
 }
 
 mat-icon.launch {

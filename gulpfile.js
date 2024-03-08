@@ -1,3 +1,5 @@
+const { all } = require('core-js/fn/promise');
+
 /**
  * Build config for Telpirion.com site.
  *
@@ -5,7 +7,8 @@
  * @version 1.0 2018/12/23
  * @copyright Eric Schmidt
  */
-var gulp = require('gulp'),
+const gulp = require('gulp'),
+    dom = require('gulp-dom'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     del = require('del'),
@@ -21,17 +24,6 @@ gulp.task('ng-build', (cb) => {
         console.log(stderr);
         cb(err);
     });
-});
-/*
-gulp.task('copy-prod', () => {
-    return gulp.src('my-app/dist/my-app/*.*')
-        .pipe(gulp.dest('ng'));
-});
-*/
-
-gulp.task('copy-images', () => {
-    return gulp.src('my-app/dist/my-app/assets/images/*.*')
-        .pipe(gulp.dest('images'));
 });
 
 gulp.task('yahtzy', () => {
@@ -77,8 +69,15 @@ gulp.task('vikings', () => {
 });
 
 gulp.task('post', () => {
-    return del(['my-app/dist']);
+    return gulp.src('./ng/index.html')
+        .pipe(dom(function () {
+            return this.querySelectorAll('script')
+                .forEach(script => {
+                    script.setAttribute('defer', 'true');
+                });
+        }))
+        .pipe(gulp.dest('./ng/'));
 });
 
 gulp.task('build',
-    gulp.series('pre', 'ng-build', 'copy-images', 'post'));
+    gulp.series('pre', 'ng-build',  'yahtzy', 'conway', 'vikings', 'post'));

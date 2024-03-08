@@ -1,8 +1,6 @@
 .header {
     display: inline-block;
-    background-color: #2E7D32;
     width: 100vw;
-    color: white;
     height: 8vh;
 }
 
@@ -30,6 +28,7 @@
     display: inline-flex;
     vertical-align: middle;
 }
+
 .nav-link mat-icon {
     margin-right: 10px;
 }

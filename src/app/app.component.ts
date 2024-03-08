@@ -16,7 +16,7 @@ interface Link {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    title : string = "Telpirion.com";
+    title : string = "";
 
     links : Link[] = [
         {
