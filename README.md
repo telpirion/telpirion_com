@@ -46,10 +46,10 @@ following command from the `src` folder:
 gulp build
 ```
 
-To run the site, use the following command from the `src` folder:
+To run the site, use the following command from the root folder:
 
 ```
-dev_appserver.py app.yaml
+go run .
 ```
 
 To reinstall all of the NodeJS dependencies (for example, after changing
@@ -57,6 +57,22 @@ git branches), use the following command:
 
 ```
 npm install
+```
+
+### Work with the container
+
+To rebuild the Docker image, run the following command from the root
+folder:
+
+```
+docker build -t telpirion-com .
+```
+
+To run the site from a Docker container, run the following command
+from the root folder:
+
+```
+docker run -it --rm -p 8080:8080 --name telpirion-com-running telpirion-com
 ```
 
 ### Deploy the app
