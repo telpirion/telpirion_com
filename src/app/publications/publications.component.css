@@ -2,6 +2,10 @@
     margin-top: 10px;
 }
 
-.publications-list {
+.pub {
+    margin-bottom: 20px;
+}
+
+.pub-blurb {
     margin-left: 20px;
 }

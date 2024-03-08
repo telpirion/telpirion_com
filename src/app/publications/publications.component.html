@@ -4,10 +4,20 @@
     <p>{{content}}</p>
   </section>
   <section class="publications-section">
-    <ul class="publications-list">
-        <li *ngFor="let pub of published; index as i;">
-          <a [href]="pub.url">{{pub.title}}<mat-icon class="launch">launch</mat-icon></a>. {{pub.host}}. {{pub.date}}.
-        </li>
-    </ul>
+    <div class="card-container pub" *ngFor="let pub of published; index as i;">
+      <mat-card>
+        <mat-card-header fxLayout.gt-xs="row" fxLayout.xs="column">
+          <mat-card-title>{{pub.title}}</mat-card-title>
+          <mat-card-subtitle>{{pub.host}}, {{pub.date}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="pub-blurb">
+            {{pub.blurb}}
+        </mat-card-content>
+        <mat-card-actions class="list-item-actions">
+          <button mat-button
+                  (click)="view(pub)">VIEW PUBLICATION</button>
+        </mat-card-actions>
+      </mat-card>
+  </div>
   </section>
 </div>
