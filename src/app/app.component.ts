@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';

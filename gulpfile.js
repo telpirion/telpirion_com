@@ -19,7 +19,7 @@ gulp.task('pre', () => {
 });
 
 gulp.task('ng-build', (cb) => {
-    exec('ng build --prod', (err, stdout, stderr) => {
+    exec('ng build --configuration production', (err, stdout, stderr) => {
         console.log(stdout);
         console.log(stderr);
         cb(err);
