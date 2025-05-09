@@ -33,4 +33,78 @@ using an ID token that impersonates a service account.
   For me, I created a new service account named after the service--with
   'invoker' added to the name--so that I remember which service account to use.
 
-  
+<!-- RAW content below -- revise before publish
+
+The Samples Validation system (aka 'Kleos') requires authentication for
+incoming requests. Without authentication to Kleos, your samples validation
+requests from Panoply fail. The recommended way to authenticate to Kleos is to
+generate an ID token by impersonating a service account.
+
+**NOTE**: Setting up authentication for users can be a bit tricky; see
+[the official documentation for an overview](https://cloud.google.com/docs/authentication/get-id-token#impersonation).
+
+To set up service account impersonation, do the following:
+
++ Authenticate your own account using the `gcloud` CLI:
+
+  ```sh
+  $ gcloud auth application-default login
+  ```
+
++ Set the `GCLOUD_PROJECT` environment variable to the GCP project hosting the
+  Kleos instance.
++ Set the GCP project as the current quota project.
+
+  ```sh
+  $ gcloud config set project $GCLOUD_PROJECT
+  ```
+
++ [From the GCP project IAM page](https://console.cloud.google.com/iam-admin),
+  copy the name of the service account configured to send requests to Kleos.
+  The description of the service account should include 'Kleos invoker'.
++ [One time only] Ensure that the service account has invoker access to the
+  validation service.
+
+  ```sh
+  $ gcloud run services add-iam-policy-binding kleos-service \
+    --member='serviceAccount:kleos-invoker@erschmid-test-291318.iam.gserviceaccount.com' \
+    --role='roles/run.invoker'
+  ```
+
++ [Once per user] Add yourself as a principal to the service account by running
+  the following `gcloud` commands
+
+  - Add yourself as a user of the service account.
+
+    ```sh
+    $ gcloud iam service-accounts SERVICE_ACCOUNT_ID \
+    --member=user:YOUR_EMAIL_ADDRESS \
+    --role=roles/iam.serviceAccountUser
+    ```
+
+  - Add the following roles to your principal account's bindings on the service
+    account.
+
+    * `roles/iam.serviceAccountTokenCreator`
+    * `roles/iam.serviceAccountOpenIdTokenCreator`
+
+    ```sh
+    $ gcloud iam service-accounts add-iam-policy-binding SERVICE_ACCOUNT_ID \
+    --member=user:YOUR_EMAIL_ADDRESS \
+    --role=ROLE
+    ```
+
++ Set your Application Default Credentials to impersonate the service account.
+  Note that these credentials are used for all subsequent calls to `gcloud`
+  until you deactivate impersonation.
+
+  ```sh
+  gcloud config set auth/impersonate_service_account SERVICE_ACCOUNT_ID
+  ```
+
++ When you've finished using Panoply, deactivate service account impersonation.
+
+  ```sh
+  gcloud config unset auth/impersonate_service_account
+  ```
+-->
