@@ -18,6 +18,12 @@ import (
 	"github.com/gomarkdown/markdown/parser"
 )
 
+type Link struct {
+	URL   string `json:"url"`
+	Label string `json:"label"`
+	Icon  string `json:"icon"`
+}
+
 type UIStrings struct {
 	Title string `json:"title"`
 	Home  struct {
@@ -28,6 +34,7 @@ type UIStrings struct {
 		AboutMe           string `json:"aboutMe"`
 		HeroImageSrc      string `json:"heroImageSrc"`
 		HeroImageAlt      string `json:"heroImageAlt"`
+		Links             []Link `json:"links"`
 	} `json:"home"`
 	Blog struct {
 		Title string `json:"title"`
