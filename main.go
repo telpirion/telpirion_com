@@ -12,13 +12,11 @@ import (
 	"html/template"
 	"log"
 	"os"
-	"strings"
+	"path/filepath"
+
+	"github.com/telpirion/telpirion_com/internal"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gomarkdown/markdown"
-	"github.com/gomarkdown/markdown/html"
-	"github.com/gomarkdown/markdown/parser"
-	"gopkg.in/yaml.v3"
 )
 
 type UIStrings struct {
@@ -37,18 +35,8 @@ type UIStrings struct {
 	} `json:"blog"`
 }
 
-type BlogMetadata struct {
-	Title       string   `yaml:"title"`
-	Description string   `yaml:"description"`
-	Date        string   `yaml:"date"`
-	Slug        string   `yaml:"slug"`
-	State       string   `yaml:"state"`
-	Tags        []string `yaml:"tags"`
-}
-
-const separator = "--------------------------------------------------------------------------------"
-
 var uiStrings UIStrings
+var blogsMetadata = []internal.BlogMetadata{}
 
 /**
 Routes to define:
@@ -70,8 +58,8 @@ Routes to define:
 
 func main() {
 	r := gin.Default()
-	r.LoadHTMLGlob("src/*.html")
-	r.Static("/assets", "./src/assets")
+	r.LoadHTMLGlob("./templates/*.html")
+	r.Static("/assets", "./static")
 	r.Static("/images", "./images")
 	//r.Static("/css", "../site/css")
 	r.StaticFile("/favicon.ico", "./favicon.ico")
@@ -87,9 +75,15 @@ func main() {
 		log.Fatal(err)
 	}
 
+	blogs, err := getBlogs("./content/blog")
+	if err != nil {
+		log.Fatal(err)
+	}
+	blogsMetadata = blogs
+
 	r.GET("/home", homeHandler)
 	r.GET("/", homeHandler)
-	r.GET("/about", aboutHander)
+	r.GET("/about", aboutHandler)
 	r.GET("/apps", appsHandler)
 	r.GET("/games", gamesHandler)
 	r.GET("/projects", projectsHandler)
@@ -106,11 +100,15 @@ func homeHandler(c *gin.Context) {
 	c.HTML(200, "index.html", uiStrings)
 }
 
-func aboutHander(c *gin.Context) {
+func aboutHandler(c *gin.Context) {
 	c.HTML(200, "elements.html", uiStrings)
 }
 
 func appsHandler(c *gin.Context) {
+	c.HTML(200, "generic.html", uiStrings)
+}
+
+func blogsHandler(c *gin.Context) {
 	c.HTML(200, "generic.html", uiStrings)
 }
 
@@ -123,11 +121,8 @@ func blogHandler(c *gin.Context) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	parts := strings.Split(string(md), separator)
 
-	html := mdToHTML([]byte(parts[1]))
-	metadata := BlogMetadata{}
-	err = yaml.Unmarshal([]byte(parts[0]), &metadata)
+	html, metadata, err := internal.ParseBlog(md)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -151,16 +146,30 @@ func publicationsHandler(c *gin.Context) {
 	c.HTML(200, "generic.html", uiStrings)
 }
 
-func mdToHTML(md []byte) []byte {
-	// create markdown parser with extensions
-	extensions := parser.CommonExtensions | parser.AutoHeadingIDs | parser.NoEmptyLineBeforeBlock | parser.Mmark
-	p := parser.NewWithExtensions(extensions)
-	doc := p.Parse(md)
+func getBlogs(path string) ([]internal.BlogMetadata, error) {
+	var blogs []internal.BlogMetadata
 
-	// create HTML renderer with extensions
-	htmlFlags := html.CommonFlags | html.HrefTargetBlank
-	opts := html.RendererOptions{Flags: htmlFlags}
-	renderer := html.NewRenderer(opts)
+	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+		if info.IsDir() {
+			return nil
+		}
 
-	return markdown.Render(doc, renderer)
+		fs, err := os.ReadFile(path)
+		if err != nil {
+			return err
+		}
+
+		_, metadata, err := internal.ParseBlog(fs)
+		if err != nil {
+			return err
+		}
+
+		blogs = append(blogs, *metadata)
+
+		return nil
+	})
+	return blogs, err
 }
