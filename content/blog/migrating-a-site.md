@@ -12,8 +12,6 @@ tags:
 
 --------------------------------------------------------------------------------
 
-# Decisions, decisions
-
 I'm having some "analysis paralysis": I want to update my personal website to
 a more modern look & feel. However, I don't know which framework or platform to
 choose!

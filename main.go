@@ -9,13 +9,16 @@ package main
 
 import (
 	"encoding/json"
+	"html/template"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gomarkdown/markdown"
 	"github.com/gomarkdown/markdown/html"
 	"github.com/gomarkdown/markdown/parser"
+	"gopkg.in/yaml.v3"
 )
 
 type UIStrings struct {
@@ -33,6 +36,17 @@ type UIStrings struct {
 		Title string `json:"title"`
 	} `json:"blog"`
 }
+
+type BlogMetadata struct {
+	Title       string   `yaml:"title"`
+	Description string   `yaml:"description"`
+	Date        string   `yaml:"date"`
+	Slug        string   `yaml:"slug"`
+	State       string   `yaml:"state"`
+	Tags        []string `yaml:"tags"`
+}
+
+const separator = "--------------------------------------------------------------------------------"
 
 var uiStrings UIStrings
 
@@ -80,7 +94,7 @@ func main() {
 	r.GET("/games", gamesHandler)
 	r.GET("/projects", projectsHandler)
 	r.GET("/publications", publicationsHandler)
-	r.GET("/blog", blogHandler)
+	r.GET("/blog/:slug", blogHandler)
 
 	r.NoRoute(func(c *gin.Context) {
 		c.File("./src/index.html")
@@ -102,13 +116,27 @@ func appsHandler(c *gin.Context) {
 
 func blogHandler(c *gin.Context) {
 
-	md, err := os.ReadFile("./content/blog.md")
+	id := c.Param("slug")
+	log.Println(id)
+
+	md, err := os.ReadFile("./content/blog/migrating-a-site.md")
 	if err != nil {
 		log.Fatal(err)
 	}
-	html := mdToHTML(md)
+	parts := strings.Split(string(md), separator)
 
-	c.Data(200, "text/html; charset=utf-8", html)
+	html := mdToHTML([]byte(parts[1]))
+	metadata := BlogMetadata{}
+	err = yaml.Unmarshal([]byte(parts[0]), &metadata)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	c.HTML(200, "blog.html", gin.H{
+		"Title":   metadata.Title,
+		"Date":    metadata.Date,
+		"Content": template.HTML(string(html)),
+	})
 }
 
 func gamesHandler(c *gin.Context) {
