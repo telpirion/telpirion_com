@@ -75,6 +75,11 @@ func main() {
 
 	r.GET("/home", homeHandler)
 	r.GET("/", homeHandler)
+	r.GET("/about", aboutHander)
+	r.GET("/apps", appsHandler)
+	r.GET("/games", gamesHandler)
+	r.GET("/projects", projectsHandler)
+	r.GET("/publications", publicationsHandler)
 	r.GET("/blog", blogHandler)
 
 	r.NoRoute(func(c *gin.Context) {
@@ -87,6 +92,14 @@ func homeHandler(c *gin.Context) {
 	c.HTML(200, "index.html", uiStrings)
 }
 
+func aboutHander(c *gin.Context) {
+	c.HTML(200, "elements.html", uiStrings)
+}
+
+func appsHandler(c *gin.Context) {
+	c.HTML(200, "generic.html", uiStrings)
+}
+
 func blogHandler(c *gin.Context) {
 
 	md, err := os.ReadFile("./content/blog.md")
@@ -96,6 +109,18 @@ func blogHandler(c *gin.Context) {
 	html := mdToHTML(md)
 
 	c.Data(200, "text/html; charset=utf-8", html)
+}
+
+func gamesHandler(c *gin.Context) {
+	c.HTML(200, "generic.html", uiStrings)
+}
+
+func projectsHandler(c *gin.Context) {
+	c.HTML(200, "generic.html", uiStrings)
+}
+
+func publicationsHandler(c *gin.Context) {
+	c.HTML(200, "generic.html", uiStrings)
 }
 
 func mdToHTML(md []byte) []byte {

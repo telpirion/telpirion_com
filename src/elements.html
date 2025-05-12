@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Elements - Editorial by HTML5 UP</title>
+		<title>{{ .Title }}</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -21,10 +21,10 @@
 						<div class="inner">
 
 							<!-- Header -->
-								<header id="header">
-									<a href="index.html" class="logo"><strong>Editorial</strong> by HTML5 UP</a>
-									{{ template "header-links.html"}}
-								</header>
+							<header id="header">
+								<a href="/" class="logo"><strong>{{ .Title }}</strong></a>
+								{{ template "header-links.html"}}
+							</header>
 
 							<!-- Content -->
 								<section>
@@ -433,51 +433,7 @@ print 'It took ' + i + ' iterations to sort the deck.';
 					</div>
 
 				<!-- Sidebar -->
-					<div id="sidebar">
-						<div class="inner">
-
-							<!-- Search -->
-								<section id="search" class="alt">
-									<form method="post" action="#">
-										<input type="text" name="query" id="query" placeholder="Search" />
-									</form>
-								</section>
-
-							<!-- Menu -->
-								{{ template "nav.html"}}
-
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>Ante interdum</h2>
-									</header>
-									<div class="mini-posts">
-										<article>
-											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-										</article>
-									</div>
-									<ul class="actions">
-										<li><a href="#" class="button">More</a></li>
-									</ul>
-								</section>
-
-							<!-- Section -->
-								{{ template "contact.html"}}
-
-							<!-- Footer -->
-								{{ template "footer.html"}}
-
-						</div>
-					</div>
+					{{ template "sidebar.html"}}
 
 			</div>
 
