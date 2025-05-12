@@ -18,12 +18,6 @@ import (
 	"github.com/gomarkdown/markdown/parser"
 )
 
-type Link struct {
-	URL   string `json:"url"`
-	Label string `json:"label"`
-	Icon  string `json:"icon"`
-}
-
 type UIStrings struct {
 	Title string `json:"title"`
 	Home  struct {
@@ -34,7 +28,6 @@ type UIStrings struct {
 		AboutMe           string `json:"aboutMe"`
 		HeroImageSrc      string `json:"heroImageSrc"`
 		HeroImageAlt      string `json:"heroImageAlt"`
-		Links             []Link `json:"links"`
 	} `json:"home"`
 	Blog struct {
 		Title string `json:"title"`
@@ -42,6 +35,24 @@ type UIStrings struct {
 }
 
 var uiStrings UIStrings
+
+/**
+Routes to define:
+
+/
+/about
+/apps
+/apps/latin-reader-android
+/apps/latin-reader-windows
+/apps/my-herodotus
+/blog
+/blog/[slug]
+/games/vikings
+/games/yahtzy
+/games/conway
+/projects
+/publications
+*/
 
 func main() {
 	r := gin.Default()

@@ -6,29 +6,7 @@
     "subtitleContinued": "Father, Husband, Writer, Programmer, Googler",
     "aboutMe": "Here's where I share my portfolio, including my blog posts, apps, projects, and even some silly JavaScript games. I currently work at Google, where I build sample applications and maintain code snippets for Google Cloud customers. I have a wide range of interests in technology; I tend to focus most on AI/ML, databases, data analytics, and data pipelines. All opinions expressed are mine.",
     "heroImageSrc": "/images/hero-image.jpeg",
-    "heroImageAlt": "Me and my very Best Dude",
-    "links": [
-      {
-        "url": "https://www.linkedin.com/in/eric-schmidt-692640/",
-        "label": "LinkedIn",
-        "icon": "fa-linkedin"
-      },
-      {
-        "url": "https://github.com/telpirion",
-        "label": "GitHub",
-        "icon": "fa-github"
-      },
-      {
-        "url": "https://stackoverflow.com/users/2494271/eric-schmidt",
-        "label": "Stack Exchange",
-        "icon": "fa-stack-exchange"
-      },
-      {
-        "url": "https://www.youtube.com/@telpir",
-        "label": "YouTube",
-        "icon": "fa-youtube"
-      }
-    ]
+    "heroImageAlt": "Me and my very Best Dude"
   },
   "blog": {
     "title": "Blog"
