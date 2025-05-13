@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>telpirion.com | {{ .Title }}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+              {{ template "header.html"}}
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>{{ .Title }}</h2>
+									</header>
+									<div class="posts">
+                    {{ range .Items }}
+										<article>
+											<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
+											<h3>{{ .Title }}</h3>
+											<p>{{ .Description }}</p>
+											<ul class="actions">
+												<li><a href="/blog/{{ .Slug }}" class="button">More</a></li>
+											</ul>
+										</article>
+                    {{ end }}
+									</div>
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+				{{ template "sidebar.html"}}
+
+			</div>
+
+		<!-- Scripts -->
+		{{ template "scripts.html" }}
+
+	</body>
+</html>

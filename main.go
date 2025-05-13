@@ -88,6 +88,7 @@ func main() {
 	r.GET("/games", gamesHandler)
 	r.GET("/projects", projectsHandler)
 	r.GET("/publications", publicationsHandler)
+	r.GET("/blog", blogsHandler)
 	r.GET("/blog/:slug", blogHandler)
 
 	r.NoRoute(func(c *gin.Context) {
@@ -109,7 +110,10 @@ func appsHandler(c *gin.Context) {
 }
 
 func blogsHandler(c *gin.Context) {
-	c.HTML(200, "generic.html", uiStrings)
+	c.HTML(200, "list.html", gin.H{
+		"Title": "Blog",
+		"Items": blogsMetadata,
+	})
 }
 
 func blogHandler(c *gin.Context) {
