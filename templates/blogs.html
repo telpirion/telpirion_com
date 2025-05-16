@@ -31,15 +31,11 @@
 									<div class="posts">
                     {{ range .Items }}
 										<article>
-											{{ if ne .Image ""}}
-											<a href="#" class="image"><img src="{{ .Image }}" alt="" /></a>
-											{{ else }}
 											<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
-											{{ end }}
 											<h3>{{ .Title }}</h3>
 											<p>{{ .Description }}</p>
 											<ul class="actions">
-												<li><a href="{{ .Url }}" class="button">More</a></li>
+												<li><a href="/{{ $.Subpath }}/{{ .Slug }}" class="button">More</a></li>
 											</ul>
 										</article>
                     {{ end }}

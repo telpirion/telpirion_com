@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"encoding/json"
 	"strings"
 
 	"github.com/gomarkdown/markdown"
@@ -11,6 +12,15 @@ import (
 
 const separator = "--------------------------------------------------------------------------------"
 
+type ListItemMetadata struct {
+	ID          string   `json:"id"`
+	Title       string   `json:"title"`
+	Description string   `json:"description"`
+	Image       string   `json:"image"`
+	Url         string   `json:"url"`
+	Tags        []string `json:"tags"`
+}
+
 type BlogMetadata struct {
 	Title       string   `yaml:"title"`
 	Description string   `yaml:"description"`
@@ -19,6 +29,24 @@ type BlogMetadata struct {
 	State       string   `yaml:"state"`
 	Tags        []string `yaml:"tags"`
 	Filepath    string   `yaml:"filepath"`
+}
+
+type PublicationMetadata struct {
+	ListItemMetadata
+	Host string `json:"host"`
+	Date string `json:"date"`
+}
+
+type ProjectMetadata struct {
+	ListItemMetadata
+}
+
+type GameMetadata struct {
+	ListItemMetadata
+}
+
+type AppMetadata struct {
+	ListItemMetadata
 }
 
 func ParseBlog(md []byte) (string, *BlogMetadata, error) {
@@ -33,13 +61,24 @@ func ParseBlog(md []byte) (string, *BlogMetadata, error) {
 	return string(html), &metadata, nil
 }
 
+func ParsePublication(pub string) ([]PublicationMetadata, error) {
+	var publications []PublicationMetadata
+
+	err := json.Unmarshal([]byte(pub), &publications)
+	if err != nil {
+		return nil, err
+	}
+
+	return publications, nil
+}
+
 func mdToHTML(md []byte) []byte {
-	// create markdown parser with extensions
+	// Create markdown parser with extensions
 	extensions := parser.CommonExtensions | parser.AutoHeadingIDs | parser.NoEmptyLineBeforeBlock | parser.Mmark
 	p := parser.NewWithExtensions(extensions)
 	doc := p.Parse(md)
 
-	// create HTML renderer with extensions
+	// Create HTML renderer with extensions
 	htmlFlags := html.CommonFlags | html.HrefTargetBlank
 	opts := html.RendererOptions{Flags: htmlFlags}
 	renderer := html.NewRenderer(opts)

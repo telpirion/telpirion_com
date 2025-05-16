@@ -1,10 +1,25 @@
-/**
- * Main / server for Telpirion.com site.
- *
- * @author Eric Schmidt
- * @version 1.0 2024/03/07
- * @copyright Eric Schmidt
- */
+/*
+	  Main / server for Telpirion.com site.
+
+	  @author Eric Schmidt
+	  @version 2.0 2025/05/16
+	  @copyright Eric Schmidt
+
+	 	Routes in this application:
+	 	/
+		/about
+		/apps
+		/apps/[id]
+		/apps/[id]
+		/apps/[id]
+		/blog
+		/blog/[slug]
+		/games/vikings
+		/games/yahtzy
+		/games/conway
+		/projects
+		/publications
+*/
 package main
 
 import (
@@ -13,6 +28,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/telpirion/telpirion_com/internal"
 
@@ -38,24 +54,10 @@ type UIStrings struct {
 var uiStrings UIStrings
 var blogsMetadata = []internal.BlogMetadata{}
 var blogsDict = map[string]internal.BlogMetadata{}
-
-/**
-Routes to define:
-
-/
-/about
-/apps
-/apps/latin-reader-android
-/apps/latin-reader-windows
-/apps/my-herodotus
-/blog
-/blog/[slug]
-/games/vikings
-/games/yahtzy
-/games/conway
-/projects
-/publications
-*/
+var pubsDict = map[string]internal.ListItemMetadata{}
+var appsDict = map[string]internal.ListItemMetadata{}
+var projectsDict = map[string]internal.ListItemMetadata{}
+var logger = log.Default()
 
 func main() {
 	r := gin.Default()
@@ -76,11 +78,30 @@ func main() {
 		log.Fatal(err)
 	}
 
+	logger.Println("Reading blogs...")
 	blogs, err := getBlogs("./content/blog")
 	if err != nil {
 		log.Fatal(err)
 	}
 	blogsMetadata = blogs
+
+	logger.Println("Reading publications...")
+	pubsDict, err = getJSONLItems("./content/publications/old.jsonl")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	logger.Println("Reading apps...")
+	appsDict, err = getJSONLItems("./content/apps/old.jsonl")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	logger.Println("Reading projects...")
+	projectsDict, err = getJSONLItems("./content/projects/old.jsonl")
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	r.GET("/home", homeHandler)
 	r.GET("/", homeHandler)
@@ -107,11 +128,19 @@ func aboutHandler(c *gin.Context) {
 }
 
 func appsHandler(c *gin.Context) {
-	c.HTML(200, "generic.html", uiStrings)
+	var appsSlice []internal.ListItemMetadata
+	for _, item := range appsDict {
+		appsSlice = append(appsSlice, item)
+	}
+	c.HTML(200, "generic.html",
+		gin.H{
+			"Title": "Apps",
+			"Items": appsSlice,
+		})
 }
 
 func blogsHandler(c *gin.Context) {
-	c.HTML(200, "list.html", gin.H{
+	c.HTML(200, "blogs.html", gin.H{
 		"Title": "Blog",
 		"Items": blogsMetadata,
 	})
@@ -137,6 +166,7 @@ func blogHandler(c *gin.Context) {
 	c.HTML(200, "blog.html", gin.H{
 		"Title":   metadata.Title,
 		"Date":    metadata.Date,
+		"Subpath": "blog",
 		"Content": template.HTML(string(html)),
 	})
 }
@@ -146,11 +176,29 @@ func gamesHandler(c *gin.Context) {
 }
 
 func projectsHandler(c *gin.Context) {
-	c.HTML(200, "generic.html", uiStrings)
+	var projectsSlice []internal.ProjectMetadata
+	for _, item := range projectsDict {
+		proj := internal.ProjectMetadata{ListItemMetadata: item}
+		projectsSlice = append(projectsSlice, proj)
+	}
+
+	c.HTML(200, "list.html", gin.H{
+		"Title": "Projects",
+		"Items": projectsSlice,
+	})
 }
 
 func publicationsHandler(c *gin.Context) {
-	c.HTML(200, "generic.html", uiStrings)
+	var pubsSlice []internal.PublicationMetadata
+	for _, item := range pubsDict {
+		pub := internal.PublicationMetadata{ListItemMetadata: item}
+		pubsSlice = append(pubsSlice, pub)
+	}
+
+	c.HTML(200, "list.html", gin.H{
+		"Title": "Publications",
+		"Items": pubsSlice,
+	})
 }
 
 func getBlogs(path string) ([]internal.BlogMetadata, error) {
@@ -181,4 +229,30 @@ func getBlogs(path string) ([]internal.BlogMetadata, error) {
 		return nil
 	})
 	return blogs, err
+}
+
+func getJSONLItems(path string) (map[string]internal.ListItemMetadata, error) {
+
+	var itemsDict = map[string]internal.ListItemMetadata{}
+	fs, err := os.ReadFile(path)
+	if err != nil {
+		return itemsDict, err
+	}
+
+	itemStrs := strings.Split(string(fs), "\n")
+	for _, pubStr := range itemStrs {
+		if pubStr == "" {
+			continue
+		}
+
+		item := internal.ListItemMetadata{}
+		err = json.Unmarshal([]byte(pubStr), &item)
+		if err != nil {
+			return itemsDict, err
+		}
+
+		itemsDict[item.ID] = item
+	}
+
+	return itemsDict, nil
 }
