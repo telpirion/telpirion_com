@@ -7,13 +7,13 @@ slug: service-account-impersonation
 state: unpublished
 date: 2025-12-31
 tags:
-- Go
+- Python
+- Cloud IAM
+- Cloud Run
 
 --------------------------------------------------------------------------------
 
-# Truth time: I hate authentication
-
-I mean, I like what it does for me. Who is opposed to having secure systems?
+I mean, I _like_ what it does for me. Who is opposed to having secure systems?
 It's the implementing it part that always gives me heartburn.
 
 Recently, I had to wire up authentication between a web application and a

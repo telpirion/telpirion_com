@@ -3,7 +3,7 @@ description:
     Recently, Google released an Agent Development Kit (ADK) to assist
     developers when creating agentic generative AI applications. Here I kick the
     tires on the ADK to see what it's all about.
-slug: service-account-impersonation
+slug: google-agent-development-kit-adk
 state: unpublished
 date: 2025-12-31
 tags:
@@ -12,8 +12,6 @@ tags:
 - GenAI
 
 --------------------------------------------------------------------------------
-
-# Learning Gemini Agent Development Kit (ADK)
 
 Recently, Google released an
 [Agent Development Kit (ADK)](https://google.github.io/adk-docs/)

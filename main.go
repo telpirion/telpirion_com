@@ -37,6 +37,7 @@ type UIStrings struct {
 
 var uiStrings UIStrings
 var blogsMetadata = []internal.BlogMetadata{}
+var blogsDict = map[string]internal.BlogMetadata{}
 
 /**
 Routes to define:
@@ -121,7 +122,9 @@ func blogHandler(c *gin.Context) {
 	id := c.Param("slug")
 	log.Println(id)
 
-	md, err := os.ReadFile("./content/blog/migrating-a-site.md")
+	blog := blogsDict[id]
+
+	md, err := os.ReadFile(blog.Filepath)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -170,8 +173,10 @@ func getBlogs(path string) ([]internal.BlogMetadata, error) {
 		if err != nil {
 			return err
 		}
+		metadata.Filepath = path
 
 		blogs = append(blogs, *metadata)
+		blogsDict[metadata.Slug] = *metadata
 
 		return nil
 	})

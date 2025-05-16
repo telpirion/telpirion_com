@@ -18,6 +18,7 @@ type BlogMetadata struct {
 	Slug        string   `yaml:"slug"`
 	State       string   `yaml:"state"`
 	Tags        []string `yaml:"tags"`
+	Filepath    string   `yaml:"filepath"`
 }
 
 func ParseBlog(md []byte) (string, *BlogMetadata, error) {
