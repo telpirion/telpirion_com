@@ -1,0 +1,51 @@
+{{ define "markdown-info.html"}}
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+  <title>telpirion.com | {{ .Title }}</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+
+  <!-- Wrapper -->
+  <div id="wrapper">
+
+    <!-- Main -->
+    <div id="main">
+      <div class="inner">
+
+        <!-- Header -->
+        {{ template "header.html"}}
+
+        <!-- Content -->
+        <section>
+          <header class="main">
+            <h1>{{.Title}}</h1>
+          </header>
+          <span class="image right"><img src="{{ .Image }}" alt="{{ .ImageAlt }}" /></span>
+          {{ .Content }}
+        </section>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    {{ template "sidebar.html"}}
+
+  </div>
+
+  <!-- Scripts -->
+  {{ template "scripts.html"}}
+
+</body>
+
+</html>
+{{end}}

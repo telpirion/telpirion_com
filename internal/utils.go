@@ -52,7 +52,7 @@ type AppMetadata struct {
 func ParseBlog(md []byte) (string, *BlogMetadata, error) {
 	parts := strings.Split(string(md), separator)
 
-	html := mdToHTML([]byte(parts[1]))
+	html := Markdown([]byte(parts[1]))
 	metadata := BlogMetadata{}
 	err := yaml.Unmarshal([]byte(parts[0]), &metadata)
 	if err != nil {
@@ -72,7 +72,7 @@ func ParsePublication(pub string) ([]PublicationMetadata, error) {
 	return publications, nil
 }
 
-func mdToHTML(md []byte) []byte {
+func Markdown(md []byte) []byte {
 	// Create markdown parser with extensions
 	extensions := parser.CommonExtensions | parser.AutoHeadingIDs | parser.NoEmptyLineBeforeBlock | parser.Mmark
 	p := parser.NewWithExtensions(extensions)

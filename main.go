@@ -19,6 +19,7 @@
 		/games/conway
 		/projects
 		/publications
+		/resume
 */
 package main
 
@@ -107,11 +108,12 @@ func main() {
 	r.GET("/", homeHandler)
 	r.GET("/about", aboutHandler)
 	r.GET("/apps", appsHandler)
+	r.GET("/blog", blogsHandler)
+	r.GET("/blog/:slug", blogHandler)
 	r.GET("/games", gamesHandler)
 	r.GET("/projects", projectsHandler)
 	r.GET("/publications", publicationsHandler)
-	r.GET("/blog", blogsHandler)
-	r.GET("/blog/:slug", blogHandler)
+	r.GET("/resume", resumeHandler)
 
 	r.NoRoute(func(c *gin.Context) {
 		c.File("./src/index.html")
@@ -124,7 +126,22 @@ func homeHandler(c *gin.Context) {
 }
 
 func aboutHandler(c *gin.Context) {
-	c.HTML(200, "elements.html", uiStrings)
+
+	md, err := os.ReadFile("./content/about.md")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	html := internal.Markdown(md)
+	if err != nil {
+		log.Fatal(err)
+	}
+	c.HTML(200, "markdown-info.html", gin.H{
+		"Title":    "About",
+		"Image":    "/images/telpirion-tree.png",
+		"ImageAlt": "AI-generated image of Telperion, tree from the Silmarillion.",
+		"Content":  template.HTML(string(html)),
+	})
 }
 
 func appsHandler(c *gin.Context) {
@@ -198,6 +215,24 @@ func publicationsHandler(c *gin.Context) {
 	c.HTML(200, "list.html", gin.H{
 		"Title": "Publications",
 		"Items": pubsSlice,
+	})
+}
+
+func resumeHandler(c *gin.Context) {
+	md, err := os.ReadFile("./content/resume.md")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	html := internal.Markdown(md)
+	if err != nil {
+		log.Fatal(err)
+	}
+	c.HTML(200, "markdown-info.html", gin.H{
+		"Title":    "Resume",
+		"Image":    "/images/with-artemis.jpeg",
+		"ImageAlt": "The very best daughter a dad can have.",
+		"Content":  template.HTML(string(html)),
 	})
 }
 
