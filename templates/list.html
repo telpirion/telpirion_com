@@ -32,7 +32,7 @@
                     {{ range .Items }}
 										<article>
 											{{ if ne .Image ""}}
-											<a href="#" class="image"><img src="{{ .Image }}" alt="" /></a>
+											<a href="#" class="image {{ $.Position }}"><img src="{{ .Image }}" alt="" /></a>
 											{{ else }}
 											<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
 											{{ end }}

@@ -30,6 +30,8 @@ trademarked by the Tolkien estate.
 
 ## About this site
 
+- This site is still under construction. I've written about my experience with
+  updating my site [on my blog](/blog).
 - I built frontend using plain ol' HTML and CSS. Template is "Editorial" from
   [html5up.net](https://html5up.net/).
 - I built the backend in Go with Gin. The site uses the templating library

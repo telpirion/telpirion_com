@@ -10,13 +10,10 @@
 		/about
 		/apps
 		/apps/[id]
-		/apps/[id]
-		/apps/[id]
 		/blog
 		/blog/[slug]
-		/games/vikings
-		/games/yahtzy
-		/games/conway
+		/games
+		/games/[id]
 		/projects
 		/publications
 		/resume
@@ -52,13 +49,16 @@ type UIStrings struct {
 	} `json:"blog"`
 }
 
-var uiStrings UIStrings
-var blogsMetadata = []internal.BlogMetadata{}
-var blogsDict = map[string]internal.BlogMetadata{}
-var pubsDict = map[string]internal.ListItemMetadata{}
-var appsDict = map[string]internal.ListItemMetadata{}
-var projectsDict = map[string]internal.ListItemMetadata{}
-var logger = log.Default()
+var (
+	uiStrings     UIStrings
+	appsDict      = map[string]internal.ListItemMetadata{}
+	blogsMetadata = []internal.BlogMetadata{}
+	blogsDict     = map[string]internal.BlogMetadata{}
+	gamesDict     = map[string]internal.ListItemMetadata{}
+	projectsDict  = map[string]internal.ListItemMetadata{}
+	pubsDict      = map[string]internal.ListItemMetadata{}
+	logger        = log.Default()
+)
 
 func main() {
 	r := gin.Default()
@@ -100,6 +100,12 @@ func main() {
 
 	logger.Println("Reading projects...")
 	projectsDict, err = getJSONLItems("./content/projects/old.jsonl")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	logger.Println("Reading games...")
+	gamesDict, err = getJSONLItems("./content/games/manifest.jsonl")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -152,8 +158,9 @@ func appsHandler(c *gin.Context) {
 	}
 	c.HTML(200, "list.html",
 		gin.H{
-			"Title": "Apps",
-			"Items": appsSlice,
+			"Title":    "Apps",
+			"Items":    appsSlice,
+			"Position": "right",
 		})
 }
 
@@ -200,7 +207,16 @@ func blogHandler(c *gin.Context) {
 }
 
 func gamesHandler(c *gin.Context) {
-	c.HTML(200, "generic.html", uiStrings)
+	var gameSlice []internal.ListItemMetadata
+	for _, item := range gamesDict {
+		gameSlice = append(gameSlice, item)
+	}
+
+	c.HTML(200, "list.html", gin.H{
+		"Title":    "Games",
+		"Items":    gameSlice,
+		"Position": "right",
+	})
 }
 
 func projectsHandler(c *gin.Context) {
