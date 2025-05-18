@@ -28,7 +28,7 @@ trademarked by the Tolkien estate.
 
 <hr class="major" />
 
-## About this site<
+## About this site
 
 - I built frontend using plain ol' HTML and CSS. Template is "Editorial" from
   [html5up.net](https://html5up.net/).

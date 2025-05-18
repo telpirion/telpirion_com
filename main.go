@@ -108,6 +108,7 @@ func main() {
 	r.GET("/", homeHandler)
 	r.GET("/about", aboutHandler)
 	r.GET("/apps", appsHandler)
+	r.GET("/apps/:id", appHandler)
 	r.GET("/blog", blogsHandler)
 	r.GET("/blog/:slug", blogHandler)
 	r.GET("/games", gamesHandler)
@@ -149,11 +150,21 @@ func appsHandler(c *gin.Context) {
 	for _, item := range appsDict {
 		appsSlice = append(appsSlice, item)
 	}
-	c.HTML(200, "generic.html",
+	c.HTML(200, "list.html",
 		gin.H{
 			"Title": "Apps",
 			"Items": appsSlice,
 		})
+}
+
+func appHandler(c *gin.Context) {
+	id := c.Param("id")
+	log.Println(id)
+	app := appsDict[id]
+
+	log.Println(app)
+
+	c.HTML(200, "app.html", app)
 }
 
 func blogsHandler(c *gin.Context) {
