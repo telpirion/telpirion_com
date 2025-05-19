@@ -1,0 +1,107 @@
+﻿body, html {
+    height: 100%;
+    font-size: 14pt;
+    font-family: 'Roboto', sans-serif;
+}
+
+.game-frame {
+    margin-top: 10px;
+    display: -ms-grid;
+    -ms-grid-columns: 600px 1fr;
+    -ms-grid-rows: 3fr 1fr 1fr;
+}
+
+.categories {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+}
+
+.scoring {
+    -ms-grid-column: 2;
+    -ms-grid-row: 1;
+}
+
+.dice {
+    -ms-grid-column: 1;
+    -ms-grid-row: 2;
+}
+
+.controls {
+    -ms-grid-column: 1;
+    -ms-grid-row: 3;
+}
+
+.cat, .die {
+    margin: 10px, 10px, 10px, 10px;
+    display: inline-block;
+    cursor: pointer;
+    background-color: white;
+    width: 75px;
+    height: 75px;
+    color: black;
+}
+
+.borderBlack {
+    border: 2px solid black;
+}
+
+.borderRed {
+    border: 2px solid red;
+}
+
+.borderYellow {
+    border: 2px solid yellow;
+}
+
+.borderGreen {
+    border: 2px solid;
+    border-color: lightgreen;
+}
+
+.cat-lower div {
+    height: 75px;
+    width: 75px;
+    text-align:center;
+    vertical-align:middle;
+}
+
+    .cat-lower div span {
+        display:inline-block;
+    }
+
+.yahtzee .cat {
+    height: 50px;
+    width: 150px;
+    margin-top: 10px;
+    text-align:center;
+    vertical-align: middle;
+}
+
+.score {
+    display: inline-block;
+    background-color: gray;
+    border: 2px solid black;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+}
+
+.dice {
+    text-align:justify;
+}
+
+.bonus {
+    color: green;
+}
+
+.game-over {
+    color: red;.
+}
+
+.controls button {
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 75px;
+}

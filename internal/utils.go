@@ -43,6 +43,9 @@ type ProjectMetadata struct {
 
 type GameMetadata struct {
 	ListItemMetadata
+	JS   string `json:"jsSrc"`
+	CSS  string `json:"cssSrc"`
+	HTML string `json:"htmlSrc"`
 }
 
 type AppMetadata struct {

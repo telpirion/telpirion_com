@@ -6,12 +6,13 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-
 <head>
   <title>telpirion.com | Game | {{ .Title }}</title>
   <meta charset="utf-8" />
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="{{ .CSS }}">
 </head>
 
 <body class="is-preload">
@@ -28,10 +29,7 @@
 
         <!-- Content -->
         <section>
-          <header class="main">
-            <h1>{{.Title}}</h1>
-          </header>
-          {{ .GameHTML }}
+          {{ .HTML }}
         </section>
       </div>
     </div>
@@ -43,11 +41,9 @@
 
   <!-- Scripts -->
   {{ template "scripts.html"}}
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-  <script src="{{ .GameSrc }}"></script>
-  <link rel="stylesheet" href="{{ .GameStyle }}" />
-
+  <script src="{{ .JS }}"></script>
 </body>
-
 </html>
 {{end}}

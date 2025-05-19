@@ -21,13 +21,18 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 	"html/template"
 	"log"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 
+	minify "github.com/tdewolff/minify/v2"
+	"github.com/tdewolff/minify/v2/js"
 	"github.com/telpirion/telpirion_com/internal"
 
 	"github.com/gin-gonic/gin"
@@ -54,7 +59,7 @@ var (
 	appsDict      = map[string]internal.ListItemMetadata{}
 	blogsMetadata = []internal.BlogMetadata{}
 	blogsDict     = map[string]internal.BlogMetadata{}
-	gamesDict     = map[string]internal.ListItemMetadata{}
+	gamesDict     = map[string]internal.GameMetadata{}
 	projectsDict  = map[string]internal.ListItemMetadata{}
 	pubsDict      = map[string]internal.ListItemMetadata{}
 	logger        = log.Default()
@@ -62,10 +67,12 @@ var (
 
 func main() {
 	r := gin.Default()
+
+	minifyGames()
+
 	r.LoadHTMLGlob("./templates/*.html")
 	r.Static("/assets", "./static")
 	r.Static("/images", "./images")
-	//r.Static("/css", "../site/css")
 	r.StaticFile("/favicon.ico", "./favicon.ico")
 
 	// Read the text strings
@@ -105,7 +112,7 @@ func main() {
 	}
 
 	logger.Println("Reading games...")
-	gamesDict, err = getJSONLItems("./content/games/manifest.jsonl")
+	gamesDict, err = getGamesData("./content/games/manifest.jsonl")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -118,6 +125,7 @@ func main() {
 	r.GET("/blog", blogsHandler)
 	r.GET("/blog/:slug", blogHandler)
 	r.GET("/games", gamesHandler)
+	r.GET("/games/:id", gameHandler)
 	r.GET("/projects", projectsHandler)
 	r.GET("/publications", publicationsHandler)
 	r.GET("/resume", resumeHandler)
@@ -207,7 +215,7 @@ func blogHandler(c *gin.Context) {
 }
 
 func gamesHandler(c *gin.Context) {
-	var gameSlice []internal.ListItemMetadata
+	var gameSlice []internal.GameMetadata
 	for _, item := range gamesDict {
 		gameSlice = append(gameSlice, item)
 	}
@@ -216,6 +224,26 @@ func gamesHandler(c *gin.Context) {
 		"Title":    "Games",
 		"Items":    gameSlice,
 		"Position": "right",
+	})
+}
+
+func gameHandler(c *gin.Context) {
+	id := c.Param("id")
+	log.Println(id)
+	game := gamesDict[id]
+
+	html, err := os.ReadFile(game.HTML)
+	if err != nil {
+		log.Println(game.HTML)
+		log.Fatal(err)
+	}
+
+	c.HTML(200, "game.html", gin.H{
+		"Title":   game.Title,
+		"Subpath": "games",
+		"HTML":    template.HTML(string(html)),
+		"JS":      fmt.Sprintf("/assets/js/%s.js", game.ID),
+		"CSS":     fmt.Sprintf("/assets/css/%s.css", game.ID),
 	})
 }
 
@@ -317,4 +345,84 @@ func getJSONLItems(path string) (map[string]internal.ListItemMetadata, error) {
 	}
 
 	return itemsDict, nil
+}
+
+func getGamesData(path string) (map[string]internal.GameMetadata, error) {
+	games := make(map[string]internal.GameMetadata)
+
+	fs, err := os.ReadFile(path)
+	if err != nil {
+		return games, err
+	}
+
+	items := strings.Split(string(fs), "\n")
+	for _, item := range items {
+		if item == "" {
+			continue
+		}
+
+		game := internal.GameMetadata{}
+		err = json.Unmarshal([]byte(item), &game)
+		if err != nil {
+			return games, err
+		}
+		logger.Println(game.ID)
+
+		games[game.ID] = game
+	}
+	return games, nil
+}
+
+func minifyGames() {
+	extensions := []string{".js", ".css"}
+
+	for _, root := range gamesDict {
+
+		var buf bytes.Buffer
+		m := minify.New()
+		m.AddFuncRegexp(regexp.MustCompile("^(application|text)/(x-)?(java|ecma)script$"), js.Minify)
+
+		logger.Println(root.JS)
+
+		filepath.WalkDir(root.JS, func(path string, d os.DirEntry, err error) error {
+			if err != nil {
+				return err
+			}
+			if !d.IsDir() {
+				for _, ext := range extensions {
+					if strings.HasSuffix(path, ext) {
+						log.Println(path)
+						s, err := os.ReadFile(path)
+						if err != nil {
+							return err
+						}
+						buf.Write(s)
+						buf.WriteString("\n")
+					}
+				}
+			}
+			return nil
+		})
+		var out bytes.Buffer
+		jsPath := fmt.Sprintf("static/js/%s.js", root.ID)
+
+		m.Minify("text/javascript", &out, bytes.NewReader(buf.Bytes()))
+		os.WriteFile(jsPath, out.Bytes(), os.ModePerm)
+
+		buf.Reset()
+
+		cssPath := fmt.Sprintf("static/css/%s.css", root.ID)
+		css, err := os.ReadFile(root.CSS)
+		if err != nil {
+			return
+		}
+		os.WriteFile(cssPath, css, os.ModePerm)
+
+		htmlPath := fmt.Sprintf("static/html/%s.html", root.ID)
+		html, err := os.ReadFile(root.HTML)
+		if err != nil {
+			return
+		}
+		os.WriteFile(htmlPath, html, os.ModePerm)
+	}
 }
