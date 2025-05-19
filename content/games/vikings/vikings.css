@@ -26,7 +26,7 @@ body, html {
 }
 
 #load-screen {
-    background-image: url("../images/VikingTitle.png");
+    background-image: url("/images/VikingTitle.png");
     background-repeat: no-repeat;
     background-size: 100% 110%;
 }

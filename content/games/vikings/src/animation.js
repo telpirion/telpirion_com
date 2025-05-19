@@ -100,7 +100,8 @@ var animation = (function () {
 		}
 
 		// Draw the game game.character.
-		ctx.drawImage(images[1], // TODO: This will fail until images are pre-loaded.
+		// TODO: This will fail until images are pre-loaded.
+		ctx.drawImage(images[1], 
 			character.x,
 			character.y);
 

@@ -5,7 +5,7 @@
     Published: 2012-12-08
     Updated: 2018-12-26
 */
-var images = [];
+let images = [];
 
 // Start the Vikings!!! game sequence.
 window.onload = function () {

@@ -66,15 +66,35 @@ var (
 )
 
 func main() {
+
+	setup()
+
 	r := gin.Default()
-
-	minifyGames()
-
 	r.LoadHTMLGlob("./templates/*.html")
 	r.Static("/assets", "./static")
 	r.Static("/images", "./images")
 	r.StaticFile("/favicon.ico", "./favicon.ico")
 
+	r.GET("/home", homeHandler)
+	r.GET("/", homeHandler)
+	r.GET("/about", aboutHandler)
+	r.GET("/apps", appsHandler)
+	r.GET("/apps/:id", appHandler)
+	r.GET("/blog", blogsHandler)
+	r.GET("/blog/:slug", blogHandler)
+	r.GET("/games", gamesHandler)
+	r.GET("/games/:id", gameHandler)
+	r.GET("/projects", projectsHandler)
+	r.GET("/publications", publicationsHandler)
+	r.GET("/resume", resumeHandler)
+
+	r.NoRoute(func(c *gin.Context) {
+		c.File("./src/index.html")
+	})
+	log.Fatal(r.Run(":8080"))
+}
+
+func setup() {
 	// Read the text strings
 	jsonFile, err := os.ReadFile("./content/strings.json")
 	if err != nil {
@@ -117,23 +137,8 @@ func main() {
 		log.Fatal(err)
 	}
 
-	r.GET("/home", homeHandler)
-	r.GET("/", homeHandler)
-	r.GET("/about", aboutHandler)
-	r.GET("/apps", appsHandler)
-	r.GET("/apps/:id", appHandler)
-	r.GET("/blog", blogsHandler)
-	r.GET("/blog/:slug", blogHandler)
-	r.GET("/games", gamesHandler)
-	r.GET("/games/:id", gameHandler)
-	r.GET("/projects", projectsHandler)
-	r.GET("/publications", publicationsHandler)
-	r.GET("/resume", resumeHandler)
-
-	r.NoRoute(func(c *gin.Context) {
-		c.File("./src/index.html")
-	})
-	log.Fatal(r.Run(":8080"))
+	logger.Println("Minifying games...")
+	minifyGames()
 }
 
 func homeHandler(c *gin.Context) {
@@ -375,7 +380,7 @@ func getGamesData(path string) (map[string]internal.GameMetadata, error) {
 
 func minifyGames() {
 	extensions := []string{".js", ".css"}
-
+	logger.Println("Start minifying games...")
 	for _, root := range gamesDict {
 
 		var buf bytes.Buffer
@@ -405,6 +410,8 @@ func minifyGames() {
 		})
 		var out bytes.Buffer
 		jsPath := fmt.Sprintf("static/js/%s.js", root.ID)
+
+		logger.Println("writing: " + jsPath)
 
 		m.Minify("text/javascript", &out, bytes.NewReader(buf.Bytes()))
 		os.WriteFile(jsPath, out.Bytes(), os.ModePerm)
