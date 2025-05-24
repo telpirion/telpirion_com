@@ -1,14 +1,33 @@
 {
   "title": "telpirion.com",
   "home": {
-    "hello": "Hi, I'm Eric Schmidt",
+    "hello": "Hi, I'm Eric Schmidt,",
     "subtitle": "Developer Relations Engineer",
     "subtitleContinued": "Father, Husband, Writer, Programmer, Googler",
     "aboutMe": "Here's where I share my portfolio, including my blog posts, apps, projects, and even some silly JavaScript games. I currently work at Google, where I build sample applications and maintain code snippets for Google Cloud customers. I have a wide range of interests in technology; I tend to focus most on AI/ML, databases, data analytics, and data pipelines. All opinions expressed are mine.",
     "heroImageSrc": "/images/hero-image.jpeg",
-    "heroImageAlt": "Me and my very Best Dude"
-  },
-  "blog": {
-    "title": "Blog"
+    "heroImageAlt": "Me and my very Best Dude",
+    "skills": [
+      {
+        "title": "Family First",
+        "description": "My family means the world to me. They keep me centered, they give me purpose, and they make me laugh. I am so blessed to have my people in my life.",
+        "icon": "solid fa-home"
+      },
+      {
+        "title": "Love for Programming",
+        "description": "I love writing and code and learning about computer science. For me, programming is a passion. I feel so fortunate to be able to write code for a living. I enjoy sharing my enthusiasm for coding with others.",
+        "icon": "solid fa-laptop-code"
+      },
+      {
+        "title": "Constant Growth",
+        "description": "I embrace the growth mindset. I know that I have so much more to learn; I eagerly embrace opportunity to broaden my experiences. I actively seek out mentors who can guide me towards new horizons.",
+        "icon": "solid fa-seedling"
+      },
+      {
+        "title": "Artificial Intelligence and Machine Learning",
+        "description": "I find the AI/ML domain to be endlessly fascinating. I have had the opportunity to work on flagship AI/ML products as a Googler, including Gemini and Vertex AI.",
+        "icon": "solid fa-brain"
+      }
+    ]
   }
 }

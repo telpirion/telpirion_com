@@ -48,10 +48,12 @@ type UIStrings struct {
 		AboutMe           string `json:"aboutMe"`
 		HeroImageSrc      string `json:"heroImageSrc"`
 		HeroImageAlt      string `json:"heroImageAlt"`
+		Skills            []struct {
+			Title       string `json:"title"`
+			Description string `json:"description"`
+			Icon        string `json:"icon"`
+		}
 	} `json:"home"`
-	Blog struct {
-		Title string `json:"title"`
-	} `json:"blog"`
 }
 
 var (
@@ -148,7 +150,10 @@ func setup() {
 }
 
 func homeHandler(c *gin.Context) {
-	c.HTML(200, "index.html", uiStrings)
+	c.HTML(200, "index.html", gin.H{
+		"Home":  uiStrings.Home,
+		"Blogs": blogsMetadata[0:2],
+	})
 }
 
 func aboutHandler(c *gin.Context) {
@@ -197,8 +202,9 @@ func appHandler(c *gin.Context) {
 
 func blogsHandler(c *gin.Context) {
 	c.HTML(200, "blogs.html", gin.H{
-		"Title": "Blog",
-		"Items": blogsMetadata,
+		"Title":   "Blog",
+		"Items":   blogsMetadata,
+		"Subpath": "blog",
 	})
 }
 
