@@ -1,16 +1,14 @@
-title: First blog post on new site!
+title: I made a decision!
 description: 
     Behold, my new personal portfolio! Now with more Go, cleaner design, and
     server-side templating.
 slug: first-blog-post-on-the-new-site
-state: unpublished
-date: 2025-12-31
+state: published
+date: 2025-05-16
 tags:
 - Go
 
 --------------------------------------------------------------------------------
-
-# My first new blog post!
 
 I made my decision! Drum roll please ...
 

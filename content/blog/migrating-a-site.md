@@ -4,8 +4,8 @@ description:
     requirements ... it's hard to decide. Here I weigh the pros and cons of
     various site platforms.
 slug: deciding-on-new-site-platform
-state: unpublished
-date: 2025-12-31
+state: published
+date: 2025-05-09
 tags:
 - Go
 - Angular

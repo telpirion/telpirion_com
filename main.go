@@ -111,7 +111,13 @@ func setup() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	blogsMetadata = blogs
+	var tmpBlogs []internal.BlogMetadata
+	for _, blog := range blogs {
+		if strings.ToLower(blog.State) == "published" {
+			tmpBlogs = append(tmpBlogs, blog)
+		}
+	}
+	blogsMetadata = tmpBlogs
 
 	logger.Println("Reading publications...")
 	pubsDict, err = getJSONLItems("./content/publications/old.jsonl")
@@ -174,6 +180,8 @@ func appsHandler(c *gin.Context) {
 			"Title":    "Apps",
 			"Items":    appsSlice,
 			"Position": "right",
+			"View":     "View",
+			"Code":     "Code",
 		})
 }
 
@@ -229,6 +237,8 @@ func gamesHandler(c *gin.Context) {
 		"Title":    "Games",
 		"Items":    gameSlice,
 		"Position": "right",
+		"View":     "Play",
+		"Code":     "Code",
 	})
 }
 
@@ -262,6 +272,7 @@ func projectsHandler(c *gin.Context) {
 	c.HTML(200, "list.html", gin.H{
 		"Title": "Projects",
 		"Items": projectsSlice,
+		"View":  "Code",
 	})
 }
 
@@ -275,6 +286,7 @@ func publicationsHandler(c *gin.Context) {
 	c.HTML(200, "list.html", gin.H{
 		"Title": "Publications",
 		"Items": pubsSlice,
+		"View":  "Read",
 	})
 }
 

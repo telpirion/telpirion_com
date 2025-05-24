@@ -39,7 +39,10 @@
 											<h3>{{ .Title }}</h3>
 											<p>{{ .Description }}</p>
 											<ul class="actions">
-												<li><a href="{{ .Url }}" class="button">More</a></li>
+												<li><a href="{{ .Url }}" class="button primary">{{ $.View }}</a></li>
+												{{ if ne .CodeURL "" }}
+												<li><a href="{{ .CodeURL }}" class="button">{{ $.Code }}</a></li>
+												{{ end }}
 											</ul>
 										</article>
                     {{ end }}

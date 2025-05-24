@@ -124,7 +124,7 @@ machine learning applications.
 * Go
 * C++ / C
 * Java
-* JavaScript
+* JavaScript / Typescript
 * C#
 
 <hr class="major" />

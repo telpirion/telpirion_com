@@ -19,6 +19,7 @@ type ListItemMetadata struct {
 	Image       string   `json:"image"`
 	Url         string   `json:"url"`
 	Tags        []string `json:"tags"`
+	CodeURL     string   `json:"codeUrl,omitempty"`
 }
 
 type BlogMetadata struct {

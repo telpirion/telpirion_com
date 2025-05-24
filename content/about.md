@@ -54,7 +54,7 @@ trademarked by the Tolkien estate.
 
 <hr class="major" />
 
-## About the apps`
+## About the apps
 
 My most recent release is
 [My Herodotus](https://myherodotus-1025771077852.us-west1.run.app/),
