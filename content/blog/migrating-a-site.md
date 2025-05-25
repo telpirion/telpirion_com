@@ -4,6 +4,7 @@ description:
     requirements ... it's hard to decide. Here I weigh the pros and cons of
     various site platforms.
 slug: deciding-on-new-site-platform
+image: /images/decisions-are-hard.png
 state: published
 date: 2025-05-09
 tags:

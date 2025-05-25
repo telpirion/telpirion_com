@@ -71,7 +71,11 @@
 									<div class="posts">
                     {{ range .Blogs }}
 										<article>
-											<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
+											{{ if .Image }}
+											<a href="/blog/{{ .Slug }}" class="image"><img src="{{ .Image }}" alt="" /></a>
+											{{ else }}
+											<a href="/blog/{{ .Slug }}" class="image"><img src="images/pic01.jpg" alt="" /></a>
+											{{ end }}
 											<h3>{{ .Title }}</h3>
 											<p><i>{{ .Date}}</i></p>
 											<p>{{ .Description }}</p>

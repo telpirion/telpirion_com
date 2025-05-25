@@ -30,6 +30,7 @@ type BlogMetadata struct {
 	State       string   `yaml:"state"`
 	Tags        []string `yaml:"tags"`
 	Filepath    string   `yaml:"filepath"`
+	Image       string   `yaml:"image"`
 }
 
 type PublicationMetadata struct {

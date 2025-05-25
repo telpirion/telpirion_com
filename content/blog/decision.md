@@ -2,7 +2,8 @@ title: I made a decision!
 description: 
     Behold, my new personal portfolio! Now with more Go, cleaner design, and
     server-side templating.
-slug: first-blog-post-on-the-new-site
+slug: decision-made
+image: /images/decision-made.png
 state: published
 date: 2025-05-16
 tags:
