@@ -81,16 +81,26 @@ First, add a version tag for this image:
 
 ```
 docker tag telpirion-com \
-us-west1-docker.pkg.dev/telpirion-com/telpirion-com/base-image:v1
+us-west1-docker.pkg.dev/$PROJECT_ID/telpirion-com/base-image:$VERSION
 ```
 
 Next, update the image in the Google Cloud Artifact registry:
 
 ```
-docker push us-west1-docker.pkg.dev/PROJECT_ID/telpirion-com/base-image:TAG
+docker push us-west1-docker.pkg.dev/$PROJECT_ID/telpirion-com/base-image:$TAG
 ```
 
 Finally, go to Cloud Run and create a service from this image.
+
+## Deploy the app with Cloud Build
+
+To deploy the app with Cloud Build, run the following command from the root of
+the repository.
+
+```sh
+gcloud builds submit --region=us-west1 --config cloudbuild.yaml \
+--substitutions=_VERSION=$VERSION
+```
 
 ## References
 

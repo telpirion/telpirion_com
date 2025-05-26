@@ -1,0 +1,13 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  script: |
+    docker build -t ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY}/base-image:${_VERSION} .
+  automapSubstitutions: true
+
+substitutions:
+  _REGION: us-east1 # Must be this region for Build quota :/
+  _REGISTRY: telpirion-com
+  _VERSION: v0.2.0
+
+images:
+- '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY}/base-image:${_VERSION}'
