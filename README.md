@@ -2,17 +2,17 @@
  README for Telpirion.com site.
  
  author     Eric Schmidt
- version    1.1 2024/03/04
+ version    0.2.0 2025/05/26
  copyright  Eric Schmidt
 -->
 
 # Telpirion.com
 
-This code repository contains the source code for Telpirion.com,
+This code repository contains the source code for Telpirion.com, 
 my personal web site. This code is provided for educational
 and illustrative purposes only.
 
-All code provided here is copyrighted by me,
+All code provided here is copyrighted by me, 
 [Eric Schmidt](https://www.linkedin.com/in/eric-schmidt-692640/).
 
 You can find a deployed version of the site
@@ -20,58 +20,34 @@ You can find a deployed version of the site
 
 ## Documentation
 
-The website is built on Google Cloud AppEngine, using
-Python and Angular.
+The website is built on Google Cloud Run, using Go & Gin 
+templates, plan ol' JavaScript, and some fancy CSS. The style of the site
+is the "Editorial" theme taken from [html5up.net](https://html5up.net/).
 
-### Build and run the app (dev environment)
+### Run the site locally
 
-To run the Angular app on the Angular runserver, use
-the following command from the `src` folder:
+To build & run the site locally, all you need to do is run the following
+command:
 
-```
-ng serve --open
-```
-
-To build the Angular app, use the following command from the
-`src` folder:
-
-```
-ng build --prod
-```
-
-To build the entire site using the Gulp file, use the
-following command from the `src` folder:
-
-```
-gulp build
-```
-
-To run the site, use the following command from the root folder:
-
-```
+```sh
 go run .
 ```
 
-To reinstall all of the NodeJS dependencies (for example, after changing
-git branches), use the following command:
-
-```
-npm install
-```
+That's all!
 
 ### Work with the container
 
 To rebuild the Docker image, run the following command from the root
 folder:
 
-```
+```sh
 docker build -t telpirion-com .
 ```
 
 To run the site from a Docker container, run the following command
 from the root folder:
 
-```
+```sh
 docker run -it --rm -p 8080:8080 --name telpirion-com-running telpirion-com
 ```
 
@@ -79,15 +55,15 @@ docker run -it --rm -p 8080:8080 --name telpirion-com-running telpirion-com
 
 First, add a version tag for this image:
 
-```
+```sh
 docker tag telpirion-com \
 us-west1-docker.pkg.dev/$PROJECT_ID/telpirion-com/base-image:$VERSION
 ```
 
 Next, update the image in the Google Cloud Artifact registry:
 
-```
-docker push us-west1-docker.pkg.dev/$PROJECT_ID/telpirion-com/base-image:$TAG
+```sh
+docker push us-west1-docker.pkg.dev/$PROJECT_ID/telpirion-com/base-image:$VERSION
 ```
 
 Finally, go to Cloud Run and create a service from this image.
@@ -104,21 +80,9 @@ gcloud builds submit --region=us-west1 --config cloudbuild.yaml \
 
 ## References
 
-<!--TODO: add links to Go, Gin, Docker, etc-->
+Go: https://go.dev/
+Gin: https://github.com/gin-gonic/gin
+Docker: https://www.docker.com/
+Cloud Run: https://cloud.google.com/run/docs
+Cloud Build: https://cloud.google.com/build/docs
 
-Angular:
-  * [Getting started](https://angular.io/guide/quickstart#getting-started)
-  * [Angular CLI ref](https://angular.io/cli/build)
-  * [Angular Material getting started](https://material.angular.io/guide/getting-started)
-  * [Material Design icon set](https://material.io/tools/icons/)
-  * [Angular Flex layout](https://github.com/angular/flex-layout)
-
-Gulp:
-  * [Gulp 4 how-to](https://fettblog.eu/gulp-4-parallel-and-series/)
-  * [Old Gulp how-to](https://www.smashingmagazine.com/2014/06/building-with-gulp/)
-  * [gulp-exec](https://www.npmjs.com/package/gulp-exec)
-  * [del](https://github.com/gulpjs/gulp/blob/master/docs/recipes/delete-files-folder.md)
-  * [gulp-concat](https://www.npmjs.com/package/gulp-concat)
-  * [gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
-  * [gulp-html-replace](https://www.npmjs.com/package/gulp-html-replace)
-  * [gulp-clean-css](https://www.npmjs.com/package/gulp-clean-css)
