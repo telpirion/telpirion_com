@@ -1,24 +1,25 @@
 {{ define "feed.html"}}
 <section>
   <header class="major">
-    <h2>Feed</h2>
+    <h2>{{ .Title }}</h2>
   </header>
   <div class="mini-posts">
+    {{ range .Items }}
     <article>
-      <a href="#" class="image"><img src="/images/pic07.jpg" alt="" /></a>
-      <p>Blog post!</p>
+      {{ if .Image }}
+      <a href="{{ .Link }}" class="image"><img src="{{ .Image }}" alt="" /></a>
+      {{ else }}
+      <a href="/{{ .Link }}" class="image"><img src="/images/pic01.jpg" alt="" /></a>
+      {{ end }}
+      <p><b>{{ .Title }}</b> <i>{{ .Date }}</i></i></p>
+      <p>{{ .Description }}</p>
     </article>
-    <article>
-      <a href="#" class="image"><img src="/images/pic08.jpg" alt="" /></a>
-      <p>App!</p>
-    </article>
-    <article>
-      <a href="#" class="image"><img src="/images/pic09.jpg" alt="" /></a>
-      <p>Game!</p>
-    </article>
+    {{ end }}
   </div>
+  <!-- TODO(telpirion): Pick a place to point this button.
   <ul class="actions">
     <li><a href="#" class="button">More</a></li>
   </ul>
+  -->
 </section>
 {{end}}

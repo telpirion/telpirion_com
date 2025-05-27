@@ -29,5 +29,29 @@
         "icon": "solid fa-brain"
       }
     ]
+  },
+  "sidebar": {
+    "feed": {
+      "title": "Feed",
+      "items": [
+        {
+          "title": "Pinned: Expect some jankiness",
+          "description": "Some of the JavaScript games need ... adjustments. Play at your own risk.",
+          "link": "./games"
+        },
+        {
+          "title": "Blog: Site updates underway!",
+          "description": "I just updated the site to server-side templates and fancy new CSS!",
+          "link": "./blog/decision-made",
+          "date": "2025-05-16"
+        },
+        {
+          "title": "Blog: What to do?",
+          "description": "I'm trying to decide how to update my site ...",
+          "link": "./blog/deciding-on-new-site-platform",
+          "date": "2025-05-09"
+        }
+      ]
+    }
   }
 }

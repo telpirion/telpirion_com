@@ -54,6 +54,18 @@ type UIStrings struct {
 			Icon        string `json:"icon"`
 		}
 	} `json:"home"`
+	Sidebar struct {
+		Feed struct {
+			Title string `json:"title"`
+			Items []struct {
+				Title       string `json:"title"`
+				Image       string `json:"image,omitempty"`
+				Description string `json:"description"`
+				Date        string `json:"date"`
+				Link        string `json:"link"`
+			} `json:"items"`
+		} `json:"feed"`
+	} `json:"sidebar"`
 }
 
 var (
@@ -151,8 +163,9 @@ func setup() {
 
 func homeHandler(c *gin.Context) {
 	c.HTML(200, "index.html", gin.H{
-		"Home":  uiStrings.Home,
-		"Blogs": blogsMetadata[0:2],
+		"Home":    uiStrings.Home,
+		"Blogs":   blogsMetadata[0:2],
+		"Sidebar": uiStrings.Sidebar,
 	})
 }
 
@@ -172,6 +185,7 @@ func aboutHandler(c *gin.Context) {
 		"Image":    "/images/telpirion-tree.png",
 		"ImageAlt": "AI-generated image of Telperion, tree from the Silmarillion.",
 		"Content":  template.HTML(string(html)),
+		"Sidebar":  uiStrings.Sidebar,
 	})
 }
 
@@ -187,6 +201,7 @@ func appsHandler(c *gin.Context) {
 			"Position": "right",
 			"View":     "View",
 			"Code":     "Code",
+			"Sidebar":  uiStrings.Sidebar,
 		})
 }
 
@@ -205,6 +220,7 @@ func blogsHandler(c *gin.Context) {
 		"Title":   "Blog",
 		"Items":   blogsMetadata,
 		"Subpath": "blog",
+		"Sidebar": uiStrings.Sidebar,
 	})
 }
 
@@ -230,6 +246,7 @@ func blogHandler(c *gin.Context) {
 		"Date":    metadata.Date,
 		"Subpath": "blog",
 		"Content": template.HTML(string(html)),
+		"Sidebar": uiStrings.Sidebar,
 	})
 }
 
@@ -245,6 +262,7 @@ func gamesHandler(c *gin.Context) {
 		"Position": "right",
 		"View":     "Play",
 		"Code":     "Code",
+		"Sidebar":  uiStrings.Sidebar,
 	})
 }
 
@@ -265,6 +283,7 @@ func gameHandler(c *gin.Context) {
 		"HTML":    template.HTML(string(html)),
 		"JS":      fmt.Sprintf("/assets/js/%s.js", game.ID),
 		"CSS":     fmt.Sprintf("/assets/css/%s.css", game.ID),
+		"Sidebar": uiStrings.Sidebar,
 	})
 }
 
@@ -276,9 +295,10 @@ func projectsHandler(c *gin.Context) {
 	}
 
 	c.HTML(200, "list.html", gin.H{
-		"Title": "Projects",
-		"Items": projectsSlice,
-		"View":  "Code",
+		"Title":   "Projects",
+		"Items":   projectsSlice,
+		"View":    "Code",
+		"Sidebar": uiStrings.Sidebar,
 	})
 }
 
@@ -290,9 +310,10 @@ func publicationsHandler(c *gin.Context) {
 	}
 
 	c.HTML(200, "list.html", gin.H{
-		"Title": "Publications",
-		"Items": pubsSlice,
-		"View":  "Read",
+		"Title":   "Publications",
+		"Items":   pubsSlice,
+		"View":    "Read",
+		"Sidebar": uiStrings.Sidebar,
 	})
 }
 
@@ -311,6 +332,7 @@ func resumeHandler(c *gin.Context) {
 		"Image":    "/images/with-artemis.jpeg",
 		"ImageAlt": "The very best daughter a dad can have.",
 		"Content":  template.HTML(string(html)),
+		"Sidebar":  uiStrings.Sidebar,
 	})
 }
 
