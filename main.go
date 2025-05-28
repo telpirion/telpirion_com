@@ -38,38 +38,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type UIStrings struct {
-	Title string `json:"title"`
-	Home  struct {
-		Title             string `json:"title,omitempty"`
-		Hello             string `json:"hello"`
-		Subtitle          string `json:"subtitle"`
-		SubtitleContinued string `json:"subtitleContinued"`
-		AboutMe           string `json:"aboutMe"`
-		HeroImageSrc      string `json:"heroImageSrc"`
-		HeroImageAlt      string `json:"heroImageAlt"`
-		Skills            []struct {
-			Title       string `json:"title"`
-			Description string `json:"description"`
-			Icon        string `json:"icon"`
-		}
-	} `json:"home"`
-	Sidebar struct {
-		Feed struct {
-			Title string `json:"title"`
-			Items []struct {
-				Title       string `json:"title"`
-				Image       string `json:"image,omitempty"`
-				Description string `json:"description"`
-				Date        string `json:"date"`
-				Link        string `json:"link"`
-			} `json:"items"`
-		} `json:"feed"`
-	} `json:"sidebar"`
-}
-
 var (
-	uiStrings     UIStrings
+	uiStrings     internal.UIStrings
 	appsDict      = map[string]internal.ListItemMetadata{}
 	blogsMetadata = []internal.BlogMetadata{}
 	blogsDict     = map[string]internal.BlogMetadata{}

@@ -52,6 +52,89 @@
           "date": "2025-05-09"
         }
       ]
+    },
+    "nav": {
+      "title": "Menu",
+      "items": [
+        {
+          "title": "Home",
+          "link": "/"
+        },
+        {
+          "title": "Blog",
+          "link": "/blog"
+        },
+        {
+          "title": "Patents & Publications",
+          "link": "/publications"
+        },
+        {
+          "title": "Apps",
+          "link": "/apps",
+          "items": [
+            {
+              "title": "My Herodotus",
+              "link": "/apps/app-my-herodotus"
+            },
+            {
+              "title": "Latin Reader (Android)",
+              "link": "/apps/app-latin-reader-android"
+            },
+            {
+              "title": "Latin Reader (Windows)",
+              "link": "/apps/app-latin-reader-windows"
+            }
+          ]
+        },
+        {
+          "title": "Games",
+          "link": "/games",
+          "items": [
+            {
+              "title": "Vikings!!!",
+              "link": "/games/game-vikings"
+            },
+            {
+              "title": "Yahtzy",
+              "link:": "/games/game-yahtzy"
+            },
+            {
+              "title": "Conway's Game of Life",
+              "link": "/games/game-conway"
+            },
+            {
+              "title": "Space Marauders",
+              "link": "/games/game-space-marauders"
+            }
+          ]
+        },
+        {
+          "title": "Projects",
+          "link": "/projects"
+        },
+        {
+          "title": "Resume",
+          "link": "/resume"
+        },
+        {
+          "title": "About",
+          "link": "/about"
+        }
+      ]
+    },
+    "contact": {
+      "title": "Get in touch",
+      "description": "The best way to get a hold of me is by messaging me on LinkedIn.",
+      "items": [
+        {
+          "title": "LinkedIn",
+          "link": "https://www.linkedin.com/in/eric-schmidt-692640/",
+          "icon": "fa-envelope"
+        }
+      ]
+    },
+    "footer": {
+      "copyright": "Copyright 2025 Eric Schmidt. All rights reserved. Images: Gemini and Unsplash. Design: HTML5 UP."
     }
   }
 }

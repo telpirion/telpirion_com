@@ -6,16 +6,16 @@
     {{ template "search.html"}}
 
     <!-- Menu -->
-    {{ template "nav.html" }}
+    {{ template "nav.html" .Nav }}
 
     <!-- Section -->
     {{ template "feed.html" .Feed }}
 
     <!-- Section -->
-    {{ template "contact.html" }}
+    {{ template "contact.html" .Contact }}
 
     <!-- Footer -->
-    {{ template "footer.html" }}
+    {{ template "footer.html" .Footer }}
 
   </div>
 </div>

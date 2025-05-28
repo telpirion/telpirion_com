@@ -1,33 +1,24 @@
 {{ define "nav.html" }}
 <nav id="menu">
   <header class="major">
-    <h2>Menu</h2>
+    <h2>{{ .Title }}</h2>
   </header>
   <ul>
-    <li><a href="/">Homepage</a></li>
-    <li><a href="/blog">Blog</a></li>
-    <li><a href="/projects">Projects</a></li>
-    <li><a href="/publications">Patents & Publications</a></li>
-    <li>
-      <span class="opener">Games</span>
-      <ul>
-        <li><a href="/games">All games</a></li>
-        <li><a href="/games/game-vikings">Vikings!!!</a></li>
-        <li><a href="/games/game-yahtzy">Yahtzy</a></li>
-        <li><a href="/games/game-conway">Conway's Game of Life</a></li>
-      </ul>
-    </li>
-    <li>
-      <span class="opener">Apps</span>
-      <ul>
-        <li><a href="/apps">All apps</a></li>
-        <li><a href="/apps/app-my-herodotus">My Herodotus</a></li>
-        <li><a href="/apps/app-latin-reader-android">Latin Reader (Android)</a></li>
-        <li><a href="/apps/app-latin-reader-windows">Latin Reader (Window)</a></li>
-      </ul>
-    </li>
-    <li><a href="/about">About</a></li>
-    <li><a href="/resume">Resume</a></li>
+    {{ range .Items}}
+      {{ if .Items}}
+      <li>
+        <span class="opener">{{ .Title }}</span>
+        <ul>
+          <li><a href="{{ .Link }}">All {{ .Title }}</a></li>
+          {{ range .Items }}
+          <li><a href="{{ .Link }}">{{ .Title }}</a></li>
+          {{ end}}
+        </ul>
+      </li>
+      {{ else }}
+        <li><a href="{{ .Link }}">{{ .Title }}</a></li>
+      {{ end }}
+    {{ end }}
   </ul>
 </nav>
 {{end}}

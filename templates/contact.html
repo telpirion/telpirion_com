@@ -1,11 +1,13 @@
 {{ define "contact.html" }}
 <section>
   <header class="major">
-    <h2>Get in touch</h2>
+    <h2>{{ .Title }}</h2>
   </header>
-  <p>The best way to get a hold of me is by messaging me on LinkedIn.</p>
+  <p>{{ .Description }}</p>
   <ul class="contact">
-    <li class="icon solid fa-envelope"><a href="https://www.linkedin.com/in/eric-schmidt-692640/" target="_blank">LinkedIn</a></li>
+    {{ range .Items }}
+    <li class="icon solid {{ .Icon }}"><a href="{{ .Link }}" target="_blank">{{ .Title }}</a></li>
+    {{ end }}
   </ul>
 </section>
 {{end}}
