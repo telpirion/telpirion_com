@@ -1,0 +1,25 @@
+{{ define "modal.html" }}
+<!-- Modal courtesy of W3Schools -->
+<div class="modals">
+  <link rel="stylesheet" href="/assets/css/modal.css">
+  <script src="/assets/js/modal.js"></script>
+  <ul class="actions fit small">
+    {{ range .}}
+    <li><a href="#" class="button primary fit small">{{ .Label }}</a></li>
+    {{ end }}
+
+  </ul>
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Modal</p>
+    </div>
+
+  </div>
+  
+</div>
+{{ end }}

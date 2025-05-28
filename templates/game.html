@@ -29,6 +29,8 @@
 
         <!-- Content -->
         <section>
+          <h2>{{ .Title }}</h2>
+          {{ template "modal.html" .Modals }}
           {{ .HTML }}
         </section>
       </div>

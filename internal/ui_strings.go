@@ -52,3 +52,51 @@ type UIStrings struct {
 		} `json:"footer"`
 	} `json:"sidebar"`
 }
+
+const separator = "--------------------------------------------------------------------------------"
+
+type ListItemMetadata struct {
+	ID          string   `json:"id"`
+	Title       string   `json:"title"`
+	Description string   `json:"description"`
+	Image       string   `json:"image"`
+	Url         string   `json:"url"`
+	Tags        []string `json:"tags"`
+	CodeURL     string   `json:"codeUrl,omitempty"`
+}
+
+type BlogMetadata struct {
+	Title       string   `yaml:"title"`
+	Description string   `yaml:"description"`
+	Date        string   `yaml:"date"`
+	Slug        string   `yaml:"slug"`
+	State       string   `yaml:"state"`
+	Tags        []string `yaml:"tags"`
+	Filepath    string   `yaml:"filepath"`
+	Image       string   `yaml:"image"`
+}
+
+type PublicationMetadata struct {
+	ListItemMetadata
+	Host string `json:"host"`
+	Date string `json:"date"`
+}
+
+type ProjectMetadata struct {
+	ListItemMetadata
+}
+
+type GameMetadata struct {
+	ListItemMetadata
+	JS     string `json:"jsSrc"`
+	CSS    string `json:"cssSrc"`
+	HTML   string `json:"htmlSrc"`
+	Modals []struct {
+		Label string `json:"label"`
+		Text  string `json:"text"`
+	} `json:"modals,omitempty"`
+}
+
+type AppMetadata struct {
+	ListItemMetadata
+}

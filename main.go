@@ -253,6 +253,7 @@ func gameHandler(c *gin.Context) {
 		"HTML":    template.HTML(string(html)),
 		"JS":      fmt.Sprintf("/assets/js/%s.js", game.ID),
 		"CSS":     fmt.Sprintf("/assets/css/%s.css", game.ID),
+		"Modals":  game.Modals,
 		"Sidebar": uiStrings.Sidebar,
 	})
 }
