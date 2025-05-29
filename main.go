@@ -14,6 +14,7 @@
 		/blog/[slug]
 		/games
 		/games/[id]
+		/games/[id]/about
 		/projects
 		/publications
 		/resume
@@ -68,6 +69,7 @@ func main() {
 	r.GET("/blog/:slug", blogHandler)
 	r.GET("/games", gamesHandler)
 	r.GET("/games/:id", gameHandler)
+	r.GET("games/:id/about", gameAboutHandler)
 	r.GET("/projects", projectsHandler)
 	r.GET("/publications", publicationsHandler)
 	r.GET("/resume", resumeHandler)
@@ -147,9 +149,6 @@ func aboutHandler(c *gin.Context) {
 	}
 
 	html := internal.Markdown(md)
-	if err != nil {
-		log.Fatal(err)
-	}
 	c.HTML(200, "markdown-info.html", gin.H{
 		"Title":    "About",
 		"Image":    "/images/telpirion-tree.png",
@@ -246,6 +245,26 @@ func gameHandler(c *gin.Context) {
 		"Subpath": "games",
 		"ID":      game.ID,
 		"Sidebar": uiStrings.Sidebar,
+	})
+}
+
+func gameAboutHandler(c *gin.Context) {
+	id := c.Param("id")
+	log.Println(id)
+	game := gamesDict[id]
+
+	md, err := os.ReadFile(game.About)
+	if err != nil {
+		logger.Fatal(err)
+	}
+
+	html := internal.Markdown(md)
+	c.HTML(200, "markdown-info.html", gin.H{
+		"Title":    fmt.Sprintf("About %s", game.Title),
+		"Image":    game.Image,
+		"ImageAlt": "Game thumbnail image",
+		"Content":  template.HTML(string(html)),
+		"Sidebar":  uiStrings.Sidebar,
 	})
 }
 

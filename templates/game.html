@@ -29,8 +29,8 @@
 
         <!-- Content -->
         <section style="height:100vh;">
-          <!--
-          {{ .HTML }}-->
+          <a href="/games/{{ .ID }}/about" class="button primary">
+            About & How to play</a>
           <iframe title="{{ .Title }}" src="/assets/html/{{ .ID }}.html"
             style="width: 100%; height: 100%; border: none;"
             onload="this.contentWindow.focus();"></iframe>
