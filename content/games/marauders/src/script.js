@@ -55,9 +55,8 @@ let backgroundColor,
     isPaused;
 
 function setup() {
-  const canvasElement = document.querySelector("canvas");
   isPaused = false;
-  createCanvas(400, 400, WEBGL, canvasElement);
+  createCanvas(400, 400);
   colorMode(HSB, 360, 100, 100);
   backgroundColor = 5;
   frameRate(12);

@@ -1,18 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
 <!--
     Conway's Game of Life emulator
     Version 1.0
     Eric Schmidt
 -->
-<div class="conway page">
-    <h1>Conway's Game of Life</h1>
-    <div class="content-root">
-        <canvas id="canvas" width="500" height="500"></canvas>
-        <br>
-        <button class="button primary" id="run">Run</button>
-        <button class="button" id="pause">Pause</button>
-        <button class="button" id="clear">Clear</button>
-        <div>
-            <p>Time: <span id="time">0:00</span></p>
+
+<head>
+    <title>Conway's Game of Life</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/assets/js/game-conway.js"></script>
+    <link rel="stylesheet" type="text/css" href="/assets/css/game-conway.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="conway page">
+        <h1 style="font-family: 'Limelight', sans-serif;">Conway's Game of Life</h1>
+        <div class="content-root">
+            <canvas id="canvas" width="500" height="500"></canvas>
+            <br>
+            <button class="button primary" id="run">Run</button>
+            <button class="button" id="pause">Pause</button>
+            <button class="button" id="clear">Clear</button>
+            <div>
+                <p>Time: <span id="time">0:00</span></p>
+            </div>
         </div>
     </div>
-</div>
+</body>
+
+</html>

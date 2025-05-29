@@ -104,7 +104,11 @@
             },
             {
               "title": "Space Marauders",
-              "link": "/games/game-space-marauders"
+              "link": "/games/game-marauders"
+            },
+            {
+              "title": "Snake",
+              "link": "/games/game-snake"
             }
           ]
         },

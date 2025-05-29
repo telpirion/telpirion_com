@@ -241,18 +241,10 @@ func gameHandler(c *gin.Context) {
 	log.Println(id)
 	game := gamesDict[id]
 
-	html, err := os.ReadFile(game.HTML)
-	if err != nil {
-		log.Println(game.HTML)
-		log.Fatal(err)
-	}
-
 	c.HTML(200, "game.html", gin.H{
 		"Title":   game.Title,
 		"Subpath": "games",
-		"HTML":    template.HTML(string(html)),
-		"JS":      fmt.Sprintf("/assets/js/%s.js", game.ID),
-		"CSS":     fmt.Sprintf("/assets/css/%s.css", game.ID),
+		"ID":      game.ID,
 		"Sidebar": uiStrings.Sidebar,
 	})
 }
