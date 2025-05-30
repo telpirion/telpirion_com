@@ -4,8 +4,8 @@ description:
     developers when creating agentic generative AI applications. Here I kick the
     tires on the ADK to see what it's all about.
 slug: google-agent-development-kit-adk
-state: unpublished
-date: 2025-12-31
+state: published
+date: 2025-05-30
 tags:
 - Python
 - ADK
@@ -14,102 +14,120 @@ tags:
 
 --------------------------------------------------------------------------------
 
-Recently, Google released an
-[Agent Development Kit (ADK)](https://google.github.io/adk-docs/)
+Recently, Google released an [Agent Development Kit (ADK)][adk], a new framework
 to help developers create "agentic" generative AI applications quickly. My
 curiosity piqued, I had to try it out. The question I yearn to answer: can the
 ADK help me to create a Google Cloud code sample?
 
-You can see
-[the results of my efforts here](https://github.com/telpirion/LearningADK).
-I'm using the
-[quickstart](https://google.github.io/adk-docs/get-started/quickstart/#set-up-the-model)
-to begin.
+You can see [the results of my efforts here][my-adk-repo]. I'm using the
+[quickstart][quickstart] to begin and then trying to build my own application
+that uses a [Runner][runner] to generate a code sample.
 
-+ First observation: the tutorial says to use `echo` to write code in the
-  '__init__.py' file. This ... is weird.
+Let's see how this goes!
 
-+ Next observation: I attempted to get the weather in Athens, Greece, but the
-  system tells me that Athens is not available. Huh. The docs say to try
-  Paris or New York City. I'll try those next.
+## First things first: a quickstart
 
-+ No luck with New York City or Paris. I wonder if there's a service that I
-  need to enable for this to work?
++ I love that this quickstart begins by showing me what the project directory
+  for my code should look like. I appreciate that! (I'm a sucker for good
+  documentation.)
 
-+ Looking at the code, the prompt has to be _exactly_ 'new york'. I would
-  consider this a bug in the sample.
++ It's interesting--and useful--that the ADK includes both a [CLI][adk-cli] and
+  [web UI][adk-web-ui] to help me learn the platform. The quickstart uses the
+  the CLI to run the agent that I'm building.
 
-After experiencing the quickstart, I'm going to try out the
-[multi-agent team tutorial](https://google.github.io/adk-docs/tutorials/agent-team/).
-The tutorial has a handy
-[Colab notebook]()
-that I'll give a try.
++ The tutorial says to use `echo` to write code in the `__init__.py` file. This 
+  seems like an odd choice. There's a note telling Windows users to just open 
+  up the file in an IDE and edit there, which is what I would do anyway. So I'll
+  just do that ...
 
-+ The notebook and doc both say that this example expands on the quickstart.
-  A quick glance at the directions reveals that this doesn't use the same
-  project structure as what was built previously.
-+ This notebook also assumes that I want a multi-LLM system, which I don't. I
-  guess I'm going to need to start customizing.
++ I attempted to get the weather in Athens, Greece, but the
+  agent tells me that Athens is not available. Huh. The docs say to try
+  Paris or New York City. I'll try those next. Looking closer at the code,
+  the code is using a hardcoded list of cities rather than a live service.
+  That makes sense. It looks like I need to ask for _exactly_ "new york" to
+  get a response.
 
-With that in mind, I should figure out what I want my tool-using agents to do.
+My successful attempt to get the weather in "new york" is shown in the
+following snippet.
 
-+ **Goal**: Write a Node.js code sample that gets a secret from Google Cloud
+```sh
+adk run quickstart
+Log setup complete: /var/folders/zb/410jc5c93md11jlkxd6hpm0w00b1dc/T/agents_log/agent.20250529_164324.log
+To access latest log: tail -F /var/folders/zb/410jc5c93md11jlkxd6hpm0w00b1dc/T/agents_log/agent.latest.log
+Running agent weather_time_agent, type exit to exit.
+[user]: what is the weather in new york?
+[weather_time_agent]: OK. The weather in New York is sunny with a temperature of 25 degrees Celsius (77 degrees Fahrenheit).
+
+[user]: Thank you!
+[weather_time_agent]: You're welcome! Is there anything else I can help you with?
+
+[user]: Nope! I'm going to exit now
+[weather_time_agent]: Goodbye!
+
+[user]: exit
+
+```
+<figure><i>Figure 1. The ADK quickstart in action. Yes, I believe in being kind
+to our AI friends.</i></figure><br/>
+
+After completing the quickstart, I see that there is a more complex
+[multi-agent team tutorial][multi-agent]. The tutorial has a handy
+[Colab notebook][adk-colab] that I could try.
+
+However, I'm on a mission to create a code sample, so I'll skip the multi-agent
+tutorial for now.
+
+## Next steps: building a runner-based agent
+
+Very broadly, I want to create a multi-agent system that uses tools to
+compose a Google Cloud code sample. I intend to use a [RAG][rag] technique
+to fetch proto files before I generate the sample; that's one tool. Then, I
+want to have whatever code is generated by the system to be evaluated using
+[LLM-as-a-judge][llm-judge]; that's the second tool. This overall system 
+itself will be my orchestration agent, executed by the runner.
+
+With that in mind, I'll write a little mini-spec here to help guide my work.
+
++ **Objective**: Write a Node.js code sample that gets a secret from Google Cloud
   Secret Manager.
-+ **Steps**:
-  1. Download the Secret Manager proto files from GitHub. I'm going to use
-     a retrieval-augmented grounding (RAG) approach to writing this sample.
-     Getting the proto files will be my first tool.
-  2. Generate a new Node.js code sample given the user prompt and the grounding
-     context.
-  3. Evaluate the quality of the code sample. If the quality is low, then
-     return to step #2. This evaluation step will be my second tool.
-  4. Create agents for each tool. Reading the docs, it looks like the pattern
-     for this application is to have a root agent that handles orchestration
-     and a series of tool-specific agents.
++ **Components**:
+  1.  **Tool #1.** Download the Secret Manager proto files from GitHub. These files
+      will be used as grounding for the LLM when it writes the code samples.
+      Getting the proto files will be my first tool. The real-world version of
+      this tool would fetch the files from a GitHub repo; however, I'm going
+      to just return a canned response for now.
+  2.  **Tool #2.** Generate a new Node.js code sample given the user prompt and the
+      grounding context.
+  3.  **Tool #3.** Evaluate the quality of the code sample. If the quality is low,
+      then return to step #2. This evaluation step will be my second tool.
+      Similar to the first tool, I'm going to return a canned response for now.
+  4.  **Agents.** Create agents for each tool. Reading the docs, it looks like
+      the pattern for this type of application is to have a root agent that
+      handles orchestration and a series of tool-specific agents.
+
+      + The root agent will be executed in a `Runner`, that manages events and
+        session data for the orchestration agent.
+      + The root agent itself will need to be an instance of either
+        [`SequentialAgent`][sequential-agent] or [`LoopAgent`][loop-agent]. I'm
+        going to use a `SequentialAgent`, for now, to simply test the
+        orchestration.
+
 
 With these in mind, let me see how well & how quickly I can achieve my goal.
 
-One thing I don't like about the design of this tutorial is how all of the
-code is all in the global namespace. Maybe I'm old school but I prefer to have
-my code encapsulated in some kind of `main()` function.
 
-Another thing I don't particularly care for is how _wordy_ this tutorial is.
-There are comments all over the place telling me how to configure this code
-for various edge cases. I really just want the **golden path** for creating
-an agentic sample -- I don't need to know all of the potential options for
-configuring my code.
 
-<!-- RAW content below -- revise before publish
 
-Pros:
 
-+ Explicit separation of concerns for different agents & tools.
-+ Configurable model settings for individual tools/agents
-
-Cons:
-
-+ Non-deterministic delegation of tasks, esp. evaluation
-  - Couldn't get the evaluation agent to run WITHOUT explicitly telling the
-    root agent to evaluate the sample.
-+ Orchestration is handled by the orchestration LLM rather than an explicit
-  chain
-+ Confusing documentation
-+ Only available in Python, which is not optimal for the team
-+ Default logging to /tmp files -- traces not available. Genkit's traces are
-  much more user-friendly
-+ Unclear how to pass data into tools. Genkit's type definitions make it
-  much easier to configure inputs & outputs.
-  - In fact, it isn't clear that data IS being passed to the code generation
-    agent.
-+ Adding new tools to the multi-agent team requires adding new entries to the
-  root agent prompt
-+ Orchestration fails if return type of a tool is not a primitive data type.
-+ LLM / AI configuration is imperative rather than declarative. Genkit allows
-  us to bundle prompts & LLM configurations into a single prompt file.
-
-tl;dr: If I wanted to write a pure Pythonic orchestration application, I would
-use Langchain. The ADK obscures parts of the orchestration that I want to see
-(traces, inputs and outputs) but forces me to think about sessions, runners,
-async tasks, etc.
-
--->
+[adk]: https://google.github.io/adk-docs/
+[adk-colab]: https://colab.research.google.com/github/google/adk-docs/blob/main/examples/python/tutorial/agent_team/adk_tutorial.ipynb
+[adk-cli]: https://google.github.io/adk-docs/cli/
+[adk-web-ui]: https://google.github.io/adk-docs/ui/
+[llm-judge]: https://arxiv.org/abs/2306.05685
+[loop-agent]: https://google.github.io/adk-docs/agents/workflow-agents/loop-agents/
+[multi-agent]: https://google.github.io/adk-docs/tutorials/agent-team/
+[my-adk-repo]: https://github.com/telpirion/LearningADK
+[quickstart]: https://google.github.io/adk-docs/get-started/quickstart/
+[rag]: https://cloud.google.com/use-cases/retrieval-augmented-generation?hl=en
+[runner]: https://google.github.io/adk-docs/api-reference/python/google-adk.html#google.adk.runners.Runner
+[sequential-agent]: https://google.github.io/adk-docs/agents/workflow-agents/sequential-agents/
