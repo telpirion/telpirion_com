@@ -151,7 +151,7 @@ machine learning applications.
 ## Other Work Experience
 
 + Technical Writer, UX<br/>
-  _Microsoft, June 200—Jan. 2011_
+  _Microsoft, June 2008-Jan. 2011_
 
 + Instructional Designer<br/>
   _Michael D. Schmidt & Associates, June 2001—June 2008_
