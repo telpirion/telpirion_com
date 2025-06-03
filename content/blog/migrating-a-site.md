@@ -84,15 +84,15 @@ pass data between routes (just as an example).
 Besides, keeping this frontend would require that I keep the multi-build
 process set up that I currently have, where I use Go (backend) and Node
 (frontend) for builds, with the two systems wired together by a Gulp file.
-Maintaining all three of these build systems required changes for even simple
-updates to the site. While a complex site might need multiple build systems
-for its components, mine is not that complicated.
+Even simple changes can require updates to 2 or more of the build files. 
+While a complex site might need multiple build systems
+for its components, mine is just not that complicated.
 
 ## What to choose?
 
 Despite the history, I want to make a clean(-ish) break. I must have better
 capabilities for quick site updates (if I'm going to make a habit out of this
-blog thing.
+blog thing).
 
 After chatting with my colleagues and kicking the tires on a few different
 options, I've narrowed down my choices to the following:
