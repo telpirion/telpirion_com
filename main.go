@@ -65,6 +65,7 @@ func main() {
 	r.GET("/about", aboutHandler)
 	r.GET("/apps", appsHandler)
 	r.GET("/apps/:id", appHandler)
+	r.GET("/apps/:id/about", appAboutHandler)
 	r.GET("/blog", blogsHandler)
 	r.GET("/blog/:slug", blogHandler)
 	r.GET("/games", gamesHandler)
@@ -171,6 +172,7 @@ func appsHandler(c *gin.Context) {
 			"View":     "View",
 			"Code":     "Code",
 			"Sidebar":  uiStrings.Sidebar,
+			"Subpath":  "apps",
 		})
 }
 
@@ -182,6 +184,27 @@ func appHandler(c *gin.Context) {
 	log.Println(app)
 
 	c.HTML(200, "app.html", app)
+}
+
+func appAboutHandler(c *gin.Context) {
+	id := c.Param("id")
+	log.Println(id)
+	app := appsDict[id]
+
+	md, err := os.ReadFile(app.About)
+	if err != nil {
+		logger.Fatal(err)
+	}
+
+	html := internal.Markdown(md)
+	c.HTML(200, "markdown-info.html", gin.H{
+		"Title":    fmt.Sprintf("About %s", app.Title),
+		"Image":    app.Image,
+		"ImageAlt": "App thumbnail image",
+		"Content":  template.HTML(string(html)),
+		"Sidebar":  uiStrings.Sidebar,
+	})
+
 }
 
 func blogsHandler(c *gin.Context) {
@@ -232,6 +255,7 @@ func gamesHandler(c *gin.Context) {
 		"View":     "Play",
 		"Code":     "Code",
 		"Sidebar":  uiStrings.Sidebar,
+		"Subpath":  "games",
 	})
 }
 
