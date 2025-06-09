@@ -2,3 +2,7 @@ figure {
   font-style: italic;
   font-size: smaller;
 }
+
+section.blog {
+  max-width: 60vw;
+}

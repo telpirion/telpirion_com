@@ -5,13 +5,10 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html lang="en">
 	<head>
 		<title>telpirion.com | Blog | {{ .Title }}</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="/assets/css/main.css" />
-		<link rel="stylesheet" href="/assets/css/my.css" />
+		{{ template "head-matter.html" }}
 	</head>
 	<body class="is-preload">
 
@@ -26,13 +23,11 @@
 							{{ template "header.html"}}
 
 							<!-- Content -->
-								<section>
+								<section class="blog">
 									<header class="main">
 										<h1>{{.Title}}</h1>
 										<i>{{ .Date }}</i>
 									</header>
-
-									<span class="image main"><img src="images/pic11.jpg" alt="" /></span>
 
 									{{ .Content}}
 
