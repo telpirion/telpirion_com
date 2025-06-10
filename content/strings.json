@@ -74,15 +74,15 @@
           "items": [
             {
               "title": "My Herodotus",
-              "link": "/apps/app-my-herodotus"
+              "link": "/apps/app-my-herodotus/about"
             },
             {
               "title": "Latin Reader (Android)",
-              "link": "/apps/app-latin-reader-android"
+              "link": "/apps/app-latin-reader-android/about"
             },
             {
               "title": "Latin Reader (Windows)",
-              "link": "/apps/app-latin-reader-windows"
+              "link": "/apps/app-latin-reader-windows/about"
             }
           ]
         },
