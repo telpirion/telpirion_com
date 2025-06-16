@@ -6,6 +6,9 @@
  copyright  Eric Schmidt
 -->
 
+[![Go build](https://github.com/telpirion/telpirion_com/actions/workflows/go.yml/badge.svg)](https://github.com/telpirion/MyHerodotus/actions/workflows/go.yml)
+[![Docker build](https://github.com/telpirion/telpirion_com/actions/workflows/docker.yml/badge.svg)](https://github.com/telpirion/MyHerodotus/actions/workflows/docker.yml)
+
 # Telpirion.com
 
 This code repository contains the source code for Telpirion.com, 
