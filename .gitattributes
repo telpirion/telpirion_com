@@ -1,6 +1,6 @@
 # Most files in static are from html5up
 # TODO(telpirion): unignore own JS files?
-./static/** -linguist-vendored
+./static/* linguist-vendored
 
 # Ignore all HTML, images files for linguist
 *.html linguist-detectable=false
