@@ -1,9 +1,10 @@
 # Most files in static are from html5up
 # TODO(telpirion): unignore own JS files?
-static/** linguist-detectable=false
+static/js/*.js linguist-detectable=false
 
 # Ignore all HTML, images files for linguist
 *.html linguist-detectable=false
+*.css linguist-detectable=false
 images/** linguist-detectable=false
 
 # Set all apps, blog content as Markdown
