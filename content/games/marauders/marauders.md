@@ -17,9 +17,11 @@ taught them and the P5.js library.
 
 ## How to play
 
++ Press ENTER to start the game.
 + Use the left and right arrow keys to move your spaceship.
-+ Use the spacebar to shoot bullets at the marauders.
++ Use the SPACEBAR to shoot bullets at the marauders.
 + To restart the game, refresh your browser.
++ Press "p" to pause the game.
 
 ## Known issues
 

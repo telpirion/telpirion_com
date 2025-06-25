@@ -53,6 +53,8 @@ let backgroundColor,
     alienHordeStartX,
     alienHordeStartY,
     isPaused;
+  
+  let gameStart = 0;
 
 function setup() {
   isPaused = false;
@@ -61,7 +63,6 @@ function setup() {
   backgroundColor = 5;
   frameRate(12);
   alienBitSize = 3;
-  starShip = new Starship();
   alienHordeStartX = 100;
   alienHordeStartY = 50;
   alienHorde = new AlienHorde(alienHordeStartX, alienHordeStartY);
@@ -73,24 +74,32 @@ function setup() {
 
 function draw() {
   background(backgroundColor);
-  starShip.moveSelf();
-  starShip.showSelf();
-  starShip.checkCollisions(alienHorde);
-  
-  for (const bullet of bullets) {
-    bullet.moveSelf();
-    bullet.showSelf();
+  if (!gameStart) {
+    fill(255);
+    text("Press ENTER to begin", 120, 200);
+  } else if (gameStart == 1) {
+    starShip = new Starship();
+    gameStart++;
+  } else {
+    starShip.moveSelf();
+    starShip.showSelf();
+    starShip.checkCollisions(alienHorde);
+    
+    for (const bullet of bullets) {
+      bullet.moveSelf();
+      bullet.showSelf();
+    }
+    
+    // Arrow functions may be complicated for students...
+    bullets = bullets.filter(b => b.isActive);
+    
+    alienHorde.move();
+    alienHorde.show();
+    alienHorde.checkCollisions();
+    alienHorde.removeDead();
+    
+    displayScore();
   }
-  
-  // Arrow functions may be complicated for students...
-  bullets = bullets.filter(b => b.isActive);
-  
-  alienHorde.move();
-  alienHorde.show();
-  alienHorde.checkCollisions();
-  alienHorde.removeDead();
-  
-  displayScore();
 }
 
 function displayScore() {
@@ -107,6 +116,9 @@ function keyPressed() {
     starShip.direction = "W";
   } else if (keyCode === 71 /* 'g' */ ) {
     restartGame();
+  } else if (keyCode === ENTER) {
+    background(backgroundColor);
+    gameStart++;
   } else if (keyCode === 32 /* space bar */) {
     bullets.push(new Bullet(starShip.x + 15, starShip.y));
   } else if (keyCode === 80 /* 'p' */) {

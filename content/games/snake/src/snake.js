@@ -34,7 +34,8 @@ sqrt
 */
 
 
-let backgroundColor, playerSnake, currentApple, score
+let backgroundColor, playerSnake, currentApple, score;
+let gameStart = 0; // Tri-state
 
 function setup() {
   // Canvas & color settings
@@ -42,22 +43,28 @@ function setup() {
   colorMode(HSB, 360, 100, 100)
   backgroundColor = 95
   frameRate(12)
-  playerSnake = new Snake()
   currentApple = new Apple()
   score = 0
 }
 
 function draw() {
   background(backgroundColor)
-  // The snake performs the following four methods:
-  playerSnake.moveSelf()
-  playerSnake.showSelf()
-  playerSnake.checkCollisions()
-  playerSnake.checkApples()
-  // The apple needs fewer methods to show up on screen.
-  currentApple.showSelf()
-  // We put the score in its own function for readability.
-  displayScore()
+  if (!gameStart) {
+    text("Press ENTER to begin", 120, 200);
+  } else if (gameStart == 1) {
+    playerSnake = new Snake()
+    gameStart++;
+  } else {
+    // The snake performs the following four methods:
+    playerSnake.moveSelf()
+    playerSnake.showSelf()
+    playerSnake.checkCollisions()
+    playerSnake.checkApples()
+    // The apple needs fewer methods to show up on screen.
+    currentApple.showSelf()
+    // We put the score in its own function for readability.
+    displayScore()
+  }
 }
 
 function displayScore() {
@@ -175,6 +182,10 @@ function keyPressed() {
     playerSnake.direction = "W"
   } else if (keyCode === 32  ) {
     restartGame()
+    gameStart = 1;
+  } else if (keyCode === ENTER) {
+    background(backgroundColor)
+    gameStart++;
   } else {
     console.log("wrong key")
   }
@@ -189,6 +200,6 @@ function restartGame() {
 
 function gameOver() {
   stroke(0)
-  text("GAME OVER", 50, 50)
+  text("GAME OVER -- Press SPACE to restart", 100, 200)
   noLoop()
 }
