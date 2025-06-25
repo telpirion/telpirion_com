@@ -29,7 +29,7 @@ machine learning applications.
 
 ## Professional Sites
 
-* [Telpirion.com (here!)](https://telpirion.com) 
+* [telpirion.net (here!)](https://telpirion.net) 
 * [GitHub](https://github.com/telpirion/)
 * [LinkedIn](https://www.linkedin.com/in/eric-schmidt-692640/)
 

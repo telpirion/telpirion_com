@@ -22,7 +22,7 @@ pay homage to my favorite author, hence the user name `Telpirion`. (Yes, I know
 it is misspelled.)
 
 **Note**: ["Telperion" is copyright Ⓒ by the Tolkien Estate][tolkien-estate].
-This site, telpirion.com, is not affiliated with the Tolkien Estate.
+This site, telpirion.net, is not affiliated with the Tolkien Estate.
 
 <hr class="major" />
 
