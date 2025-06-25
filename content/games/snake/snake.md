@@ -17,14 +17,17 @@ how to teach the curriculum.
 
 ## How to play
 
++ Press ENTER to start the game.
 + Use the up, down, left, and right arrow keys to move your snake.
-+ If your snake goes off the screen, your game is over.
++ If your snake runs into itself
 + To restart the game, refresh your browser.
 
 ## Known bugs
 
 + There is no restart or pause feature. As mentioned above, you must refresh
   your browser to restart the game.
++ The snake can go off the canvas and yet still be "alive." Refresh the browser
+  if you have lost your snake.
 
 [cssi]: https://blog.google/inside-google/life-at-google/googles-computer-science-summer/
 [p5js]: https://p5js.org/
