@@ -1,5 +1,5 @@
 <!-- 
- README for telpirion.net site.
+ README for telpirion.com site.
  
  author     Eric Schmidt
  version    0.2.0 2025/05/26
@@ -9,9 +9,9 @@
 [![Go build](https://github.com/telpirion/telpirion_com/actions/workflows/go.yml/badge.svg)](https://github.com/telpirion/MyHerodotus/actions/workflows/go.yml)
 [![Docker build](https://github.com/telpirion/telpirion_com/actions/workflows/docker.yml/badge.svg)](https://github.com/telpirion/MyHerodotus/actions/workflows/docker.yml)
 
-# telpirion.net
+# telpirion.com
 
-This code repository contains the source code for telpirion.net, 
+This code repository contains the source code for telpirion.com, 
 my personal web site. This code is provided for educational
 and illustrative purposes only.
 

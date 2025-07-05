@@ -117,7 +117,7 @@ started and it has a [single build system][astro-build].
 
 Astro does have the concept of [URL rewrites][astro-rewrites]. I want to
 rewrite URLs so that my site uses browser address bar-friendly URLs like
-"telpirion.net/games/blah" rather than the name of the hosting service.
+"telpirion.com/games/blah" rather than the name of the hosting service.
 
 It looks like Astro offers [themes][astro-themes], many of which are quite beautiful. There is
 a mix of both paid and free themes.

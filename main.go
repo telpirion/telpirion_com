@@ -1,5 +1,5 @@
 /*
-	  Main / server for telpirion.net site.
+	  Main / server for telpirion.com site.
 
 	  @author Eric Schmidt
 	  @version 2.0 2025/05/16
