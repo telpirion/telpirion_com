@@ -10,7 +10,7 @@ dangerous landscape filled with obstacles. You must jump over the obstacles
 in order to reach the end of the level. Each level is timed, so you can
 try to beat your best time.
 
-I created Vikings!!! in 2014 while learning how to write JavaScript. I was
+I created Vikings!!! in 2012 while learning how to write JavaScript. I was
 inspired by the book,
 [HTML5 Games: Creating Games with HTML5, CSS3, and WebGL][html5games]. This
 game represents my first attempt at creating my own video game using JavaScript.

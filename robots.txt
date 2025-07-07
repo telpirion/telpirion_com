@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://base-image-155166194724.us-west1.run.app/sitemap.txt
