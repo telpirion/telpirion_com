@@ -1,0 +1,8 @@
+https://telpirion.com
+https://base-image-155166194724.us-west1.run.app
+https://base-image-155166194724.us-west1.run.app/about
+https://base-image-155166194724.us-west1.run.app/apps
+https://base-image-155166194724.us-west1.run.app/blog
+https://base-image-155166194724.us-west1.run.app/projects
+https://base-image-155166194724.us-west1.run.app/publications
+https://base-image-155166194724.us-west1.run.app/resume
