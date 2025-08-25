@@ -51,3 +51,6 @@ the app, and streamlined the navigation.
 
 + Mapping location between Latin source and English translations can sometimes
   get out-of-sync.
+
+[perseus]: https://www.perseus.tufts.edu/hopper/
+[tufts-license]: http://www.perseus.tufts.edu/hopper/opensource/download
