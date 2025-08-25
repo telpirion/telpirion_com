@@ -1,9 +1,10 @@
-title: Serving a Minecraft server on Google Cloud in 2025
+title: Hosting a Minecraft server on Google Cloud in 2025
 description: 
     Swift and simple deployment to Cloud Run makes managing your own Minecraft
-    server a breeze.
+    server a breeze. See how I did it!
 slug: serving-a-minecraft-server-on-google-cloud-in-2025
-state: unpublished
+image: images/sad-dad-mining.png
+state: published
 date: 2025-12-31
 tags:
 - GCP
