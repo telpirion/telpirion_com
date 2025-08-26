@@ -4,7 +4,7 @@ description:
     server a breeze. See how I did it!
 slug: serving-a-minecraft-server-on-google-cloud-in-2025
 image: images/sad-dad-mining.png
-state: published
+state: drafting
 date: 2025-12-31
 tags:
 - GCP
