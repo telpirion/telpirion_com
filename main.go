@@ -30,6 +30,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"sort"
 	"strings"
 
 	minify "github.com/tdewolff/minify/v2"
@@ -76,6 +77,7 @@ func main() {
 	r.GET("/projects", projectsHandler)
 	r.GET("/publications", publicationsHandler)
 	r.GET("/resume", resumeHandler)
+	r.POST("/search", searchHandler)
 
 	r.NoRoute(func(c *gin.Context) {
 		c.File("./src/index.html")
@@ -343,6 +345,61 @@ func resumeHandler(c *gin.Context) {
 	})
 }
 
+func searchHandler(c *gin.Context) {
+	query := c.PostForm("query")
+	lowerQuery := strings.ToLower(query)
+	var results []internal.ListItemMetadata
+
+	// Search blogs
+	for _, blog := range blogsMetadata {
+		if strings.Contains(strings.ToLower(blog.Title), lowerQuery) || strings.Contains(strings.ToLower(blog.Description), lowerQuery) {
+			results = append(results, internal.ListItemMetadata{
+				Title:       blog.Title,
+				Description: blog.Description,
+				Image:       blog.Image,
+				Url:         "/blog/" + blog.Slug,
+			})
+		}
+	}
+
+	// Search apps
+	for _, app := range appsDict {
+		if strings.Contains(strings.ToLower(app.Title), lowerQuery) || strings.Contains(strings.ToLower(app.Description), lowerQuery) {
+			results = append(results, app)
+		}
+	}
+
+	// Search games
+	for _, game := range gamesDict {
+		if strings.Contains(strings.ToLower(game.Title), lowerQuery) || strings.Contains(strings.ToLower(game.Description), lowerQuery) {
+			results = append(results, game.ListItemMetadata)
+		}
+	}
+
+	// Search projects
+	for _, proj := range projectsDict {
+		if strings.Contains(strings.ToLower(proj.Title), lowerQuery) || strings.Contains(strings.ToLower(proj.Description), lowerQuery) {
+			results = append(results, proj)
+		}
+	}
+
+	// Search publications
+	for _, pub := range pubsDict {
+		if strings.Contains(strings.ToLower(pub.Title), lowerQuery) || strings.Contains(strings.ToLower(pub.Description), lowerQuery) {
+			results = append(results, pub)
+		}
+	}
+
+	c.HTML(200, "search-results.html", gin.H{
+		"Title":   "Search Results",
+		"Query":   query,
+		"Items":   results,
+		"Sidebar": uiStrings.Sidebar,
+		"View":    "View",
+		"Code":    "Code",
+	})
+}
+
 func getBlogs(path string) ([]internal.BlogMetadata, error) {
 	var blogs []internal.BlogMetadata
 
@@ -366,6 +423,9 @@ func getBlogs(path string) ([]internal.BlogMetadata, error) {
 		metadata.Filepath = path
 
 		blogs = append(blogs, *metadata)
+		sort.Slice(blogs, func(i, j int) bool {
+			return blogs[i].Date > blogs[j].Date
+		})
 		blogsDict[metadata.Slug] = *metadata
 
 		return nil

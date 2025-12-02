@@ -1,6 +1,6 @@
 Here's where I share my portfolio, including my blog posts, apps, projects, and
-even some silly JavaScript games. I currently work at Google, where I build
-sample applications and maintain code snippets for Google Cloud customers. I
+even some silly JavaScript games. I currently work at Google, where I help
+Android app developers create adaptive apps that work on multiple screens. I
 have a wide range of interests in technology; I tend to focus most on AI/ML,
 databases, data analytics, and data pipelines. All opinions expressed are mine.
 
